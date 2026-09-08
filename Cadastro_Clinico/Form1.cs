@@ -21,5 +21,31 @@ namespace Cadastro_Clinico
         {
             Application.Exit();
         }
+
+        private void btn_entrar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            add_funcionario frm = Application.OpenForms["add_funcionario"] as add_funcionario;
+            if (frm == null)
+            {
+
+                frm = new add_funcionario();
+                frm.Name = "add_funcionario";
+                frm.Show();
+            }
+            else
+            {
+                frm.BringToFront();
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

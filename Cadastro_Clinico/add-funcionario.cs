@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,21 @@ namespace Cadastro_Clinico
 {
     public partial class add_funcionario : Form
     {
+        
         public add_funcionario()
         {
             InitializeComponent();
+        }
+
+        private void btn_cancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btn_testar_conexao_Click(object sender, EventArgs e)
+        {
+
+           
         }
     }
 }
