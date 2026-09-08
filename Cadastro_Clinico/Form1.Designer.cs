@@ -34,7 +34,6 @@
             this.btn_sair = new System.Windows.Forms.Button();
             this.lbl_usuario = new System.Windows.Forms.Label();
             this.lbl_senha = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btn_entrar
@@ -68,6 +67,7 @@
             this.btn_sair.TabIndex = 3;
             this.btn_sair.Text = "Sair";
             this.btn_sair.UseVisualStyleBackColor = true;
+            this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
             // 
             // lbl_usuario
             // 
@@ -87,19 +87,11 @@
             this.lbl_senha.TabIndex = 5;
             this.lbl_senha.Text = "Senha";
             // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(527, 77);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 6;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.lbl_senha);
             this.Controls.Add(this.lbl_usuario);
             this.Controls.Add(this.btn_sair);
@@ -121,7 +113,6 @@
         private System.Windows.Forms.Button btn_sair;
         private System.Windows.Forms.Label lbl_usuario;
         private System.Windows.Forms.Label lbl_senha;
-        private System.Windows.Forms.TextBox textBox3;
     }
 }
 
