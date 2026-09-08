@@ -28,158 +28,159 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btn_confirmar = new System.Windows.Forms.Button();
+            this.btn_atualizar = new System.Windows.Forms.Button();
+            this.btn_cancelar = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txb_email = new System.Windows.Forms.TextBox();
+            this.txb_sobrenome = new System.Windows.Forms.TextBox();
+            this.txb_nome = new System.Windows.Forms.TextBox();
+            this.txb_cpf = new System.Windows.Forms.TextBox();
+            this.lbl_departamento = new System.Windows.Forms.Label();
+            this.lbl_cpf = new System.Windows.Forms.Label();
+            this.lbl_email = new System.Windows.Forms.Label();
+            this.lbl_nome = new System.Windows.Forms.Label();
+            this.lbl_sobrenome = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox1
+            // btn_confirmar
             // 
-            this.textBox1.Location = new System.Drawing.Point(123, 78);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(209, 20);
-            this.textBox1.TabIndex = 0;
+            this.btn_confirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.btn_confirmar.Location = new System.Drawing.Point(12, 353);
+            this.btn_confirmar.Name = "btn_confirmar";
+            this.btn_confirmar.Size = new System.Drawing.Size(260, 85);
+            this.btn_confirmar.TabIndex = 11;
+            this.btn_confirmar.Text = "✅ Confirmar";
+            this.btn_confirmar.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // btn_atualizar
             // 
-            this.textBox2.Location = new System.Drawing.Point(123, 114);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(209, 20);
-            this.textBox2.TabIndex = 1;
+            this.btn_atualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.btn_atualizar.Location = new System.Drawing.Point(278, 353);
+            this.btn_atualizar.Name = "btn_atualizar";
+            this.btn_atualizar.Size = new System.Drawing.Size(260, 85);
+            this.btn_atualizar.TabIndex = 12;
+            this.btn_atualizar.Text = "🔄 Atualizar";
+            this.btn_atualizar.UseVisualStyleBackColor = true;
             // 
-            // textBox3
+            // btn_cancelar
             // 
-            this.textBox3.Location = new System.Drawing.Point(483, 118);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(209, 20);
-            this.textBox3.TabIndex = 3;
+            this.btn_cancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.btn_cancelar.Location = new System.Drawing.Point(544, 353);
+            this.btn_cancelar.Name = "btn_cancelar";
+            this.btn_cancelar.Size = new System.Drawing.Size(244, 85);
+            this.btn_cancelar.TabIndex = 13;
+            this.btn_cancelar.Text = "❌ Cancelar";
+            this.btn_cancelar.UseVisualStyleBackColor = true;
+            this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
-            // textBox4
+            // comboBox1
             // 
-            this.textBox4.Location = new System.Drawing.Point(483, 82);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(209, 20);
-            this.textBox4.TabIndex = 2;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Terapeuta",
+            "Psicólogo"});
+            this.comboBox1.Location = new System.Drawing.Point(572, 82);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(130, 21);
+            this.comboBox1.TabIndex = 23;
             // 
-            // textBox5
+            // txb_email
             // 
-            this.textBox5.Location = new System.Drawing.Point(123, 154);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(209, 20);
-            this.textBox5.TabIndex = 4;
+            this.txb_email.Location = new System.Drawing.Point(506, 51);
+            this.txb_email.Name = "txb_email";
+            this.txb_email.Size = new System.Drawing.Size(172, 20);
+            this.txb_email.TabIndex = 22;
             // 
-            // label1
+            // txb_sobrenome
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(68, 81);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "label1";
+            this.txb_sobrenome.Location = new System.Drawing.Point(165, 108);
+            this.txb_sobrenome.Name = "txb_sobrenome";
+            this.txb_sobrenome.Size = new System.Drawing.Size(172, 20);
+            this.txb_sobrenome.TabIndex = 21;
             // 
-            // label2
+            // txb_nome
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(68, 121);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "label2";
+            this.txb_nome.Location = new System.Drawing.Point(109, 82);
+            this.txb_nome.Name = "txb_nome";
+            this.txb_nome.Size = new System.Drawing.Size(172, 20);
+            this.txb_nome.TabIndex = 20;
             // 
-            // label3
+            // txb_cpf
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(68, 161);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "label3";
+            this.txb_cpf.Location = new System.Drawing.Point(100, 55);
+            this.txb_cpf.Name = "txb_cpf";
+            this.txb_cpf.Size = new System.Drawing.Size(172, 20);
+            this.txb_cpf.TabIndex = 19;
             // 
-            // label4
+            // lbl_departamento
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(433, 89);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "label4";
+            this.lbl_departamento.AutoSize = true;
+            this.lbl_departamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.lbl_departamento.Location = new System.Drawing.Point(438, 82);
+            this.lbl_departamento.Name = "lbl_departamento";
+            this.lbl_departamento.Size = new System.Drawing.Size(128, 22);
+            this.lbl_departamento.TabIndex = 18;
+            this.lbl_departamento.Text = "Departamento:";
             // 
-            // label5
+            // lbl_cpf
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(433, 125);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "label5";
+            this.lbl_cpf.AutoSize = true;
+            this.lbl_cpf.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.lbl_cpf.Location = new System.Drawing.Point(52, 55);
+            this.lbl_cpf.Name = "lbl_cpf";
+            this.lbl_cpf.Size = new System.Drawing.Size(51, 22);
+            this.lbl_cpf.TabIndex = 17;
+            this.lbl_cpf.Text = "CPF:";
             // 
-            // button1
+            // lbl_email
             // 
-            this.button1.Location = new System.Drawing.Point(601, 309);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.lbl_email.AutoSize = true;
+            this.lbl_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.lbl_email.Location = new System.Drawing.Point(435, 51);
+            this.lbl_email.Name = "lbl_email";
+            this.lbl_email.Size = new System.Drawing.Size(65, 22);
+            this.lbl_email.TabIndex = 16;
+            this.lbl_email.Text = "E-mail:";
             // 
-            // button2
+            // lbl_nome
             // 
-            this.button2.Location = new System.Drawing.Point(118, 353);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(182, 85);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.lbl_nome.AutoSize = true;
+            this.lbl_nome.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.lbl_nome.Location = new System.Drawing.Point(52, 78);
+            this.lbl_nome.Name = "lbl_nome";
+            this.lbl_nome.Size = new System.Drawing.Size(62, 22);
+            this.lbl_nome.TabIndex = 15;
+            this.lbl_nome.Text = "Nome:";
             // 
-            // button3
+            // lbl_sobrenome
             // 
-            this.button3.Location = new System.Drawing.Point(306, 353);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(182, 85);
-            this.button3.TabIndex = 12;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
-            this.button4.Location = new System.Drawing.Point(494, 353);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(182, 85);
-            this.button4.TabIndex = 13;
-            this.button4.Text = "dhwaoauwdao9dad";
-            this.button4.UseVisualStyleBackColor = true;
+            this.lbl_sobrenome.AutoSize = true;
+            this.lbl_sobrenome.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.lbl_sobrenome.Location = new System.Drawing.Point(52, 106);
+            this.lbl_sobrenome.Name = "lbl_sobrenome";
+            this.lbl_sobrenome.Size = new System.Drawing.Size(107, 22);
+            this.lbl_sobrenome.TabIndex = 14;
+            this.lbl_sobrenome.Text = "Sobrenome:";
             // 
             // add_funcionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.txb_email);
+            this.Controls.Add(this.txb_sobrenome);
+            this.Controls.Add(this.txb_nome);
+            this.Controls.Add(this.txb_cpf);
+            this.Controls.Add(this.lbl_departamento);
+            this.Controls.Add(this.lbl_cpf);
+            this.Controls.Add(this.lbl_email);
+            this.Controls.Add(this.lbl_nome);
+            this.Controls.Add(this.lbl_sobrenome);
+            this.Controls.Add(this.btn_cancelar);
+            this.Controls.Add(this.btn_atualizar);
+            this.Controls.Add(this.btn_confirmar);
             this.Name = "add_funcionario";
             this.Text = "add_funcionario";
             this.ResumeLayout(false);
@@ -188,20 +189,18 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_confirmar;
+        private System.Windows.Forms.Button btn_atualizar;
+        private System.Windows.Forms.Button btn_cancelar;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txb_email;
+        private System.Windows.Forms.TextBox txb_sobrenome;
+        private System.Windows.Forms.TextBox txb_nome;
+        private System.Windows.Forms.TextBox txb_cpf;
+        private System.Windows.Forms.Label lbl_departamento;
+        private System.Windows.Forms.Label lbl_cpf;
+        private System.Windows.Forms.Label lbl_email;
+        private System.Windows.Forms.Label lbl_nome;
+        private System.Windows.Forms.Label lbl_sobrenome;
     }
 }
