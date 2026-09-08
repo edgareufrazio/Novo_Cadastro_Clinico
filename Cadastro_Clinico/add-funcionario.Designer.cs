@@ -31,7 +31,7 @@
             this.btn_confirmar = new System.Windows.Forms.Button();
             this.btn_atualizar = new System.Windows.Forms.Button();
             this.btn_cancelar = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbDepartamento = new System.Windows.Forms.ComboBox();
             this.txb_email = new System.Windows.Forms.TextBox();
             this.txb_sobrenome = new System.Windows.Forms.TextBox();
             this.txb_nome = new System.Windows.Forms.TextBox();
@@ -52,6 +52,7 @@
             this.btn_confirmar.TabIndex = 11;
             this.btn_confirmar.Text = "✅ Confirmar";
             this.btn_confirmar.UseVisualStyleBackColor = true;
+            this.btn_confirmar.Click += new System.EventHandler(this.btn_confirmar_Click);
             // 
             // btn_atualizar
             // 
@@ -74,16 +75,16 @@
             this.btn_cancelar.UseVisualStyleBackColor = true;
             this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
-            // comboBox1
+            // cmbDepartamento
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbDepartamento.FormattingEnabled = true;
+            this.cmbDepartamento.Items.AddRange(new object[] {
             "Terapeuta",
             "Psicólogo"});
-            this.comboBox1.Location = new System.Drawing.Point(572, 82);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(130, 21);
-            this.comboBox1.TabIndex = 23;
+            this.cmbDepartamento.Location = new System.Drawing.Point(572, 82);
+            this.cmbDepartamento.Name = "cmbDepartamento";
+            this.cmbDepartamento.Size = new System.Drawing.Size(130, 21);
+            this.cmbDepartamento.TabIndex = 23;
             // 
             // txb_email
             // 
@@ -168,7 +169,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbDepartamento);
             this.Controls.Add(this.txb_email);
             this.Controls.Add(this.txb_sobrenome);
             this.Controls.Add(this.txb_nome);
@@ -192,7 +193,7 @@
         private System.Windows.Forms.Button btn_confirmar;
         private System.Windows.Forms.Button btn_atualizar;
         private System.Windows.Forms.Button btn_cancelar;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbDepartamento;
         private System.Windows.Forms.TextBox txb_email;
         private System.Windows.Forms.TextBox txb_sobrenome;
         private System.Windows.Forms.TextBox txb_nome;
