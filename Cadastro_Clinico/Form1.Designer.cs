@@ -35,6 +35,7 @@
             this.lbl_usuario = new System.Windows.Forms.Label();
             this.lbl_senha = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnTeste = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_entrar
@@ -99,11 +100,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnTeste
+            // 
+            this.btnTeste.Location = new System.Drawing.Point(591, 377);
+            this.btnTeste.Name = "btnTeste";
+            this.btnTeste.Size = new System.Drawing.Size(115, 23);
+            this.btnTeste.TabIndex = 7;
+            this.btnTeste.Text = "teste de conexão";
+            this.btnTeste.UseVisualStyleBackColor = true;
+            this.btnTeste.Click += new System.EventHandler(this.btnTeste_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnTeste);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lbl_senha);
             this.Controls.Add(this.lbl_usuario);
@@ -128,6 +140,7 @@
         private System.Windows.Forms.Label lbl_usuario;
         private System.Windows.Forms.Label lbl_senha;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnTeste;
     }
 }
 

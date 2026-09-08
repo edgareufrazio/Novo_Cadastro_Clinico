@@ -58,6 +58,7 @@
     <Compile Include="Adicionar_cliente.Designer.cs">
       <DependentUpon>Adicionar_cliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Connection.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
