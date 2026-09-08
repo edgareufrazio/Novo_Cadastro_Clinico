@@ -28,20 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_entrar = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_sair = new System.Windows.Forms.Button();
+            this.lbl_usuario = new System.Windows.Forms.Label();
+            this.lbl_senha = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // btn_entrar
             // 
-            this.button1.Location = new System.Drawing.Point(312, 257);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_entrar.Location = new System.Drawing.Point(312, 257);
+            this.btn_entrar.Name = "btn_entrar";
+            this.btn_entrar.Size = new System.Drawing.Size(75, 23);
+            this.btn_entrar.TabIndex = 0;
+            this.btn_entrar.Text = "Entrar";
+            this.btn_entrar.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
@@ -57,24 +59,44 @@
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 2;
             // 
-            // button2
+            // btn_sair
             // 
-            this.button2.Location = new System.Drawing.Point(393, 257);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn_sair.Location = new System.Drawing.Point(393, 257);
+            this.btn_sair.Name = "btn_sair";
+            this.btn_sair.Size = new System.Drawing.Size(75, 23);
+            this.btn_sair.TabIndex = 3;
+            this.btn_sair.Text = "Sair";
+            this.btn_sair.UseVisualStyleBackColor = true;
+            // 
+            // lbl_usuario
+            // 
+            this.lbl_usuario.AutoSize = true;
+            this.lbl_usuario.Location = new System.Drawing.Point(309, 152);
+            this.lbl_usuario.Name = "lbl_usuario";
+            this.lbl_usuario.Size = new System.Drawing.Size(43, 13);
+            this.lbl_usuario.TabIndex = 4;
+            this.lbl_usuario.Text = "Usuário";
+            // 
+            // lbl_senha
+            // 
+            this.lbl_senha.AutoSize = true;
+            this.lbl_senha.Location = new System.Drawing.Point(309, 204);
+            this.lbl_senha.Name = "lbl_senha";
+            this.lbl_senha.Size = new System.Drawing.Size(38, 13);
+            this.lbl_senha.TabIndex = 5;
+            this.lbl_senha.Text = "Senha";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.lbl_senha);
+            this.Controls.Add(this.lbl_usuario);
+            this.Controls.Add(this.btn_sair);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_entrar);
             this.Name = "Form1";
             this.Text = "Login";
             this.ResumeLayout(false);
@@ -84,10 +106,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_entrar;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_sair;
+        private System.Windows.Forms.Label lbl_usuario;
+        private System.Windows.Forms.Label lbl_senha;
     }
 }
 
