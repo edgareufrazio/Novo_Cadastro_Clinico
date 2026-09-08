@@ -153,11 +153,12 @@
             // 
             // button4
             // 
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
             this.button4.Location = new System.Drawing.Point(494, 353);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(182, 85);
             this.button4.TabIndex = 13;
-            this.button4.Text = "button4";
+            this.button4.Text = "dhwaoauwdao9dad";
             this.button4.UseVisualStyleBackColor = true;
             // 
             // add_funcionario
