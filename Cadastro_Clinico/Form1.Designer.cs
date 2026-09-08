@@ -38,7 +38,7 @@
             // 
             // btn_entrar
             // 
-            this.btn_entrar.Location = new System.Drawing.Point(312, 257);
+            this.btn_entrar.Location = new System.Drawing.Point(297, 255);
             this.btn_entrar.Name = "btn_entrar";
             this.btn_entrar.Size = new System.Drawing.Size(75, 23);
             this.btn_entrar.TabIndex = 0;
@@ -47,21 +47,21 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(312, 168);
+            this.textBox1.Location = new System.Drawing.Point(283, 166);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(188, 20);
             this.textBox1.TabIndex = 1;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(312, 220);
+            this.textBox2.Location = new System.Drawing.Point(283, 218);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.Size = new System.Drawing.Size(188, 20);
             this.textBox2.TabIndex = 2;
             // 
             // btn_sair
             // 
-            this.btn_sair.Location = new System.Drawing.Point(393, 257);
+            this.btn_sair.Location = new System.Drawing.Point(389, 255);
             this.btn_sair.Name = "btn_sair";
             this.btn_sair.Size = new System.Drawing.Size(75, 23);
             this.btn_sair.TabIndex = 3;
@@ -71,7 +71,7 @@
             // lbl_usuario
             // 
             this.lbl_usuario.AutoSize = true;
-            this.lbl_usuario.Location = new System.Drawing.Point(309, 152);
+            this.lbl_usuario.Location = new System.Drawing.Point(280, 150);
             this.lbl_usuario.Name = "lbl_usuario";
             this.lbl_usuario.Size = new System.Drawing.Size(43, 13);
             this.lbl_usuario.TabIndex = 4;
@@ -80,7 +80,7 @@
             // lbl_senha
             // 
             this.lbl_senha.AutoSize = true;
-            this.lbl_senha.Location = new System.Drawing.Point(309, 204);
+            this.lbl_senha.Location = new System.Drawing.Point(280, 202);
             this.lbl_senha.Name = "lbl_senha";
             this.lbl_senha.Size = new System.Drawing.Size(38, 13);
             this.lbl_senha.TabIndex = 5;
