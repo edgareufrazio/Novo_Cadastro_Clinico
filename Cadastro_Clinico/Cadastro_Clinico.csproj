@@ -52,6 +52,7 @@
     <Compile Include="add-funcionario.Designer.cs">
       <DependentUpon>add-funcionario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Connection.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

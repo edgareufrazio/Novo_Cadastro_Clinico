@@ -1,15 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Cadastro_Clinico
 {
     internal class Connection
     {
+        private readonly string connectionString =
+           @"Data Source=VPR0681554W11-1\SQLEXPRESS;
+              Initial Catalog=Projeto;
+              User ID=sa;
+              Password=123456;";
 
-        public Connection() { }
+        public SqlConnection Conectar()
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
 
+            conn.Open();
+
+            return conn;
+        }
+
+        public void Desconectar(SqlConnection conn)
+        {
+            if (conn != null && conn.State == System.Data.ConnectionState.Open)
+            {
+                conn.Close();
+            }
+        }
     }
 }
