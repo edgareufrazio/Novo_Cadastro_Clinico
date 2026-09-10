@@ -12,6 +12,10 @@ namespace Cadastro_Clinico
 {
     public partial class Adicionar_cliente : Form
     {
+        private void btn_addFuncionario_Click(object sender, EventArgs e)
+        {
 
-    }
+        }
+
+        
 }
