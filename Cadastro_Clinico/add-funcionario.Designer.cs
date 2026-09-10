@@ -196,11 +196,6 @@ namespace Cadastro_Clinico
         {
             //throw new NotImplementedException();
         }
-<<<<<<< Updated upstream
-=======
-
-        #endregion
->>>>>>> Stashed changes
 
         #endregion
         private System.Windows.Forms.Button btn_confirmar;
