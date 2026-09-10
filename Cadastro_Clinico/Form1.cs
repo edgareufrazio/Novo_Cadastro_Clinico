@@ -33,6 +33,7 @@ namespace Cadastro_Clinico
                 MessageBox.Show("Por favor,Preencha todos os campos");
                 return;
             }
+
             if (ValidarLogin(usuario, senha))
             {
                 MessageBox.Show("Login efetuado com sucesso");
@@ -57,7 +58,7 @@ namespace Cadastro_Clinico
                 txtUsuario.Clear();
                 txtSenha.Clear();
 
-              
+
             }
         }
 
