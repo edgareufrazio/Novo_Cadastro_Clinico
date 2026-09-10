@@ -25,7 +25,26 @@ namespace Cadastro_Clinico
 
         private void btn_entrar_Click(object sender, EventArgs e)
         {
+            string usuario = txtUsuario.Text;
+            string senha = txtSenha.Text;
 
+            if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(senha))
+            {
+                MessageBox.Show("Por favor,Preencha todos os campos");
+                return;
+            }
+            if (ValidarLogin(usuario, senha))
+            {
+                MessageBox.Show("Login efetuado com sucesso");
+                txtUsuario.Clear();
+                txtSenha.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Usuario ou senha incorretos");
+                txtUsuario.Clear();
+                txtSenha.Clear();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -64,6 +83,36 @@ namespace Cadastro_Clinico
             catch (Exception ex)
             {
                 MessageBox.Show("Erro na conexão:\n" + ex.Message);
+            }
+        }
+
+
+        private bool ValidarLogin(string usuario, string senha)
+        {
+            string conexao = @"Data Source=VPR0681554W11-1\SQLEXPRESS;Initial Catalog=Projeto;User ID=sa;Password=123456;";
+            string query = "SELECT COUNT(1) FROM Logar WHERE Usuario = @usuario AND Senha = @senha";
+
+            using (SqlConnection con = new SqlConnection(conexao))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@usuario", usuario);
+                    cmd.Parameters.AddWithValue("@senha", senha);
+
+                    try
+                    {
+                        con.Open();
+                        int resultado = Convert.ToInt32(cmd.ExecuteScalar());
+
+
+                        return resultado > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao conectar: " + ex.Message, "Erro de Banco", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
             }
         }
     }
