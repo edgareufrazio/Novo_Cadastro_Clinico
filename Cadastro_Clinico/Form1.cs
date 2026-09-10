@@ -71,15 +71,14 @@ namespace Cadastro_Clinico
 
         private void btnTeste_Click(object sender, EventArgs e)
         {
-            Connection conexao = new Connection();
-
             try
             {
-                SqlConnection conn = conexao.Conectar();
+                Connection conexao = new Connection();
 
-                MessageBox.Show("Conexão realizada com sucesso!");
-
-                conexao.Desconectar(conn);
+                using (SqlConnection conn = conexao.Conectar())
+                {
+                    MessageBox.Show("Conexão realizada com sucesso!");
+                }
             }
             catch (Exception ex)
             {
@@ -90,29 +89,21 @@ namespace Cadastro_Clinico
 
         private bool ValidarLogin(string usuario, string senha)
         {
-            Connection con = new Connection();
-            string query = "SELECT COUNT(1) FROM Logar WHERE Usuario = @usuario AND Senha = @senha";
-
-            using (con.Conectar())
+            string query = @" SELECT COUNT(*) FROM Logar WHERE Usuario = @usuario AND Senha = @senha";
+            Connection conexao = new Connection();
+            try
             {
-                using (SqlCommand cmd = new SqlCommand(query, con.Conectar()))
-                {
-                    cmd.Parameters.AddWithValue("@usuario", usuario);
-                    cmd.Parameters.AddWithValue("@senha", senha);
-
-                    try
-                    {
-                        int resultado = Convert.ToInt32(cmd.ExecuteScalar());
-                        return resultado > 0;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Erro ao conectar: " + ex.Message, "Erro de Banco", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
+                using (SqlConnection conn = conexao.Conectar()) 
+                using (SqlCommand cmd = new SqlCommand(query, conn)) 
+                { cmd.Parameters.Add("@usuario", SqlDbType.VarChar, 50).Value = usuario;
+                    cmd.Parameters.Add("@senha", SqlDbType.VarChar, 100).Value = senha;
+                    int resultado = Convert.ToInt32(cmd.ExecuteScalar()); 
+                    return resultado > 0;
                 }
-            }
-
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao consultar o banco de dados:\n" + ex.Message, "Erro de Banco", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                return false; }
         }
 
     }
