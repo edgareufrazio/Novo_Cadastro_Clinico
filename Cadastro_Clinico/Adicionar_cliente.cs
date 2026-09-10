@@ -12,9 +12,6 @@ namespace Cadastro_Clinico
 {
     public partial class Adicionar_cliente : Form
     {
-        public Adicionar_cliente()
-        {
-            InitializeComponent();
-        }
+
     }
 }
