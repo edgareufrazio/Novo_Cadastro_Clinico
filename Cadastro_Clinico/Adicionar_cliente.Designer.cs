@@ -30,7 +30,6 @@
         {
             this.mtb_dataAtendimento = new System.Windows.Forms.MaskedTextBox();
             this.mtb_cep = new System.Windows.Forms.MaskedTextBox();
-            this.btn_addFuncionario = new System.Windows.Forms.Button();
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_atualizar = new System.Windows.Forms.Button();
             this.btn_salvar = new System.Windows.Forms.Button();
@@ -74,15 +73,6 @@
             this.mtb_cep.Name = "mtb_cep";
             this.mtb_cep.Size = new System.Drawing.Size(80, 20);
             this.mtb_cep.TabIndex = 77;
-            // 
-            // btn_addFuncionario
-            // 
-            this.btn_addFuncionario.Location = new System.Drawing.Point(261, 405);
-            this.btn_addFuncionario.Name = "btn_addFuncionario";
-            this.btn_addFuncionario.Size = new System.Drawing.Size(129, 23);
-            this.btn_addFuncionario.TabIndex = 76;
-            this.btn_addFuncionario.Text = "Adicionar funcionario";
-            this.btn_addFuncionario.UseVisualStyleBackColor = true;
             // 
             // btn_excluir
             // 
@@ -291,7 +281,6 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.mtb_dataAtendimento);
             this.Controls.Add(this.mtb_cep);
-            this.Controls.Add(this.btn_addFuncionario);
             this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.btn_atualizar);
             this.Controls.Add(this.btn_salvar);
@@ -328,7 +317,6 @@
 
         private System.Windows.Forms.MaskedTextBox mtb_dataAtendimento;
         private System.Windows.Forms.MaskedTextBox mtb_cep;
-        private System.Windows.Forms.Button btn_addFuncionario;
         private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Button btn_atualizar;
         private System.Windows.Forms.Button btn_salvar;
