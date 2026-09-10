@@ -33,7 +33,7 @@ namespace Cadastro_Clinico
         private void btn_confirmar_Click(object sender, EventArgs e)
         {
             // Instancia a sua classe de conexão
-            SqlConnection conn = new SqlConnection(connectionString);
+            Connection conn = new Connection();
 
             // Obtém a SqlConnection
             using (SqlConnection con = conn.Conectar())

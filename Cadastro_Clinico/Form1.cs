@@ -33,6 +33,7 @@ namespace Cadastro_Clinico
                 MessageBox.Show("Por favor,Preencha todos os campos");
                 return;
             }
+
             if (ValidarLogin(usuario, senha))
             {
                 MessageBox.Show("Login efetuado com sucesso");
@@ -57,7 +58,7 @@ namespace Cadastro_Clinico
                 txtUsuario.Clear();
                 txtSenha.Clear();
 
-              
+
             }
         }
 
@@ -89,22 +90,19 @@ namespace Cadastro_Clinico
 
         private bool ValidarLogin(string usuario, string senha)
         {
-            string conexao = @"Data Source=VPR0681554W11-1\SQLEXPRESS;Initial Catalog=Projeto;User ID=sa;Password=123456;";
+            Connection con = new Connection();
             string query = "SELECT COUNT(1) FROM Logar WHERE Usuario = @usuario AND Senha = @senha";
 
-            using (SqlConnection con = new SqlConnection(conexao))
+            using (con.Conectar())
             {
-                using (SqlCommand cmd = new SqlCommand(query, con))
+                using (SqlCommand cmd = new SqlCommand(query, con.Conectar()))
                 {
                     cmd.Parameters.AddWithValue("@usuario", usuario);
                     cmd.Parameters.AddWithValue("@senha", senha);
 
                     try
                     {
-                        con.Open();
                         int resultado = Convert.ToInt32(cmd.ExecuteScalar());
-
-
                         return resultado > 0;
                     }
                     catch (Exception ex)
@@ -114,6 +112,7 @@ namespace Cadastro_Clinico
                     }
                 }
             }
+            
         }
     }
     

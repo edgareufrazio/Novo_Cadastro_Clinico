@@ -1,4 +1,6 @@
-﻿namespace Cadastro_Clinico
+﻿using System;
+
+namespace Cadastro_Clinico
 {
     partial class add_funcionario
     {
@@ -188,6 +190,11 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void add_funcionario_Load(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
         }
 
         #endregion
