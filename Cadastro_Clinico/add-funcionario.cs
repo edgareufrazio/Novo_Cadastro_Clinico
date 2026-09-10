@@ -47,7 +47,7 @@ namespace Cadastro_Clinico
                     {
                         // Passa os valores das caixas de texto protegendo contra SQL Injection
                         cmd.Parameters.AddWithValue("@Nome", txb_nome.Text);
-                        cmd.Parameters.AddWithValue("@Sobrenome", txb_sobrenome.Text);
+                        //cmd.Parameters.AddWithValue("@Sobrenome", txb_sobrenome.Text);
                         cmd.Parameters.AddWithValue("@Email", txb_email.Text);
                         cmd.Parameters.AddWithValue("@Departamento", cmbDepartamento.Text);
 
@@ -71,10 +71,20 @@ namespace Cadastro_Clinico
         private void LimparCampos()
         {
             txb_nome.Clear();
-            txb_sobrenome.Clear();
+            //txb_sobrenome.Clear();
             txb_email.Clear();
             cmbDepartamento.SelectedIndex = -1;
             txb_nome.Focus();
+        }
+
+        private void lbl_sobrenome_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_atualizar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
