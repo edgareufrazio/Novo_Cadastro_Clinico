@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.btn_entrar = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
+            this.txtSenha = new System.Windows.Forms.TextBox();
             this.btn_sair = new System.Windows.Forms.Button();
             this.lbl_usuario = new System.Windows.Forms.Label();
             this.lbl_senha = new System.Windows.Forms.Label();
@@ -48,19 +48,19 @@
             this.btn_entrar.UseVisualStyleBackColor = true;
             this.btn_entrar.Click += new System.EventHandler(this.btn_entrar_Click);
             // 
-            // textBox1
+            // txtUsuario
             // 
-            this.textBox1.Location = new System.Drawing.Point(283, 166);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(188, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtUsuario.Location = new System.Drawing.Point(283, 166);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(188, 20);
+            this.txtUsuario.TabIndex = 1;
             // 
-            // textBox2
+            // txtSenha
             // 
-            this.textBox2.Location = new System.Drawing.Point(283, 218);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(188, 20);
-            this.textBox2.TabIndex = 2;
+            this.txtSenha.Location = new System.Drawing.Point(283, 218);
+            this.txtSenha.Name = "txtSenha";
+            this.txtSenha.Size = new System.Drawing.Size(188, 20);
+            this.txtSenha.TabIndex = 2;
             // 
             // btn_sair
             // 
@@ -120,8 +120,8 @@
             this.Controls.Add(this.lbl_senha);
             this.Controls.Add(this.lbl_usuario);
             this.Controls.Add(this.btn_sair);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtSenha);
+            this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.btn_entrar);
             this.Name = "Form1";
             this.Text = "Login";
@@ -134,8 +134,8 @@
         #endregion
 
         private System.Windows.Forms.Button btn_entrar;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtUsuario;
+        private System.Windows.Forms.TextBox txtSenha;
         private System.Windows.Forms.Button btn_sair;
         private System.Windows.Forms.Label lbl_usuario;
         private System.Windows.Forms.Label lbl_senha;
