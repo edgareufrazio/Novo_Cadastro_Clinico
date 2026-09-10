@@ -62,7 +62,7 @@ namespace Cadastro_Clinico
             }
         }
 
-        
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -105,6 +105,8 @@ namespace Cadastro_Clinico
                 MessageBox.Show("Erro ao consultar o banco de dados:\n" + ex.Message, "Erro de Banco", MessageBoxButtons.OK, MessageBoxIcon.Error); 
                 return false; }
         }
+
     }
-    
 }
+    
+
