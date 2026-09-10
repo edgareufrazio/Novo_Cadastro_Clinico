@@ -182,6 +182,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "add_funcionario";
             this.Text = "add_funcionario";
+            this.Load += new System.EventHandler(this.add_funcionario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
