@@ -165,7 +165,7 @@ namespace Cadastro_Clinico
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
-            this.label1.Location = new System.Drawing.Point(29, 25);
+            this.label1.Location = new System.Drawing.Point(19, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(226, 25);
             this.label1.TabIndex = 25;
@@ -173,7 +173,7 @@ namespace Cadastro_Clinico
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(251, 30);
+            this.textBox1.Location = new System.Drawing.Point(240, 52);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(158, 20);
             this.textBox1.TabIndex = 26;
