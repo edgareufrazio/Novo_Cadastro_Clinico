@@ -34,7 +34,6 @@
             this.btn_sair = new System.Windows.Forms.Button();
             this.lbl_usuario = new System.Windows.Forms.Label();
             this.lbl_senha = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnTeste = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -90,16 +89,6 @@
             this.lbl_senha.TabIndex = 5;
             this.lbl_senha.Text = "Senha";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(638, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "trocar de tela";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btnTeste
             // 
             this.btnTeste.Location = new System.Drawing.Point(591, 377);
@@ -116,7 +105,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnTeste);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.lbl_senha);
             this.Controls.Add(this.lbl_usuario);
             this.Controls.Add(this.btn_sair);
@@ -139,7 +127,6 @@
         private System.Windows.Forms.Button btn_sair;
         private System.Windows.Forms.Label lbl_usuario;
         private System.Windows.Forms.Label lbl_senha;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnTeste;
     }
 }

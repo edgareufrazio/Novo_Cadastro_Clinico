@@ -38,30 +38,30 @@ namespace Cadastro_Clinico
                 MessageBox.Show("Login efetuado com sucesso");
                 txtUsuario.Clear();
                 txtSenha.Clear();
+                add_funcionario frm = Application.OpenForms["add_funcionario"] as add_funcionario;
+                if (frm == null)
+                {
+
+                    frm = new add_funcionario();
+                    frm.Name = "add_funcionario";
+                    frm.Show();
+                }
+                else
+                {
+                    frm.BringToFront();
+                }
             }
             else
             {
                 MessageBox.Show("Usuario ou senha incorretos");
                 txtUsuario.Clear();
                 txtSenha.Clear();
+
+              
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            add_funcionario frm = Application.OpenForms["add_funcionario"] as add_funcionario;
-            if (frm == null)
-            {
-
-                frm = new add_funcionario();
-                frm.Name = "add_funcionario";
-                frm.Show();
-            }
-            else
-            {
-                frm.BringToFront();
-            }
-        }
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
