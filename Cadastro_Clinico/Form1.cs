@@ -39,13 +39,13 @@ namespace Cadastro_Clinico
                 //MessageBox.Show("Login efetuado com sucesso");
                 txtUsuario.Clear();
                 txtSenha.Clear();
-              add_funcionario frm = Application.OpenForms["add_funcionario"] as add_funcionario;
+              Adicionar_cliente frm = Application.OpenForms["Adicionar_cliente"] as Adicionar_cliente;
                
                 if (frm == null)
                 {
 
-                    frm = new add_funcionario();
-                    frm.Name = "add_funcionario";
+                    frm = new Adicionar_cliente();
+                    frm.Name = "Adicionar_cliente";
                     frm.Show();
                     this.Hide();
                 }
