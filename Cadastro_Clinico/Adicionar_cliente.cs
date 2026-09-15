@@ -31,15 +31,15 @@ namespace Cadastro_Clinico
         {
             // Consulta SQL ajustada com o nome real da tabela (Consultas) e coluna (Data_hora)
             // Usamos CAST(Data_hora AS DATE) para comparar apenas a data, ignorando o horário
-            string sql = @"
-                SELECT 
-                    Consulta_id,
-                    Valor,
-                    Data_hora,
-                    Cliente_id,
-                    Funcionario_id
-                FROM Consultas
-                WHERE CAST(Data_hora AS DATE) = @DataConsulta";
+            string sql = @"SELECT
+    c.Nome_C AS[Nome do Cliente],
+    f.Nome_F AS[Profissional],
+    FORMAT(con.Data_hora, 'HH:mm') AS[Horário]
+FROM Consultas con
+INNER JOIN Clientes c ON con.Cliente_id = c.Cliente_id
+INNER JOIN Funcionarios f ON con.Funcionario_id = f.Funcionario_id
+WHERE CAST(con.Data_hora AS DATE) = @DataConsulta
+ORDER BY con.Data_hora ASC";
 
             // NOTA: Substitua 'Conexao.ObterConexao()' pela classe/método de conexão do seu projeto
             Connection conexao = new Connection();
@@ -71,6 +71,26 @@ namespace Cadastro_Clinico
             CarregarConsultasPorData(dataSelecionada);
         }
 
+        //trocando de tela para add_funcionario
+        private void tsm_addFuncionario_Click(object sender, EventArgs e)
+        {
+            add_funcionario novaTela = new add_funcionario();
+
+            
+            novaTela.Show();
+
+            
+            this.Hide();
+        }
+
+
+        //trocando de tela para add_cliente
+        private void tsm_addCliente_Click(object sender, EventArgs e)
+        {
+            Adicionar_cliente novaTela = new Adicionar_cliente();
+            novaTela.Focus();
+            this.Hide();
+        }
 
     }
 }

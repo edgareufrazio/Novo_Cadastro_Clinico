@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.mtb_dataAtendimento = new System.Windows.Forms.MaskedTextBox();
             this.mtb_cep = new System.Windows.Forms.MaskedTextBox();
             this.btn_excluir = new System.Windows.Forms.Button();
@@ -54,8 +55,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgv_agenda = new System.Windows.Forms.DataGridView();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.scb_addFuncionario = new System.Windows.Forms.ToolStripComboBox();
+            this.tsm_addFuncionario = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsm_addCliente = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_agenda)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -278,21 +281,35 @@
             this.dateTimePicker1.TabIndex = 52;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.scb_addFuncionario});
+            this.tsm_addFuncionario,
+            this.tsm_addCliente});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 80;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // scb_addFuncionario
+            // tsm_addFuncionario
             // 
-            this.scb_addFuncionario.Name = "scb_addFuncionario";
-            this.scb_addFuncionario.Size = new System.Drawing.Size(121, 23);
-            this.scb_addFuncionario.Text = "Adicionar Funcionário";
+            this.tsm_addFuncionario.Name = "tsm_addFuncionario";
+            this.tsm_addFuncionario.Size = new System.Drawing.Size(136, 20);
+            this.tsm_addFuncionario.Text = "Adicionar Funcionário";
+            this.tsm_addFuncionario.Click += new System.EventHandler(this.tsm_addFuncionario_Click);
+            // 
+            // tsm_addCliente
+            // 
+            this.tsm_addCliente.Name = "tsm_addCliente";
+            this.tsm_addCliente.Size = new System.Drawing.Size(117, 20);
+            this.tsm_addCliente.Text = "Adiocionar Cliente";
+            this.tsm_addCliente.Click += new System.EventHandler(this.tsm_addCliente_Click);
             // 
             // Adicionar_cliente
             // 
@@ -326,6 +343,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgv_agenda);
             this.Controls.Add(this.dateTimePicker1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Adicionar_cliente";
             this.Text = "Adicionar_cliente";
             this.Load += new System.EventHandler(this.Adicionar_cliente_Load);
@@ -365,7 +383,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgv_agenda;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripComboBox scb_addFuncionario;
+        private System.Windows.Forms.ToolStripMenuItem tsm_addFuncionario;
+        private System.Windows.Forms.ToolStripMenuItem tsm_addCliente;
     }
 }
