@@ -36,16 +36,18 @@ namespace Cadastro_Clinico
 
             if (ValidarLogin(usuario, senha))
             {
-                MessageBox.Show("Login efetuado com sucesso");
+                //MessageBox.Show("Login efetuado com sucesso");
                 txtUsuario.Clear();
                 txtSenha.Clear();
-                add_funcionario frm = Application.OpenForms["add_funcionario"] as add_funcionario;
+              add_funcionario frm = Application.OpenForms["add_funcionario"] as add_funcionario;
+               
                 if (frm == null)
                 {
 
                     frm = new add_funcionario();
                     frm.Name = "add_funcionario";
                     frm.Show();
+                    this.Hide();
                 }
                 else
                 {
