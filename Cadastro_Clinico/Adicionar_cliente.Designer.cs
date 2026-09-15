@@ -54,7 +54,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgv_agenda = new System.Windows.Forms.DataGridView();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.scb_addFuncionario = new System.Windows.Forms.ToolStripComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_agenda)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mtb_dataAtendimento
@@ -273,12 +276,30 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(231, 20);
             this.dateTimePicker1.TabIndex = 52;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.scb_addFuncionario});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 27);
+            this.menuStrip1.TabIndex = 80;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // scb_addFuncionario
+            // 
+            this.scb_addFuncionario.Name = "scb_addFuncionario";
+            this.scb_addFuncionario.Size = new System.Drawing.Size(121, 23);
+            this.scb_addFuncionario.Text = "Adicionar Funcionário";
             // 
             // Adicionar_cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.mtb_dataAtendimento);
             this.Controls.Add(this.mtb_cep);
             this.Controls.Add(this.btn_excluir);
@@ -307,7 +328,10 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Name = "Adicionar_cliente";
             this.Text = "Adicionar_cliente";
+            this.Load += new System.EventHandler(this.Adicionar_cliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_agenda)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,5 +365,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgv_agenda;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripComboBox scb_addFuncionario;
     }
 }
