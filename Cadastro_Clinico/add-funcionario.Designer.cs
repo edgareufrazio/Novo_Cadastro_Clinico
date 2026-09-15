@@ -43,7 +43,9 @@ namespace Cadastro_Clinico
             this.lbl_nome = new System.Windows.Forms.Label();
             this.btn_excluir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txb_pesquisa_func = new System.Windows.Forms.TextBox();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_confirmar
@@ -171,19 +173,31 @@ namespace Cadastro_Clinico
             this.label1.TabIndex = 25;
             this.label1.Text = "Pesquisar funcionario:";
             // 
-            // textBox1
+            // txb_pesquisa_func
             // 
-            this.textBox1.Location = new System.Drawing.Point(228, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(158, 20);
-            this.textBox1.TabIndex = 26;
+            this.txb_pesquisa_func.Location = new System.Drawing.Point(228, 28);
+            this.txb_pesquisa_func.Name = "txb_pesquisa_func";
+            this.txb_pesquisa_func.Size = new System.Drawing.Size(275, 20);
+            this.txb_pesquisa_func.TabIndex = 26;
+            this.txb_pesquisa_func.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // dataGridView
+            // 
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Location = new System.Drawing.Point(446, 54);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.Size = new System.Drawing.Size(342, 246);
+            this.dataGridView.TabIndex = 27;
+//            this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // add_funcionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.dataGridView);
+            this.Controls.Add(this.txb_pesquisa_func);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.cmbDepartamento);
@@ -201,6 +215,7 @@ namespace Cadastro_Clinico
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "add_funcionario";
             this.Load += new System.EventHandler(this.add_funcionario_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,6 +223,9 @@ namespace Cadastro_Clinico
 
         private void add_funcionario_Load(object sender, EventArgs e)
         {
+            CarregarDadosGrid();
+
+
             //throw new NotImplementedException();
         }
 
@@ -225,6 +243,7 @@ namespace Cadastro_Clinico
         private System.Windows.Forms.Label lbl_nome;
         private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txb_pesquisa_func;
+        private System.Windows.Forms.DataGridView dataGridView;
     }
 }
