@@ -130,9 +130,28 @@ namespace Cadastro_Clinico
             }
         }
 
+        // Método principal da pesquisa (Nome e CPF)
+        private void tbx_pesquisa_func_TextChanged(object sender, EventArgs e)
+        {
+            if (bindingSource == null || bindingSource.DataSource == null)
+                return;
+
+            string termo = tbx_pesquisa_func.Text.Replace("'", "''").Trim();
+
+            if (string.IsNullOrWhiteSpace(termo))
+            {
+                bindingSource.RemoveFilter();
+            }
+            else
+            {
+                bindingSource.Filter = string.Format("Nome_F LIKE '%{0}%' OR CPF_func LIKE '%{0}%'", termo);
+            }
+        }
+
+        // Método "ponte" para resolver o erro do Designer de imediato
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+            tbx_pesquisa_func_TextChanged(sender, e);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -245,6 +264,36 @@ namespace Cadastro_Clinico
                     MessageBox.Show("Falha ao conectar com o banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void tbx_pesquisa_func_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Verifica se a tecla pressionada foi o ENTER
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Evita o som de 'bip' do Windows
+
+                if (bindingSource == null || bindingSource.DataSource == null)
+                    return;
+
+                string termo = tbx_pesquisa_func.Text.Replace("'", "''").Trim();
+
+                if (string.IsNullOrWhiteSpace(termo))
+                {
+                    // Se estiver vazio ao apertar Enter, mostra todos os funcionários
+                    bindingSource.RemoveFilter();
+                }
+                else
+                {
+                    // Executa o filtro por Nome ou CPF
+                    bindingSource.Filter = string.Format("Nome_F LIKE '%{0}%' OR CPF_func LIKE '%{0}%'", termo);
+                }
+            }
+        }
+
+        private void tbx_pesquisa_func_TextChanged_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

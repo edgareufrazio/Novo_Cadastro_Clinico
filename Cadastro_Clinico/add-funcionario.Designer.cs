@@ -43,7 +43,7 @@ namespace Cadastro_Clinico
             this.lbl_nome = new System.Windows.Forms.Label();
             this.btn_excluir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.txb_pesquisa_func = new System.Windows.Forms.TextBox();
+            this.tbx_pesquisa_func = new System.Windows.Forms.TextBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -174,13 +174,14 @@ namespace Cadastro_Clinico
             this.label1.TabIndex = 25;
             this.label1.Text = "Pesquisar funcionario:";
             // 
-            // txb_pesquisa_func
+            // tbx_pesquisa_func
             // 
-            this.txb_pesquisa_func.Location = new System.Drawing.Point(228, 28);
-            this.txb_pesquisa_func.Name = "txb_pesquisa_func";
-            this.txb_pesquisa_func.Size = new System.Drawing.Size(275, 20);
-            this.txb_pesquisa_func.TabIndex = 26;
-            this.txb_pesquisa_func.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.tbx_pesquisa_func.Location = new System.Drawing.Point(228, 28);
+            this.tbx_pesquisa_func.Name = "tbx_pesquisa_func";
+            this.tbx_pesquisa_func.Size = new System.Drawing.Size(275, 20);
+            this.tbx_pesquisa_func.TabIndex = 26;
+            this.tbx_pesquisa_func.TextChanged += new System.EventHandler(this.tbx_pesquisa_func_TextChanged_1);
+            this.tbx_pesquisa_func.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbx_pesquisa_func_KeyDown);
             // 
             // dataGridView
             // 
@@ -199,7 +200,7 @@ namespace Cadastro_Clinico
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dataGridView);
-            this.Controls.Add(this.txb_pesquisa_func);
+            this.Controls.Add(this.tbx_pesquisa_func);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.cmbDepartamento);
@@ -245,7 +246,7 @@ namespace Cadastro_Clinico
         private System.Windows.Forms.Label lbl_nome;
         private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txb_pesquisa_func;
+        private System.Windows.Forms.TextBox tbx_pesquisa_func;
         private System.Windows.Forms.DataGridView dataGridView;
     }
 }
