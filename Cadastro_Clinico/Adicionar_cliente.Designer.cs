@@ -62,7 +62,7 @@
             // 
             // mtb_dataAtendimento
             // 
-            this.mtb_dataAtendimento.Location = new System.Drawing.Point(18, 49);
+            this.mtb_dataAtendimento.Location = new System.Drawing.Point(15, 59);
             this.mtb_dataAtendimento.Mask = "00/00/0000";
             this.mtb_dataAtendimento.Name = "mtb_dataAtendimento";
             this.mtb_dataAtendimento.Size = new System.Drawing.Size(80, 20);
@@ -71,7 +71,7 @@
             // 
             // mtb_cep
             // 
-            this.mtb_cep.Location = new System.Drawing.Point(18, 334);
+            this.mtb_cep.Location = new System.Drawing.Point(15, 344);
             this.mtb_cep.Mask = "00000-00";
             this.mtb_cep.Name = "mtb_cep";
             this.mtb_cep.Size = new System.Drawing.Size(80, 20);
@@ -79,7 +79,7 @@
             // 
             // btn_excluir
             // 
-            this.btn_excluir.Location = new System.Drawing.Point(180, 405);
+            this.btn_excluir.Location = new System.Drawing.Point(177, 415);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(75, 23);
             this.btn_excluir.TabIndex = 75;
@@ -88,7 +88,7 @@
             // 
             // btn_atualizar
             // 
-            this.btn_atualizar.Location = new System.Drawing.Point(99, 405);
+            this.btn_atualizar.Location = new System.Drawing.Point(96, 415);
             this.btn_atualizar.Name = "btn_atualizar";
             this.btn_atualizar.Size = new System.Drawing.Size(75, 23);
             this.btn_atualizar.TabIndex = 74;
@@ -97,7 +97,7 @@
             // 
             // btn_salvar
             // 
-            this.btn_salvar.Location = new System.Drawing.Point(18, 405);
+            this.btn_salvar.Location = new System.Drawing.Point(15, 415);
             this.btn_salvar.Name = "btn_salvar";
             this.btn_salvar.Size = new System.Drawing.Size(75, 23);
             this.btn_salvar.TabIndex = 73;
@@ -106,7 +106,7 @@
             // 
             // txb_valor
             // 
-            this.txb_valor.Location = new System.Drawing.Point(18, 373);
+            this.txb_valor.Location = new System.Drawing.Point(15, 383);
             this.txb_valor.Name = "txb_valor";
             this.txb_valor.Size = new System.Drawing.Size(372, 20);
             this.txb_valor.TabIndex = 72;
@@ -114,7 +114,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(15, 357);
+            this.label10.Location = new System.Drawing.Point(12, 367);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(31, 13);
             this.label10.TabIndex = 71;
@@ -123,7 +123,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(15, 318);
+            this.label9.Location = new System.Drawing.Point(12, 328);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(28, 13);
             this.label9.TabIndex = 70;
@@ -131,7 +131,7 @@
             // 
             // txb_endereço
             // 
-            this.txb_endereço.Location = new System.Drawing.Point(15, 295);
+            this.txb_endereço.Location = new System.Drawing.Point(12, 305);
             this.txb_endereço.Name = "txb_endereço";
             this.txb_endereço.Size = new System.Drawing.Size(375, 20);
             this.txb_endereço.TabIndex = 69;
@@ -139,7 +139,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 279);
+            this.label8.Location = new System.Drawing.Point(10, 289);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 13);
             this.label8.TabIndex = 68;
@@ -147,7 +147,7 @@
             // 
             // txb_email
             // 
-            this.txb_email.Location = new System.Drawing.Point(15, 252);
+            this.txb_email.Location = new System.Drawing.Point(12, 262);
             this.txb_email.Name = "txb_email";
             this.txb_email.Size = new System.Drawing.Size(375, 20);
             this.txb_email.TabIndex = 67;
@@ -155,7 +155,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 236);
+            this.label7.Location = new System.Drawing.Point(12, 246);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 66;
@@ -163,7 +163,7 @@
             // 
             // txb_dataNascimento
             // 
-            this.txb_dataNascimento.Location = new System.Drawing.Point(15, 213);
+            this.txb_dataNascimento.Location = new System.Drawing.Point(12, 223);
             this.txb_dataNascimento.Name = "txb_dataNascimento";
             this.txb_dataNascimento.Size = new System.Drawing.Size(375, 20);
             this.txb_dataNascimento.TabIndex = 65;
@@ -171,7 +171,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 197);
+            this.label6.Location = new System.Drawing.Point(10, 207);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(102, 13);
             this.label6.TabIndex = 64;
@@ -179,7 +179,7 @@
             // 
             // txb_nome
             // 
-            this.txb_nome.Location = new System.Drawing.Point(15, 174);
+            this.txb_nome.Location = new System.Drawing.Point(12, 184);
             this.txb_nome.Name = "txb_nome";
             this.txb_nome.Size = new System.Drawing.Size(375, 20);
             this.txb_nome.TabIndex = 63;
@@ -187,7 +187,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 155);
+            this.label5.Location = new System.Drawing.Point(12, 165);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 62;
@@ -195,7 +195,7 @@
             // 
             // btn_pesquisar
             // 
-            this.btn_pesquisar.Location = new System.Drawing.Point(142, 130);
+            this.btn_pesquisar.Location = new System.Drawing.Point(139, 140);
             this.btn_pesquisar.Name = "btn_pesquisar";
             this.btn_pesquisar.Size = new System.Drawing.Size(75, 23);
             this.btn_pesquisar.TabIndex = 61;
@@ -204,7 +204,7 @@
             // 
             // mtb_cpf
             // 
-            this.mtb_cpf.Location = new System.Drawing.Point(15, 132);
+            this.mtb_cpf.Location = new System.Drawing.Point(12, 142);
             this.mtb_cpf.Mask = "000.000.000-00";
             this.mtb_cpf.Name = "mtb_cpf";
             this.mtb_cpf.Size = new System.Drawing.Size(83, 20);
@@ -213,7 +213,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 115);
+            this.label4.Location = new System.Drawing.Point(10, 125);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 13);
             this.label4.TabIndex = 59;
@@ -222,7 +222,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(211, 74);
+            this.label3.Location = new System.Drawing.Point(208, 84);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 13);
             this.label3.TabIndex = 58;
@@ -231,7 +231,7 @@
             // cmb_horarios
             // 
             this.cmb_horarios.FormattingEnabled = true;
-            this.cmb_horarios.Location = new System.Drawing.Point(214, 91);
+            this.cmb_horarios.Location = new System.Drawing.Point(211, 101);
             this.cmb_horarios.Name = "cmb_horarios";
             this.cmb_horarios.Size = new System.Drawing.Size(146, 21);
             this.cmb_horarios.TabIndex = 57;
@@ -239,7 +239,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 34);
+            this.label2.Location = new System.Drawing.Point(9, 44);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 13);
             this.label2.TabIndex = 56;
@@ -248,7 +248,7 @@
             // cbx_nomeProfissional
             // 
             this.cbx_nomeProfissional.FormattingEnabled = true;
-            this.cbx_nomeProfissional.Location = new System.Drawing.Point(15, 91);
+            this.cbx_nomeProfissional.Location = new System.Drawing.Point(12, 101);
             this.cbx_nomeProfissional.Name = "cbx_nomeProfissional";
             this.cbx_nomeProfissional.Size = new System.Drawing.Size(181, 21);
             this.cbx_nomeProfissional.TabIndex = 55;
@@ -256,7 +256,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 74);
+            this.label1.Location = new System.Drawing.Point(10, 84);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 13);
             this.label1.TabIndex = 54;
@@ -265,14 +265,14 @@
             // dgv_agenda
             // 
             this.dgv_agenda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_agenda.Location = new System.Drawing.Point(390, 49);
+            this.dgv_agenda.Location = new System.Drawing.Point(390, 59);
             this.dgv_agenda.Name = "dgv_agenda";
-            this.dgv_agenda.Size = new System.Drawing.Size(399, 379);
+            this.dgv_agenda.Size = new System.Drawing.Size(399, 369);
             this.dgv_agenda.TabIndex = 53;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(504, 23);
+            this.dateTimePicker1.Location = new System.Drawing.Point(494, 33);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(231, 20);
             this.dateTimePicker1.TabIndex = 52;

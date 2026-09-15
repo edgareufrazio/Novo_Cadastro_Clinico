@@ -13,6 +13,11 @@ namespace Cadastro_Clinico
 {
     public partial class Adicionar_cliente : Form
     {
+        public Adicionar_cliente()
+        {
+            InitializeComponent();
+        }
+
         private void Adicionar_cliente_Load(object sender, EventArgs e)
         {
             AtualizarTelaPorData();
@@ -37,9 +42,10 @@ namespace Cadastro_Clinico
                 WHERE CAST(Data_hora AS DATE) = @DataConsulta";
 
             // NOTA: Substitua 'Conexao.ObterConexao()' pela classe/método de conexão do seu projeto
-            using (SqlConnection conexao = Connection.ObterConexao())
+            Connection conexao = new Connection();
+            using (conexao.Conectar())
             {
-                using (SqlCommand comando = new SqlCommand(sql, conexao))
+                using (SqlCommand comando = new SqlCommand(sql, conexao.Conectar()))
                 {
                     comando.Parameters.Add("@DataConsulta", SqlDbType.Date).Value = data;
 
