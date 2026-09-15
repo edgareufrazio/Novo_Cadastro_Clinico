@@ -43,17 +43,16 @@
             // 
             // btn_entrar
             // 
-            this.btn_entrar.BackColor = System.Drawing.Color.White;
+            this.btn_entrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
             this.btn_entrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_entrar.FlatAppearance.BorderSize = 0;
-            this.btn_entrar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.btn_entrar.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btn_entrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(64)))), ((int)(((byte)(175)))));
+            this.btn_entrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(78)))), ((int)(((byte)(216)))));
             this.btn_entrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_entrar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_entrar.ForeColor = System.Drawing.Color.Black;
-            this.btn_entrar.Location = new System.Drawing.Point(264, 176);
+            this.btn_entrar.ForeColor = System.Drawing.Color.White;
+            this.btn_entrar.Location = new System.Drawing.Point(264, 163);
             this.btn_entrar.Name = "btn_entrar";
-            this.btn_entrar.Size = new System.Drawing.Size(188, 23);
+            this.btn_entrar.Size = new System.Drawing.Size(188, 22);
             this.btn_entrar.TabIndex = 0;
             this.btn_entrar.Text = "Entrar";
             this.btn_entrar.UseVisualStyleBackColor = false;
@@ -61,7 +60,7 @@
             // 
             // txtUsuario
             // 
-            this.txtUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(243)))), ((int)(((byte)(247)))));
+            this.txtUsuario.BackColor = System.Drawing.Color.White;
             this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUsuario.Location = new System.Drawing.Point(264, 98);
             this.txtUsuario.Name = "txtUsuario";
@@ -70,9 +69,9 @@
             // 
             // txtSenha
             // 
-            this.txtSenha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(243)))), ((int)(((byte)(247)))));
+            this.txtSenha.BackColor = System.Drawing.Color.White;
             this.txtSenha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSenha.Location = new System.Drawing.Point(264, 150);
+            this.txtSenha.Location = new System.Drawing.Point(264, 137);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(188, 20);
             this.txtSenha.TabIndex = 2;
@@ -80,18 +79,19 @@
             // 
             // btn_sair
             // 
+            this.btn_sair.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
             this.btn_sair.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_sair.FlatAppearance.BorderSize = 0;
-            this.btn_sair.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.btn_sair.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btn_sair.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(64)))), ((int)(((byte)(175)))));
+            this.btn_sair.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(78)))), ((int)(((byte)(216)))));
             this.btn_sair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_sair.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_sair.Location = new System.Drawing.Point(264, 205);
+            this.btn_sair.ForeColor = System.Drawing.Color.White;
+            this.btn_sair.Location = new System.Drawing.Point(264, 191);
             this.btn_sair.Name = "btn_sair";
-            this.btn_sair.Size = new System.Drawing.Size(188, 23);
+            this.btn_sair.Size = new System.Drawing.Size(188, 24);
             this.btn_sair.TabIndex = 3;
             this.btn_sair.Text = "Sair";
-            this.btn_sair.UseVisualStyleBackColor = true;
+            this.btn_sair.UseVisualStyleBackColor = false;
             this.btn_sair.Click += new System.EventHandler(this.btn_sair_Click);
             // 
             // lbl_usuario
@@ -110,7 +110,7 @@
             this.lbl_senha.AutoSize = true;
             this.lbl_senha.BackColor = System.Drawing.Color.Transparent;
             this.lbl_senha.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_senha.Location = new System.Drawing.Point(261, 134);
+            this.lbl_senha.Location = new System.Drawing.Point(261, 121);
             this.lbl_senha.Name = "lbl_senha";
             this.lbl_senha.Size = new System.Drawing.Size(39, 13);
             this.lbl_senha.TabIndex = 5;
@@ -141,7 +141,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = global::Cadastro_Clinico.Properties.Resources.senha;
-            this.pictureBox2.Location = new System.Drawing.Point(230, 150);
+            this.pictureBox2.Location = new System.Drawing.Point(230, 138);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(28, 19);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -152,8 +152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.BackgroundImage = global::Cadastro_Clinico.Properties.Resources.fundo;
+            this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(683, 378);
             this.Controls.Add(this.pictureBox2);
