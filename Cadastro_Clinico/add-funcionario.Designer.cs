@@ -30,13 +30,14 @@ namespace Cadastro_Clinico
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_confirmar = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(add_funcionario));
             this.btn_atualizar = new System.Windows.Forms.Button();
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.cmbDepartamento = new System.Windows.Forms.ComboBox();
             this.txb_email = new System.Windows.Forms.TextBox();
             this.txb_nome = new System.Windows.Forms.TextBox();
-            this.txb_cpf = new System.Windows.Forms.TextBox();
             this.lbl_departamento = new System.Windows.Forms.Label();
             this.lbl_cpf = new System.Windows.Forms.Label();
             this.lbl_email = new System.Windows.Forms.Label();
@@ -46,40 +47,38 @@ namespace Cadastro_Clinico
             this.tbx_pesquisa_func = new System.Windows.Forms.TextBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.mtbx_cpf = new System.Windows.Forms.MaskedTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnConfirmarNovo = new RoundedButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // btn_confirmar
-            // 
-            this.btn_confirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
-            this.btn_confirmar.Location = new System.Drawing.Point(12, 353);
-            this.btn_confirmar.Name = "btn_confirmar";
-            this.btn_confirmar.Size = new System.Drawing.Size(190, 85);
-            this.btn_confirmar.TabIndex = 11;
-            this.btn_confirmar.Text = "✅ Confirmar";
-            this.btn_confirmar.UseVisualStyleBackColor = true;
-            this.btn_confirmar.Click += new System.EventHandler(this.btn_confirmar_Click);
-            // 
             // btn_atualizar
             // 
-            this.btn_atualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
-            this.btn_atualizar.Location = new System.Drawing.Point(410, 353);
+            this.btn_atualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.btn_atualizar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btn_atualizar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(165)))));
+            this.btn_atualizar.Location = new System.Drawing.Point(479, 461);
+            this.btn_atualizar.Margin = new System.Windows.Forms.Padding(4);
             this.btn_atualizar.Name = "btn_atualizar";
-            this.btn_atualizar.Size = new System.Drawing.Size(190, 85);
+            this.btn_atualizar.Size = new System.Drawing.Size(221, 112);
             this.btn_atualizar.TabIndex = 12;
             this.btn_atualizar.Text = "🔄 Atualizar";
-            this.btn_atualizar.UseVisualStyleBackColor = true;
+            this.btn_atualizar.UseVisualStyleBackColor = false;
             this.btn_atualizar.Click += new System.EventHandler(this.btn_atualizar_Click);
             // 
             // btn_cancelar
             // 
-            this.btn_cancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
-            this.btn_cancelar.Location = new System.Drawing.Point(606, 353);
+            this.btn_cancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.btn_cancelar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btn_cancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.btn_cancelar.Location = new System.Drawing.Point(707, 461);
+            this.btn_cancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btn_cancelar.Name = "btn_cancelar";
-            this.btn_cancelar.Size = new System.Drawing.Size(190, 85);
+            this.btn_cancelar.Size = new System.Drawing.Size(221, 112);
             this.btn_cancelar.TabIndex = 13;
             this.btn_cancelar.Text = "❌ Cancelar";
-            this.btn_cancelar.UseVisualStyleBackColor = true;
+            this.btn_cancelar.UseVisualStyleBackColor = false;
             this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
             // cmbDepartamento
@@ -88,129 +87,200 @@ namespace Cadastro_Clinico
             this.cmbDepartamento.Items.AddRange(new object[] {
             "Terapeuta",
             "Psicólogo"});
-            this.cmbDepartamento.Location = new System.Drawing.Point(146, 156);
+            this.cmbDepartamento.Location = new System.Drawing.Point(165, 337);
+            this.cmbDepartamento.Margin = new System.Windows.Forms.Padding(4);
             this.cmbDepartamento.Name = "cmbDepartamento";
-            this.cmbDepartamento.Size = new System.Drawing.Size(130, 21);
+            this.cmbDepartamento.Size = new System.Drawing.Size(151, 25);
             this.cmbDepartamento.TabIndex = 23;
             // 
             // txb_email
             // 
-            this.txb_email.Location = new System.Drawing.Point(83, 104);
+            this.txb_email.Location = new System.Drawing.Point(91, 269);
+            this.txb_email.Margin = new System.Windows.Forms.Padding(4);
             this.txb_email.Name = "txb_email";
-            this.txb_email.Size = new System.Drawing.Size(172, 20);
+            this.txb_email.Size = new System.Drawing.Size(200, 25);
             this.txb_email.TabIndex = 22;
             // 
             // txb_nome
             // 
-            this.txb_nome.Location = new System.Drawing.Point(146, 78);
+            this.txb_nome.Location = new System.Drawing.Point(165, 235);
+            this.txb_nome.Margin = new System.Windows.Forms.Padding(4);
             this.txb_nome.Name = "txb_nome";
-            this.txb_nome.Size = new System.Drawing.Size(172, 20);
+            this.txb_nome.Size = new System.Drawing.Size(200, 25);
             this.txb_nome.TabIndex = 20;
-            // 
-            // txb_cpf
-            // 
-            this.txb_cpf.Location = new System.Drawing.Point(258, 249);
-            this.txb_cpf.Name = "txb_cpf";
-            this.txb_cpf.Size = new System.Drawing.Size(172, 20);
-            this.txb_cpf.TabIndex = 19;
             // 
             // lbl_departamento
             // 
             this.lbl_departamento.AutoSize = true;
-            this.lbl_departamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
-            this.lbl_departamento.Location = new System.Drawing.Point(14, 155);
+            this.lbl_departamento.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.lbl_departamento.Location = new System.Drawing.Point(11, 336);
+            this.lbl_departamento.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_departamento.Name = "lbl_departamento";
-            this.lbl_departamento.Size = new System.Drawing.Size(128, 22);
+            this.lbl_departamento.Size = new System.Drawing.Size(115, 20);
             this.lbl_departamento.TabIndex = 18;
             this.lbl_departamento.Text = "Departamento:";
             // 
             // lbl_cpf
             // 
             this.lbl_cpf.AutoSize = true;
-            this.lbl_cpf.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
-            this.lbl_cpf.Location = new System.Drawing.Point(14, 128);
+            this.lbl_cpf.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.lbl_cpf.Location = new System.Drawing.Point(11, 301);
+            this.lbl_cpf.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_cpf.Name = "lbl_cpf";
-            this.lbl_cpf.Size = new System.Drawing.Size(51, 22);
+            this.lbl_cpf.Size = new System.Drawing.Size(39, 20);
             this.lbl_cpf.TabIndex = 17;
             this.lbl_cpf.Text = "CPF:";
             // 
             // lbl_email
             // 
             this.lbl_email.AutoSize = true;
-            this.lbl_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
-            this.lbl_email.Location = new System.Drawing.Point(14, 102);
+            this.lbl_email.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.lbl_email.Location = new System.Drawing.Point(11, 267);
+            this.lbl_email.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_email.Name = "lbl_email";
-            this.lbl_email.Size = new System.Drawing.Size(65, 22);
+            this.lbl_email.Size = new System.Drawing.Size(57, 20);
             this.lbl_email.TabIndex = 16;
             this.lbl_email.Text = "E-mail:";
             // 
             // lbl_nome
             // 
             this.lbl_nome.AutoSize = true;
-            this.lbl_nome.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
-            this.lbl_nome.Location = new System.Drawing.Point(12, 74);
+            this.lbl_nome.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.lbl_nome.Location = new System.Drawing.Point(8, 230);
+            this.lbl_nome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_nome.Name = "lbl_nome";
-            this.lbl_nome.Size = new System.Drawing.Size(139, 22);
+            this.lbl_nome.Size = new System.Drawing.Size(126, 20);
             this.lbl_nome.TabIndex = 15;
             this.lbl_nome.Text = "Nome completo:";
             // 
             // btn_excluir
             // 
-            this.btn_excluir.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
-            this.btn_excluir.Location = new System.Drawing.Point(208, 353);
+            this.btn_excluir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(245)))), ((int)(((byte)(252)))));
+            this.btn_excluir.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btn_excluir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(104)))), ((int)(((byte)(168)))));
+            this.btn_excluir.Location = new System.Drawing.Point(243, 461);
+            this.btn_excluir.Margin = new System.Windows.Forms.Padding(4);
             this.btn_excluir.Name = "btn_excluir";
-            this.btn_excluir.Size = new System.Drawing.Size(190, 85);
+            this.btn_excluir.Size = new System.Drawing.Size(221, 112);
             this.btn_excluir.TabIndex = 24;
             this.btn_excluir.Text = "🗑️ Excluir";
-            this.btn_excluir.UseVisualStyleBackColor = true;
+            this.btn_excluir.UseVisualStyleBackColor = false;
             this.btn_excluir.Click += new System.EventHandler(this.btn_excluir_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
-            this.label1.Location = new System.Drawing.Point(7, 23);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(2, 137);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(226, 25);
+            this.label1.Size = new System.Drawing.Size(164, 20);
             this.label1.TabIndex = 25;
             this.label1.Text = "Pesquisar funcionario:";
             // 
             // tbx_pesquisa_func
             // 
-            this.tbx_pesquisa_func.Location = new System.Drawing.Point(228, 28);
+            this.tbx_pesquisa_func.BackColor = System.Drawing.Color.White;
+            this.tbx_pesquisa_func.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.tbx_pesquisa_func.Location = new System.Drawing.Point(174, 136);
+            this.tbx_pesquisa_func.Margin = new System.Windows.Forms.Padding(4);
             this.tbx_pesquisa_func.Name = "tbx_pesquisa_func";
-            this.tbx_pesquisa_func.Size = new System.Drawing.Size(275, 20);
+            this.tbx_pesquisa_func.Size = new System.Drawing.Size(320, 25);
             this.tbx_pesquisa_func.TabIndex = 26;
             this.tbx_pesquisa_func.TextChanged += new System.EventHandler(this.tbx_pesquisa_func_TextChanged_1);
             this.tbx_pesquisa_func.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbx_pesquisa_func_KeyDown);
             // 
             // dataGridView
             // 
+            this.dataGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(248)))), ((int)(((byte)(252)))));
+            this.dataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(59)))), ((int)(((byte)(100)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(446, 54);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(59)))), ((int)(((byte)(100)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(238)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(59)))), ((int)(((byte)(100)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(228)))), ((int)(((byte)(236)))));
+            this.dataGridView.Location = new System.Drawing.Point(521, 70);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
-            this.dataGridView.Size = new System.Drawing.Size(342, 246);
+            this.dataGridView.RowHeadersVisible = false;
+            this.dataGridView.Size = new System.Drawing.Size(399, 322);
             this.dataGridView.TabIndex = 27;
             this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // mtbx_cpf
             // 
-            this.mtbx_cpf.Location = new System.Drawing.Point(61, 130);
+            this.mtbx_cpf.Location = new System.Drawing.Point(65, 303);
+            this.mtbx_cpf.Margin = new System.Windows.Forms.Padding(4);
             this.mtbx_cpf.Mask = "000.000.000-00";
             this.mtbx_cpf.Name = "mtbx_cpf";
-            this.mtbx_cpf.Size = new System.Drawing.Size(100, 20);
+            this.mtbx_cpf.Size = new System.Drawing.Size(116, 25);
             this.mtbx_cpf.TabIndex = 28;
             this.mtbx_cpf.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
             this.mtbx_cpf.Click += new System.EventHandler(this.mtbx_cpf_Click);
             this.mtbx_cpf.Enter += new System.EventHandler(this.mtbx_cpf_Enter_1);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(125)))), ((int)(((byte)(155)))));
+            this.label2.Location = new System.Drawing.Point(9, 58);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(379, 17);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "Preencha os dados abaixo para adicionar um novo funcionário.";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(35, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(320, 40);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "Cadastrar Funcionário";
+            // 
+            // btnConfirmarNovo
+            // 
+            this.btnConfirmarNovo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(245)))), ((int)(((byte)(236)))));
+            this.btnConfirmarNovo.BorderRadius = 20;
+            this.btnConfirmarNovo.FlatAppearance.BorderSize = 0;
+            this.btnConfirmarNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirmarNovo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirmarNovo.Location = new System.Drawing.Point(6, 461);
+            this.btnConfirmarNovo.Name = "btnConfirmarNovo";
+            this.btnConfirmarNovo.Size = new System.Drawing.Size(230, 112);
+            this.btnConfirmarNovo.TabIndex = 31;
+            this.btnConfirmarNovo.Text = "✅ Confirmar";
+            this.btnConfirmarNovo.UseVisualStyleBackColor = false;
+            this.btnConfirmarNovo.Click += new System.EventHandler(this.btn_confirmar_Click);
+            // 
             // add_funcionario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(934, 589);
+            this.Controls.Add(this.btnConfirmarNovo);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.mtbx_cpf);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.tbx_pesquisa_func);
@@ -219,16 +289,18 @@ namespace Cadastro_Clinico
             this.Controls.Add(this.cmbDepartamento);
             this.Controls.Add(this.txb_email);
             this.Controls.Add(this.txb_nome);
-            this.Controls.Add(this.txb_cpf);
             this.Controls.Add(this.lbl_departamento);
             this.Controls.Add(this.lbl_cpf);
             this.Controls.Add(this.lbl_email);
             this.Controls.Add(this.lbl_nome);
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.btn_atualizar);
-            this.Controls.Add(this.btn_confirmar);
+            this.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(59)))), ((int)(((byte)(100)))));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "add_funcionario";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "add_funcionario";
             this.Load += new System.EventHandler(this.add_funcionario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
@@ -246,13 +318,11 @@ namespace Cadastro_Clinico
         }
 
         #endregion
-        private System.Windows.Forms.Button btn_confirmar;
         private System.Windows.Forms.Button btn_atualizar;
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.ComboBox cmbDepartamento;
         private System.Windows.Forms.TextBox txb_email;
         private System.Windows.Forms.TextBox txb_nome;
-        private System.Windows.Forms.TextBox txb_cpf;
         private System.Windows.Forms.Label lbl_departamento;
         private System.Windows.Forms.Label lbl_cpf;
         private System.Windows.Forms.Label lbl_email;
@@ -262,5 +332,8 @@ namespace Cadastro_Clinico
         private System.Windows.Forms.TextBox tbx_pesquisa_func;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.MaskedTextBox mtbx_cpf;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private RoundedButton btnConfirmarNovo;
     }
 }

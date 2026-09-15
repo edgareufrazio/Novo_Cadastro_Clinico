@@ -25,6 +25,10 @@ namespace Cadastro_Clinico
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+            Adicionar_cliente novaTela = new Adicionar_cliente();
+            novaTela.Focus();
+
+
         }
 
         private void btn_testar_conexao_Click(object sender, EventArgs e)
