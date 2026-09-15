@@ -109,7 +109,7 @@ namespace Cadastro_Clinico
             // 
             // txb_cpf
             // 
-            this.txb_cpf.Location = new System.Drawing.Point(244, 237);
+            this.txb_cpf.Location = new System.Drawing.Point(258, 249);
             this.txb_cpf.Name = "txb_cpf";
             this.txb_cpf.Size = new System.Drawing.Size(172, 20);
             this.txb_cpf.TabIndex = 19;
