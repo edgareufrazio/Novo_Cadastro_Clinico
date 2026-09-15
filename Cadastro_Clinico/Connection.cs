@@ -12,10 +12,6 @@ namespace Cadastro_Clinico
 
         private readonly string connectionString = @"Data Source=VPR0684793W11-1\SQLEXPRESS;Initial Catalog = Projeto; Persist Security Info=True;User ID = sa; Password=123456";
 
-        internal static SqlConnection ObterConexao()
-        {
-            throw new NotImplementedException();
-        }
 
         public SqlConnection Conectar()
         {
