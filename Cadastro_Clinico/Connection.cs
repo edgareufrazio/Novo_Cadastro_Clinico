@@ -13,10 +13,6 @@ namespace Cadastro_Clinico
         private readonly string connectionString = @"Data Source=VPR0681554W11-1\SQLEXPRESS;Initial Catalog=Projeto;Persist Security Info=True;User ID=sa;Password=123456";
 
 
-        
-
-
-
         public SqlConnection Conectar()
         {
             SqlConnection conn = new SqlConnection(connectionString);
