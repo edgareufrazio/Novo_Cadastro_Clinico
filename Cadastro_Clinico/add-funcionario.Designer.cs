@@ -59,7 +59,7 @@ namespace Cadastro_Clinico
             this.btn_atualizar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
             this.btn_atualizar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(165)))));
             this.btn_atualizar.Location = new System.Drawing.Point(479, 461);
-            this.btn_atualizar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_atualizar.Margin = new System.Windows.Forms.Padding(4);
             this.btn_atualizar.Name = "btn_atualizar";
             this.btn_atualizar.Size = new System.Drawing.Size(221, 112);
             this.btn_atualizar.TabIndex = 12;
@@ -73,7 +73,7 @@ namespace Cadastro_Clinico
             this.btn_cancelar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
             this.btn_cancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.btn_cancelar.Location = new System.Drawing.Point(707, 461);
-            this.btn_cancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_cancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(221, 112);
             this.btn_cancelar.TabIndex = 13;
@@ -88,7 +88,7 @@ namespace Cadastro_Clinico
             "Terapeuta",
             "Psicólogo"});
             this.cmbDepartamento.Location = new System.Drawing.Point(165, 337);
-            this.cmbDepartamento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbDepartamento.Margin = new System.Windows.Forms.Padding(4);
             this.cmbDepartamento.Name = "cmbDepartamento";
             this.cmbDepartamento.Size = new System.Drawing.Size(151, 25);
             this.cmbDepartamento.TabIndex = 23;
@@ -96,7 +96,7 @@ namespace Cadastro_Clinico
             // txb_email
             // 
             this.txb_email.Location = new System.Drawing.Point(91, 269);
-            this.txb_email.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txb_email.Margin = new System.Windows.Forms.Padding(4);
             this.txb_email.Name = "txb_email";
             this.txb_email.Size = new System.Drawing.Size(200, 25);
             this.txb_email.TabIndex = 22;
@@ -104,7 +104,7 @@ namespace Cadastro_Clinico
             // txb_nome
             // 
             this.txb_nome.Location = new System.Drawing.Point(165, 235);
-            this.txb_nome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txb_nome.Margin = new System.Windows.Forms.Padding(4);
             this.txb_nome.Name = "txb_nome";
             this.txb_nome.Size = new System.Drawing.Size(200, 25);
             this.txb_nome.TabIndex = 20;
@@ -159,7 +159,7 @@ namespace Cadastro_Clinico
             this.btn_excluir.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
             this.btn_excluir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(104)))), ((int)(((byte)(168)))));
             this.btn_excluir.Location = new System.Drawing.Point(243, 461);
-            this.btn_excluir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_excluir.Margin = new System.Windows.Forms.Padding(4);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(221, 112);
             this.btn_excluir.TabIndex = 24;
@@ -182,8 +182,8 @@ namespace Cadastro_Clinico
             // 
             this.tbx_pesquisa_func.BackColor = System.Drawing.Color.White;
             this.tbx_pesquisa_func.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.tbx_pesquisa_func.Location = new System.Drawing.Point(165, 136);
-            this.tbx_pesquisa_func.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbx_pesquisa_func.Location = new System.Drawing.Point(174, 136);
+            this.tbx_pesquisa_func.Margin = new System.Windows.Forms.Padding(4);
             this.tbx_pesquisa_func.Name = "tbx_pesquisa_func";
             this.tbx_pesquisa_func.Size = new System.Drawing.Size(320, 25);
             this.tbx_pesquisa_func.TabIndex = 26;
@@ -214,7 +214,7 @@ namespace Cadastro_Clinico
             this.dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(228)))), ((int)(((byte)(236)))));
             this.dataGridView.Location = new System.Drawing.Point(521, 70);
-            this.dataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersVisible = false;
@@ -226,7 +226,7 @@ namespace Cadastro_Clinico
             // mtbx_cpf
             // 
             this.mtbx_cpf.Location = new System.Drawing.Point(65, 303);
-            this.mtbx_cpf.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mtbx_cpf.Margin = new System.Windows.Forms.Padding(4);
             this.mtbx_cpf.Mask = "000.000.000-00";
             this.mtbx_cpf.Name = "mtbx_cpf";
             this.mtbx_cpf.Size = new System.Drawing.Size(116, 25);
@@ -298,7 +298,7 @@ namespace Cadastro_Clinico
             this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(59)))), ((int)(((byte)(100)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "add_funcionario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "add_funcionario";
