@@ -45,6 +45,7 @@ namespace Cadastro_Clinico
             this.label1 = new System.Windows.Forms.Label();
             this.tbx_pesquisa_func = new System.Windows.Forms.TextBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.mtbx_cpf = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,7 +109,7 @@ namespace Cadastro_Clinico
             // 
             // txb_cpf
             // 
-            this.txb_cpf.Location = new System.Drawing.Point(64, 130);
+            this.txb_cpf.Location = new System.Drawing.Point(83, 280);
             this.txb_cpf.Name = "txb_cpf";
             this.txb_cpf.Size = new System.Drawing.Size(172, 20);
             this.txb_cpf.TabIndex = 19;
@@ -194,11 +195,23 @@ namespace Cadastro_Clinico
             this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // mtbx_cpf
+            // 
+            this.mtbx_cpf.Location = new System.Drawing.Point(61, 130);
+            this.mtbx_cpf.Mask = "000.000.000-00";
+            this.mtbx_cpf.Name = "mtbx_cpf";
+            this.mtbx_cpf.Size = new System.Drawing.Size(100, 20);
+            this.mtbx_cpf.TabIndex = 28;
+            this.mtbx_cpf.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
+            this.mtbx_cpf.Click += new System.EventHandler(this.mtbx_cpf_Click);
+            this.mtbx_cpf.Enter += new System.EventHandler(this.mtbx_cpf_Enter_1);
+            // 
             // add_funcionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.mtbx_cpf);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.tbx_pesquisa_func);
             this.Controls.Add(this.label1);
@@ -248,5 +261,6 @@ namespace Cadastro_Clinico
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbx_pesquisa_func;
         private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.MaskedTextBox mtbx_cpf;
     }
 }
