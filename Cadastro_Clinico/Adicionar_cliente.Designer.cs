@@ -49,7 +49,7 @@
             this.mtb_cpf = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cmb_horarios = new System.Windows.Forms.ComboBox();
+            this.cbx_horarios = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cbx_nomeProfissional = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -207,11 +207,13 @@
             // 
             // mtb_cpf
             // 
+            this.mtb_cpf.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
             this.mtb_cpf.Location = new System.Drawing.Point(12, 142);
             this.mtb_cpf.Mask = "000.000.000-00";
             this.mtb_cpf.Name = "mtb_cpf";
             this.mtb_cpf.Size = new System.Drawing.Size(83, 20);
             this.mtb_cpf.TabIndex = 60;
+            this.mtb_cpf.Enter += new System.EventHandler(this.mtb_cpf_Enter);
             // 
             // label4
             // 
@@ -231,13 +233,13 @@
             this.label3.TabIndex = 58;
             this.label3.Text = "Horários disponiveis";
             // 
-            // cmb_horarios
+            // cbx_horarios
             // 
-            this.cmb_horarios.FormattingEnabled = true;
-            this.cmb_horarios.Location = new System.Drawing.Point(211, 101);
-            this.cmb_horarios.Name = "cmb_horarios";
-            this.cmb_horarios.Size = new System.Drawing.Size(146, 21);
-            this.cmb_horarios.TabIndex = 57;
+            this.cbx_horarios.FormattingEnabled = true;
+            this.cbx_horarios.Location = new System.Drawing.Point(211, 101);
+            this.cbx_horarios.Name = "cbx_horarios";
+            this.cbx_horarios.Size = new System.Drawing.Size(146, 21);
+            this.cbx_horarios.TabIndex = 57;
             // 
             // label2
             // 
@@ -255,6 +257,7 @@
             this.cbx_nomeProfissional.Name = "cbx_nomeProfissional";
             this.cbx_nomeProfissional.Size = new System.Drawing.Size(181, 21);
             this.cbx_nomeProfissional.TabIndex = 55;
+            this.cbx_nomeProfissional.SelectedIndexChanged += new System.EventHandler(this.cbx_nomeProfissional_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -309,7 +312,6 @@
             this.tsm_addCliente.Name = "tsm_addCliente";
             this.tsm_addCliente.Size = new System.Drawing.Size(117, 20);
             this.tsm_addCliente.Text = "Adiocionar Cliente";
-            this.tsm_addCliente.Click += new System.EventHandler(this.tsm_addCliente_Click);
             // 
             // Adicionar_cliente
             // 
@@ -337,7 +339,7 @@
             this.Controls.Add(this.mtb_cpf);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.cmb_horarios);
+            this.Controls.Add(this.cbx_horarios);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbx_nomeProfissional);
             this.Controls.Add(this.label1);
@@ -377,7 +379,7 @@
         private System.Windows.Forms.MaskedTextBox mtb_cpf;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cmb_horarios;
+        private System.Windows.Forms.ComboBox cbx_horarios;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbx_nomeProfissional;
         private System.Windows.Forms.Label label1;
