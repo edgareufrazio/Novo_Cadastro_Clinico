@@ -33,12 +33,40 @@ namespace Cadastro_Clinico
                 MessageBox.Show("Por favor,Preencha todos os campos");
                 return;
             }
+            if (usuario == "admin" && senha == "123456")
+            {
+                Adicionar_usuario frm = Application.OpenForms["Adicionar_usuario"] as Adicionar_usuario;
+
+                if (frm == null)
+                {
+
+                    frm = new Adicionar_usuario();
+                    frm.Name = "Adicionar_usuario";
+                    frm.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    frm.BringToFront();
+                }
+            }
+            else
+            {
+                //MessageBox.Show("Usuario ou senha incorretos");
+                txtUsuario.Clear();
+                txtSenha.Clear();
+
+
+            
+
+            }
 
             if (ValidarLogin(usuario, senha))
             {
                 //MessageBox.Show("Login efetuado com sucesso");
                 txtUsuario.Clear();
                 txtSenha.Clear();
+
               Adicionar_cliente frm = Application.OpenForms["Adicionar_cliente"] as Adicionar_cliente;
                
                 if (frm == null)
