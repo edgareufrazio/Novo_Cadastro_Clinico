@@ -89,9 +89,9 @@ namespace Cadastro_Clinico
                 listaHorarios.Add(h);
             }
 
-            // Turno da Tarde: 12:00 às 17:00
+            // Turno da Tarde: 12:00 às 16:30
             TimeSpan horaInicioTarde = new TimeSpan(12, 0, 0);
-            TimeSpan horaFimTarde = new TimeSpan(17, 0, 0);
+            TimeSpan horaFimTarde = new TimeSpan(16, 30, 0);
 
             for (TimeSpan h = horaInicioTarde; h <= horaFimTarde; h = h.Add(TimeSpan.FromMinutes(30)))
             {
