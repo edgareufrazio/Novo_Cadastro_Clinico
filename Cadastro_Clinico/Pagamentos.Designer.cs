@@ -166,6 +166,7 @@
             this.Controls.Add(this.grid_pagamentos);
             this.Name = "Pagamentos";
             this.Text = "Pagamentos";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Pagamentos_FormClosed);
             this.Load += new System.EventHandler(this.Pagamentos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid_pagamentos)).EndInit();
             this.ResumeLayout(false);
