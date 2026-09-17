@@ -108,7 +108,10 @@ namespace Cadastro_Clinico
                 return false; }
         }
 
-        
+        private void Form1_Leave(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
     
