@@ -33,8 +33,6 @@ namespace Cadastro_Clinico
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(add_funcionario));
-            this.btn_atualizar = new System.Windows.Forms.Button();
-            this.btn_cancelar = new System.Windows.Forms.Button();
             this.cmbDepartamento = new System.Windows.Forms.ComboBox();
             this.txb_email = new System.Windows.Forms.TextBox();
             this.txb_nome = new System.Windows.Forms.TextBox();
@@ -42,44 +40,19 @@ namespace Cadastro_Clinico
             this.lbl_cpf = new System.Windows.Forms.Label();
             this.lbl_email = new System.Windows.Forms.Label();
             this.lbl_nome = new System.Windows.Forms.Label();
-            this.btn_excluir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tbx_pesquisa_func = new System.Windows.Forms.TextBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.mtbx_cpf = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
+            this.roundedButton3 = new RoundedButton();
+            this.roundedButton2 = new RoundedButton();
+            this.roundedButton1 = new RoundedButton();
             this.btnConfirmarNovo = new RoundedButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btn_atualizar
-            // 
-            this.btn_atualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.btn_atualizar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btn_atualizar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(165)))));
-            this.btn_atualizar.Location = new System.Drawing.Point(479, 461);
-            this.btn_atualizar.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_atualizar.Name = "btn_atualizar";
-            this.btn_atualizar.Size = new System.Drawing.Size(221, 112);
-            this.btn_atualizar.TabIndex = 12;
-            this.btn_atualizar.Text = "🔄 Atualizar";
-            this.btn_atualizar.UseVisualStyleBackColor = false;
-            this.btn_atualizar.Click += new System.EventHandler(this.btn_atualizar_Click);
-            // 
-            // btn_cancelar
-            // 
-            this.btn_cancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.btn_cancelar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btn_cancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.btn_cancelar.Location = new System.Drawing.Point(707, 461);
-            this.btn_cancelar.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_cancelar.Name = "btn_cancelar";
-            this.btn_cancelar.Size = new System.Drawing.Size(221, 112);
-            this.btn_cancelar.TabIndex = 13;
-            this.btn_cancelar.Text = "❌ Cancelar";
-            this.btn_cancelar.UseVisualStyleBackColor = false;
-            this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
             // cmbDepartamento
             // 
@@ -87,7 +60,7 @@ namespace Cadastro_Clinico
             this.cmbDepartamento.Items.AddRange(new object[] {
             "Terapeuta",
             "Psicólogo"});
-            this.cmbDepartamento.Location = new System.Drawing.Point(165, 337);
+            this.cmbDepartamento.Location = new System.Drawing.Point(129, 263);
             this.cmbDepartamento.Margin = new System.Windows.Forms.Padding(4);
             this.cmbDepartamento.Name = "cmbDepartamento";
             this.cmbDepartamento.Size = new System.Drawing.Size(151, 25);
@@ -95,7 +68,7 @@ namespace Cadastro_Clinico
             // 
             // txb_email
             // 
-            this.txb_email.Location = new System.Drawing.Point(91, 269);
+            this.txb_email.Location = new System.Drawing.Point(71, 194);
             this.txb_email.Margin = new System.Windows.Forms.Padding(4);
             this.txb_email.Name = "txb_email";
             this.txb_email.Size = new System.Drawing.Size(200, 25);
@@ -103,7 +76,7 @@ namespace Cadastro_Clinico
             // 
             // txb_nome
             // 
-            this.txb_nome.Location = new System.Drawing.Point(165, 235);
+            this.txb_nome.Location = new System.Drawing.Point(139, 157);
             this.txb_nome.Margin = new System.Windows.Forms.Padding(4);
             this.txb_nome.Name = "txb_nome";
             this.txb_nome.Size = new System.Drawing.Size(200, 25);
@@ -112,8 +85,9 @@ namespace Cadastro_Clinico
             // lbl_departamento
             // 
             this.lbl_departamento.AutoSize = true;
+            this.lbl_departamento.BackColor = System.Drawing.Color.Transparent;
             this.lbl_departamento.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lbl_departamento.Location = new System.Drawing.Point(11, 336);
+            this.lbl_departamento.Location = new System.Drawing.Point(16, 268);
             this.lbl_departamento.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_departamento.Name = "lbl_departamento";
             this.lbl_departamento.Size = new System.Drawing.Size(115, 20);
@@ -123,8 +97,9 @@ namespace Cadastro_Clinico
             // lbl_cpf
             // 
             this.lbl_cpf.AutoSize = true;
+            this.lbl_cpf.BackColor = System.Drawing.Color.Transparent;
             this.lbl_cpf.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lbl_cpf.Location = new System.Drawing.Point(11, 301);
+            this.lbl_cpf.Location = new System.Drawing.Point(16, 233);
             this.lbl_cpf.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_cpf.Name = "lbl_cpf";
             this.lbl_cpf.Size = new System.Drawing.Size(39, 20);
@@ -134,8 +109,9 @@ namespace Cadastro_Clinico
             // lbl_email
             // 
             this.lbl_email.AutoSize = true;
+            this.lbl_email.BackColor = System.Drawing.Color.Transparent;
             this.lbl_email.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lbl_email.Location = new System.Drawing.Point(11, 267);
+            this.lbl_email.Location = new System.Drawing.Point(16, 199);
             this.lbl_email.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_email.Name = "lbl_email";
             this.lbl_email.Size = new System.Drawing.Size(57, 20);
@@ -145,33 +121,21 @@ namespace Cadastro_Clinico
             // lbl_nome
             // 
             this.lbl_nome.AutoSize = true;
+            this.lbl_nome.BackColor = System.Drawing.Color.Transparent;
             this.lbl_nome.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lbl_nome.Location = new System.Drawing.Point(8, 230);
+            this.lbl_nome.Location = new System.Drawing.Point(13, 162);
             this.lbl_nome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_nome.Name = "lbl_nome";
             this.lbl_nome.Size = new System.Drawing.Size(126, 20);
             this.lbl_nome.TabIndex = 15;
             this.lbl_nome.Text = "Nome completo:";
             // 
-            // btn_excluir
-            // 
-            this.btn_excluir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(245)))), ((int)(((byte)(252)))));
-            this.btn_excluir.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btn_excluir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(104)))), ((int)(((byte)(168)))));
-            this.btn_excluir.Location = new System.Drawing.Point(243, 461);
-            this.btn_excluir.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_excluir.Name = "btn_excluir";
-            this.btn_excluir.Size = new System.Drawing.Size(221, 112);
-            this.btn_excluir.TabIndex = 24;
-            this.btn_excluir.Text = "🗑️ Excluir";
-            this.btn_excluir.UseVisualStyleBackColor = false;
-            this.btn_excluir.Click += new System.EventHandler(this.btn_excluir_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(2, 137);
+            this.label1.Location = new System.Drawing.Point(7, 98);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(164, 20);
@@ -182,7 +146,7 @@ namespace Cadastro_Clinico
             // 
             this.tbx_pesquisa_func.BackColor = System.Drawing.Color.White;
             this.tbx_pesquisa_func.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.tbx_pesquisa_func.Location = new System.Drawing.Point(174, 136);
+            this.tbx_pesquisa_func.Location = new System.Drawing.Point(168, 93);
             this.tbx_pesquisa_func.Margin = new System.Windows.Forms.Padding(4);
             this.tbx_pesquisa_func.Name = "tbx_pesquisa_func";
             this.tbx_pesquisa_func.Size = new System.Drawing.Size(320, 25);
@@ -213,19 +177,19 @@ namespace Cadastro_Clinico
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(228)))), ((int)(((byte)(236)))));
-            this.dataGridView.Location = new System.Drawing.Point(521, 70);
+            this.dataGridView.Location = new System.Drawing.Point(522, 70);
             this.dataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersVisible = false;
-            this.dataGridView.Size = new System.Drawing.Size(399, 322);
+            this.dataGridView.Size = new System.Drawing.Size(427, 322);
             this.dataGridView.TabIndex = 27;
             this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // mtbx_cpf
             // 
-            this.mtbx_cpf.Location = new System.Drawing.Point(65, 303);
+            this.mtbx_cpf.Location = new System.Drawing.Point(55, 230);
             this.mtbx_cpf.Margin = new System.Windows.Forms.Padding(4);
             this.mtbx_cpf.Mask = "000.000.000-00";
             this.mtbx_cpf.Name = "mtbx_cpf";
@@ -238,6 +202,7 @@ namespace Cadastro_Clinico
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(125)))), ((int)(((byte)(155)))));
             this.label2.Location = new System.Drawing.Point(9, 58);
@@ -249,12 +214,60 @@ namespace Cadastro_Clinico
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(35, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(320, 40);
             this.label3.TabIndex = 30;
             this.label3.Text = "Cadastrar Funcionário";
+            // 
+            // roundedButton3
+            // 
+            this.roundedButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.roundedButton3.BorderRadius = 20;
+            this.roundedButton3.FlatAppearance.BorderSize = 0;
+            this.roundedButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.roundedButton3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.roundedButton3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.roundedButton3.Location = new System.Drawing.Point(615, 523);
+            this.roundedButton3.Name = "roundedButton3";
+            this.roundedButton3.Size = new System.Drawing.Size(197, 50);
+            this.roundedButton3.TabIndex = 34;
+            this.roundedButton3.Text = "❌ Cancelar";
+            this.roundedButton3.UseVisualStyleBackColor = false;
+            this.roundedButton3.Click += new System.EventHandler(this.btn_cancelar_Click);
+            // 
+            // roundedButton2
+            // 
+            this.roundedButton2.BorderRadius = 20;
+            this.roundedButton2.FlatAppearance.BorderSize = 0;
+            this.roundedButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.roundedButton2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.roundedButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(165)))));
+            this.roundedButton2.Location = new System.Drawing.Point(209, 523);
+            this.roundedButton2.Name = "roundedButton2";
+            this.roundedButton2.Size = new System.Drawing.Size(197, 50);
+            this.roundedButton2.TabIndex = 33;
+            this.roundedButton2.Text = "🔄 Atualizar";
+            this.roundedButton2.UseVisualStyleBackColor = false;
+            this.roundedButton2.Click += new System.EventHandler(this.btn_atualizar_Click);
+            // 
+            // roundedButton1
+            // 
+            this.roundedButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(245)))), ((int)(((byte)(252)))));
+            this.roundedButton1.BorderRadius = 20;
+            this.roundedButton1.FlatAppearance.BorderSize = 0;
+            this.roundedButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.roundedButton1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.roundedButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(104)))), ((int)(((byte)(168)))));
+            this.roundedButton1.Location = new System.Drawing.Point(412, 523);
+            this.roundedButton1.Name = "roundedButton1";
+            this.roundedButton1.Size = new System.Drawing.Size(197, 50);
+            this.roundedButton1.TabIndex = 32;
+            this.roundedButton1.Text = "🗑️ Excluir";
+            this.roundedButton1.UseVisualStyleBackColor = false;
+            this.roundedButton1.Click += new System.EventHandler(this.btn_excluir_Click);
             // 
             // btnConfirmarNovo
             // 
@@ -263,9 +276,9 @@ namespace Cadastro_Clinico
             this.btnConfirmarNovo.FlatAppearance.BorderSize = 0;
             this.btnConfirmarNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmarNovo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmarNovo.Location = new System.Drawing.Point(6, 461);
+            this.btnConfirmarNovo.Location = new System.Drawing.Point(6, 523);
             this.btnConfirmarNovo.Name = "btnConfirmarNovo";
-            this.btnConfirmarNovo.Size = new System.Drawing.Size(230, 112);
+            this.btnConfirmarNovo.Size = new System.Drawing.Size(197, 50);
             this.btnConfirmarNovo.TabIndex = 31;
             this.btnConfirmarNovo.Text = "✅ Confirmar";
             this.btnConfirmarNovo.UseVisualStyleBackColor = false;
@@ -277,7 +290,10 @@ namespace Cadastro_Clinico
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(934, 589);
+            this.ClientSize = new System.Drawing.Size(967, 589);
+            this.Controls.Add(this.roundedButton3);
+            this.Controls.Add(this.roundedButton2);
+            this.Controls.Add(this.roundedButton1);
             this.Controls.Add(this.btnConfirmarNovo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -285,7 +301,6 @@ namespace Cadastro_Clinico
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.tbx_pesquisa_func);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.cmbDepartamento);
             this.Controls.Add(this.txb_email);
             this.Controls.Add(this.txb_nome);
@@ -293,8 +308,6 @@ namespace Cadastro_Clinico
             this.Controls.Add(this.lbl_cpf);
             this.Controls.Add(this.lbl_email);
             this.Controls.Add(this.lbl_nome);
-            this.Controls.Add(this.btn_cancelar);
-            this.Controls.Add(this.btn_atualizar);
             this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(59)))), ((int)(((byte)(100)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -312,14 +325,14 @@ namespace Cadastro_Clinico
         private void add_funcionario_Load(object sender, EventArgs e)
         {
             CarregarDadosGrid();
+            EstilizarGrid(); // <--- Chama o estilo quando a tela abre
+            CarregarDadosGrid(); // Chama seu método normal de carregar os funcionários do banco
 
 
             //throw new NotImplementedException();
         }
 
         #endregion
-        private System.Windows.Forms.Button btn_atualizar;
-        private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.ComboBox cmbDepartamento;
         private System.Windows.Forms.TextBox txb_email;
         private System.Windows.Forms.TextBox txb_nome;
@@ -327,7 +340,6 @@ namespace Cadastro_Clinico
         private System.Windows.Forms.Label lbl_cpf;
         private System.Windows.Forms.Label lbl_email;
         private System.Windows.Forms.Label lbl_nome;
-        private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbx_pesquisa_func;
         private System.Windows.Forms.DataGridView dataGridView;
@@ -335,5 +347,9 @@ namespace Cadastro_Clinico
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private RoundedButton btnConfirmarNovo;
+        private System.Windows.Forms.PageSetupDialog pageSetupDialog1;
+        private RoundedButton roundedButton1;
+        private RoundedButton roundedButton2;
+        private RoundedButton roundedButton3;
     }
 }
