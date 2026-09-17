@@ -71,6 +71,7 @@ namespace Cadastro_Clinico
         {
             this.Close();
             Adicionar_cliente novaTela = new Adicionar_cliente();
+            novaTela.Show();
             novaTela.Focus();
         }
 
