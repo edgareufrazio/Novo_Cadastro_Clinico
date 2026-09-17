@@ -67,11 +67,11 @@ namespace Cadastro_Clinico
                     adaptador.Fill(tabela);
 
                     // Oculta o ID do usuário exibindo apenas a coluna com o Nome:
-                    cbx_nomeProfissional.DisplayMember = "Nome_F";       // Exibe APENAS o Nome para o usuário
-                    cbx_nomeProfissional.ValueMember = "Funcionario_id"; // O ID fica oculto internamente
+                    cbx_nomeProfissional.DisplayMember = "Nome_F";       
+                    cbx_nomeProfissional.ValueMember = "Funcionario_id"; 
 
                     cbx_nomeProfissional.DataSource = tabela;
-                    cbx_nomeProfissional.SelectedIndex = -1;             // Deixa o campo em branco inicialmente
+                    cbx_nomeProfissional.SelectedIndex = -1;             
                 }
             }
         }
@@ -97,7 +97,7 @@ namespace Cadastro_Clinico
             {
                 listaHorarios.Add(h);
             }
-
+            
             return listaHorarios;
         }
         //Atualizando a lista com os horários disponíveis no combobox
@@ -105,18 +105,22 @@ namespace Cadastro_Clinico
         private void CarregarHorariosDisponiveis()
         {
             // Verifica se há um profissional selecionado e se o ValueMember não é nulo
-            if (cbx_nomeProfissional.SelectedValue == null || cbx_nomeProfissional.SelectedIndex == -1)
+            if ( cbx_nomeProfissional.SelectedIndex == -1 ||
+                 cbx_nomeProfissional.SelectedValue == null)
             {
                 cbx_horarios.DataSource = null;
                 return;
             }
 
-            int idFuncionario;
-            if (!int.TryParse(cbx_nomeProfissional.SelectedValue.ToString(), out idFuncionario))
+            DataRowView dvr = cbx_nomeProfissional.SelectedItem as DataRowView;
+            if(dvr == null)
             {
+                cbx_horarios.DataSource = null;
                 return;
             }
 
+
+            int idFuncionario = Convert.ToInt32(dvr["Funcionario_id"]);
             DateTime dataSelecionada = dateTimePicker1.Value.Date;
 
             // 1. Pega os horários já agendados para este profissional na data selecionada
@@ -153,7 +157,7 @@ namespace Cadastro_Clinico
             {
                 if (!horariosOcupados.Contains(h))
                 {
-                    horariosLivresFormatados.Add(h.ToString(@"HH\:mm"));
+                    horariosLivresFormatados.Add(h.ToString(@"hh\:mm"));
                 }
             }
 
@@ -175,15 +179,15 @@ namespace Cadastro_Clinico
             //ORDER BY con.Data_hora ASC";
 
             string sql = @"SELECT 
-    con.Consulta_id AS [ID Consulta],
-    c.Nome_C AS [Nome do Cliente],
-    f.Nome_F AS [Profissional],
-    FORMAT(con.Data_hora, 'HH:mm') AS [Horário]
-FROM Consultas con
-INNER JOIN Clientes c ON con.Cliente_id = c.Cliente_id
-INNER JOIN Funcionarios f ON con.Funcionario_id = f.Funcionario_id
-WHERE CAST(con.Data_hora AS DATE) = @DataConsulta
-ORDER BY con.Data_hora ASC";
+                        con.Consulta_id AS [ID Consulta],
+                        c.Nome_C AS [Nome do Cliente],
+                        f.Nome_F AS [Profissional],
+                        FORMAT(con.Data_hora, 'HH:mm') AS [Horário]
+                        FROM Consultas con
+                        INNER JOIN Clientes c ON con.Cliente_id = c.Cliente_id
+                        INNER JOIN Funcionarios f ON con.Funcionario_id = f.Funcionario_id
+                        WHERE CAST(con.Data_hora AS DATE) = @DataConsulta
+                        ORDER BY con.Data_hora ASC";
 
 
             Connection conexao = new Connection();
@@ -198,7 +202,7 @@ ORDER BY con.Data_hora ASC";
 
                     adaptador.Fill(tabela);
 
-                    // Exibe o resultado no DataGridView (dgvConsultas)
+                    // Exibe o resultado no DataGridView 
                     dgv_agenda.DataSource = tabela;
                     //ocultando o ID da consultando para o usuario porém mantendo o dado para uso interno
                     if (dgv_agenda.Columns["ID Consulta"] != null)
@@ -223,14 +227,7 @@ ORDER BY con.Data_hora ASC";
 
         }
 
-        
-            private void cbx_nomeProfissional_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CarregarHorariosDisponiveis();
-        }
-        
-
-        
+            
 
         private void mtb_cpf_Enter(object sender, EventArgs e)
         {
@@ -245,6 +242,10 @@ ORDER BY con.Data_hora ASC";
                 }
             });
         }
-    
+
+        private void cbx_nomeProfissional_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            CarregarHorariosDisponiveis();
+        }
     }
 }

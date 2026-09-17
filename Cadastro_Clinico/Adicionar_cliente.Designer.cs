@@ -257,7 +257,7 @@
             this.cbx_nomeProfissional.Name = "cbx_nomeProfissional";
             this.cbx_nomeProfissional.Size = new System.Drawing.Size(181, 21);
             this.cbx_nomeProfissional.TabIndex = 55;
-            this.cbx_nomeProfissional.SelectedIndexChanged += new System.EventHandler(this.cbx_nomeProfissional_SelectedIndexChanged);
+            this.cbx_nomeProfissional.SelectionChangeCommitted += new System.EventHandler(this.cbx_nomeProfissional_SelectionChangeCommitted);
             // 
             // label1
             // 
