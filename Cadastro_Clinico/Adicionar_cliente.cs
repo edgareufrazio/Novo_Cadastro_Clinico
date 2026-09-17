@@ -44,14 +44,6 @@ namespace Cadastro_Clinico
         }
 
 
-        //trocando de tela para add_cliente
-        //private void tsm_addCliente_Click(object sender, EventArgs e)
-        //{
-        //    Adicionar_cliente novaTela = new Adicionar_cliente();
-        //    novaTela.Focus();
-        //    this.Hide();
-        //}
-
         //caregar profissionais no combobox
         private void CarregarProfissionais()
         {
@@ -213,6 +205,22 @@ namespace Cadastro_Clinico
             }
         }
 
+        private void SalvarCliente()
+        {
+            if(string.IsNullOrWhiteSpace(mtb_cpf.Text) ||
+               string.IsNullOrWhiteSpace(txb_nome.Text) ||
+               string.IsNullOrWhiteSpace(mtb_dataAtendimento.Text) ||
+               string.IsNullOrWhiteSpace(txb_email.Text) ||
+               string.IsNullOrWhiteSpace(txb_endereço.Text) ||
+               string.IsNullOrWhiteSpace(mtb_cep.Text)||
+               string.IsNullOrWhiteSpace(mtb_valor.Text))
+            {
+                MessageBox.Show("Por favor, preencha todos os campos obrigatórios.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Aqui você pode adicionar o código para salvar o cliente no banco de dados
+        }
 
         //-------------------Fim dos métodos-------------------
         private void Adicionar_cliente_Load(object sender, EventArgs e)
@@ -246,6 +254,47 @@ namespace Cadastro_Clinico
         private void cbx_nomeProfissional_SelectionChangeCommitted(object sender, EventArgs e)
         {
             CarregarHorariosDisponiveis();
+        }
+
+        private void btn_deslogar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form1 telalogin = new Form1();
+            telalogin.Show();
+            telalogin.Focus();
+        }
+        // Evento Leave do MaskedTextBox para validar a data digitada
+        private void mtb_dataAtendimento_Leave(object sender, EventArgs e)
+        {
+            
+            if (mtb_dataAtendimento.MaskCompleted)
+            {
+                DateTime dataDigitada;
+
+                
+                if (DateTime.TryParseExact(mtb_dataAtendimento.Text, "dd/MM/yyyy",
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    System.Globalization.DateTimeStyles.None, out dataDigitada))
+                {
+                    
+                    if (dateTimePicker1.Value.Date != dataDigitada.Date)
+                    {
+                        
+                        dateTimePicker1.Value = dataDigitada;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Data inválida. Por favor, digite uma data válida no formato DD/MM/AAAA.",
+                                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    mtb_dataAtendimento.Focus();
+                }
+            }
+        }
+
+        private void btn_salvar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
