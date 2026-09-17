@@ -58,7 +58,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsm_addFuncionario = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsm_addCliente = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_deslogar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_agenda)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -292,8 +292,7 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsm_addFuncionario,
-            this.tsm_addCliente});
+            this.tsm_addFuncionario});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -307,17 +306,22 @@
             this.tsm_addFuncionario.Text = "Adicionar Funcionário";
             this.tsm_addFuncionario.Click += new System.EventHandler(this.tsm_addFuncionario_Click);
             // 
-            // tsm_addCliente
+            // btn_deslogar
             // 
-            this.tsm_addCliente.Name = "tsm_addCliente";
-            this.tsm_addCliente.Size = new System.Drawing.Size(117, 20);
-            this.tsm_addCliente.Text = "Adiocionar Cliente";
+            this.btn_deslogar.Location = new System.Drawing.Point(258, 415);
+            this.btn_deslogar.Name = "btn_deslogar";
+            this.btn_deslogar.Size = new System.Drawing.Size(75, 23);
+            this.btn_deslogar.TabIndex = 81;
+            this.btn_deslogar.Text = "Deslogar";
+            this.btn_deslogar.UseVisualStyleBackColor = true;
+            this.btn_deslogar.Click += new System.EventHandler(this.btn_deslogar_Click);
             // 
             // Adicionar_cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_deslogar);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.mtb_dataAtendimento);
             this.Controls.Add(this.mtb_cep);
@@ -388,6 +392,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tsm_addFuncionario;
-        private System.Windows.Forms.ToolStripMenuItem tsm_addCliente;
+        private System.Windows.Forms.Button btn_deslogar;
     }
 }

@@ -44,14 +44,6 @@ namespace Cadastro_Clinico
         }
 
 
-        //trocando de tela para add_cliente
-        //private void tsm_addCliente_Click(object sender, EventArgs e)
-        //{
-        //    Adicionar_cliente novaTela = new Adicionar_cliente();
-        //    novaTela.Focus();
-        //    this.Hide();
-        //}
-
         //caregar profissionais no combobox
         private void CarregarProfissionais()
         {
@@ -246,6 +238,14 @@ namespace Cadastro_Clinico
         private void cbx_nomeProfissional_SelectionChangeCommitted(object sender, EventArgs e)
         {
             CarregarHorariosDisponiveis();
+        }
+
+        private void btn_deslogar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form1 novaTela = new Form1();
+            novaTela.Show();
+            novaTela.Focus();
         }
     }
 }
