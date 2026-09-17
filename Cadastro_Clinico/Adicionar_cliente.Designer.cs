@@ -28,19 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.mtb_dataAtendimento = new System.Windows.Forms.MaskedTextBox();
             this.mtb_cep = new System.Windows.Forms.MaskedTextBox();
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_atualizar = new System.Windows.Forms.Button();
             this.btn_salvar = new System.Windows.Forms.Button();
-            this.txb_valor = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txb_endereço = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txb_email = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txb_dataNascimento = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txb_nome = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -48,14 +47,18 @@
             this.mtb_cpf = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cmb_horarios = new System.Windows.Forms.ComboBox();
+            this.cbx_horarios = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cbx_nomeProfissional = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgv_agenda = new System.Windows.Forms.DataGridView();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.scb_addFuncionario = new System.Windows.Forms.ToolStripComboBox();
+            this.tsm_addFuncionario = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_deslogar = new System.Windows.Forms.Button();
+            this.mtb_data_nascimento = new System.Windows.Forms.MaskedTextBox();
+            this.mtb_valor = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_agenda)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +71,7 @@
             this.mtb_dataAtendimento.Size = new System.Drawing.Size(80, 20);
             this.mtb_dataAtendimento.TabIndex = 78;
             this.mtb_dataAtendimento.ValidatingType = typeof(System.DateTime);
+            this.mtb_dataAtendimento.Leave += new System.EventHandler(this.mtb_dataAtendimento_Leave);
             // 
             // mtb_cep
             // 
@@ -103,13 +107,7 @@
             this.btn_salvar.TabIndex = 73;
             this.btn_salvar.Text = "Salvar";
             this.btn_salvar.UseVisualStyleBackColor = true;
-            // 
-            // txb_valor
-            // 
-            this.txb_valor.Location = new System.Drawing.Point(15, 383);
-            this.txb_valor.Name = "txb_valor";
-            this.txb_valor.Size = new System.Drawing.Size(372, 20);
-            this.txb_valor.TabIndex = 72;
+            this.btn_salvar.Click += new System.EventHandler(this.btn_salvar_Click);
             // 
             // label10
             // 
@@ -161,13 +159,6 @@
             this.label7.TabIndex = 66;
             this.label7.Text = "E-mail";
             // 
-            // txb_dataNascimento
-            // 
-            this.txb_dataNascimento.Location = new System.Drawing.Point(12, 223);
-            this.txb_dataNascimento.Name = "txb_dataNascimento";
-            this.txb_dataNascimento.Size = new System.Drawing.Size(375, 20);
-            this.txb_dataNascimento.TabIndex = 65;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -204,11 +195,13 @@
             // 
             // mtb_cpf
             // 
+            this.mtb_cpf.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
             this.mtb_cpf.Location = new System.Drawing.Point(12, 142);
             this.mtb_cpf.Mask = "000.000.000-00";
             this.mtb_cpf.Name = "mtb_cpf";
             this.mtb_cpf.Size = new System.Drawing.Size(83, 20);
             this.mtb_cpf.TabIndex = 60;
+            this.mtb_cpf.Enter += new System.EventHandler(this.mtb_cpf_Enter);
             // 
             // label4
             // 
@@ -228,13 +221,13 @@
             this.label3.TabIndex = 58;
             this.label3.Text = "Horários disponiveis";
             // 
-            // cmb_horarios
+            // cbx_horarios
             // 
-            this.cmb_horarios.FormattingEnabled = true;
-            this.cmb_horarios.Location = new System.Drawing.Point(211, 101);
-            this.cmb_horarios.Name = "cmb_horarios";
-            this.cmb_horarios.Size = new System.Drawing.Size(146, 21);
-            this.cmb_horarios.TabIndex = 57;
+            this.cbx_horarios.FormattingEnabled = true;
+            this.cbx_horarios.Location = new System.Drawing.Point(211, 101);
+            this.cbx_horarios.Name = "cbx_horarios";
+            this.cbx_horarios.Size = new System.Drawing.Size(146, 21);
+            this.cbx_horarios.TabIndex = 57;
             // 
             // label2
             // 
@@ -252,6 +245,7 @@
             this.cbx_nomeProfissional.Name = "cbx_nomeProfissional";
             this.cbx_nomeProfissional.Size = new System.Drawing.Size(181, 21);
             this.cbx_nomeProfissional.TabIndex = 55;
+            this.cbx_nomeProfissional.SelectionChangeCommitted += new System.EventHandler(this.cbx_nomeProfissional_SelectionChangeCommitted);
             // 
             // label1
             // 
@@ -278,41 +272,75 @@
             this.dateTimePicker1.TabIndex = 52;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.scb_addFuncionario});
+            this.tsm_addFuncionario});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 80;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // scb_addFuncionario
+            // tsm_addFuncionario
             // 
-            this.scb_addFuncionario.Name = "scb_addFuncionario";
-            this.scb_addFuncionario.Size = new System.Drawing.Size(121, 23);
-            this.scb_addFuncionario.Text = "Adicionar Funcionário";
+            this.tsm_addFuncionario.Name = "tsm_addFuncionario";
+            this.tsm_addFuncionario.Size = new System.Drawing.Size(136, 20);
+            this.tsm_addFuncionario.Text = "Adicionar Funcionário";
+            this.tsm_addFuncionario.Click += new System.EventHandler(this.tsm_addFuncionario_Click);
+            // 
+            // btn_deslogar
+            // 
+            this.btn_deslogar.Location = new System.Drawing.Point(258, 415);
+            this.btn_deslogar.Name = "btn_deslogar";
+            this.btn_deslogar.Size = new System.Drawing.Size(75, 23);
+            this.btn_deslogar.TabIndex = 81;
+            this.btn_deslogar.Text = "Deslogar";
+            this.btn_deslogar.UseVisualStyleBackColor = true;
+            this.btn_deslogar.Click += new System.EventHandler(this.btn_deslogar_Click);
+            // 
+            // mtb_data_nascimento
+            // 
+            this.mtb_data_nascimento.Location = new System.Drawing.Point(15, 223);
+            this.mtb_data_nascimento.Mask = "00/00/0000";
+            this.mtb_data_nascimento.Name = "mtb_data_nascimento";
+            this.mtb_data_nascimento.Size = new System.Drawing.Size(80, 20);
+            this.mtb_data_nascimento.TabIndex = 82;
+            this.mtb_data_nascimento.ValidatingType = typeof(System.DateTime);
+            // 
+            // mtb_valor
+            // 
+            this.mtb_valor.Location = new System.Drawing.Point(13, 389);
+            this.mtb_valor.Mask = "00000-00";
+            this.mtb_valor.Name = "mtb_valor";
+            this.mtb_valor.Size = new System.Drawing.Size(80, 20);
+            this.mtb_valor.TabIndex = 83;
             // 
             // Adicionar_cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.mtb_valor);
+            this.Controls.Add(this.mtb_data_nascimento);
+            this.Controls.Add(this.btn_deslogar);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.mtb_dataAtendimento);
             this.Controls.Add(this.mtb_cep);
             this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.btn_atualizar);
             this.Controls.Add(this.btn_salvar);
-            this.Controls.Add(this.txb_valor);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txb_endereço);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txb_email);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.txb_dataNascimento);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txb_nome);
             this.Controls.Add(this.label5);
@@ -320,12 +348,13 @@
             this.Controls.Add(this.mtb_cpf);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.cmb_horarios);
+            this.Controls.Add(this.cbx_horarios);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbx_nomeProfissional);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgv_agenda);
             this.Controls.Add(this.dateTimePicker1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Adicionar_cliente";
             this.Text = "Adicionar_cliente";
             this.Load += new System.EventHandler(this.Adicionar_cliente_Load);
@@ -344,14 +373,12 @@
         private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Button btn_atualizar;
         private System.Windows.Forms.Button btn_salvar;
-        private System.Windows.Forms.TextBox txb_valor;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txb_endereço;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txb_email;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txb_dataNascimento;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txb_nome;
         private System.Windows.Forms.Label label5;
@@ -359,13 +386,17 @@
         private System.Windows.Forms.MaskedTextBox mtb_cpf;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cmb_horarios;
+        private System.Windows.Forms.ComboBox cbx_horarios;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbx_nomeProfissional;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgv_agenda;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripComboBox scb_addFuncionario;
+        private System.Windows.Forms.ToolStripMenuItem tsm_addFuncionario;
+        private System.Windows.Forms.Button btn_deslogar;
+        private System.Windows.Forms.MaskedTextBox mtb_data_nascimento;
+        private System.Windows.Forms.MaskedTextBox mtb_valor;
     }
 }
