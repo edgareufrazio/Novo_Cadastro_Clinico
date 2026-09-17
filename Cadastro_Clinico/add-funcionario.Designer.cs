@@ -51,7 +51,6 @@ namespace Cadastro_Clinico
             this.roundedButton2 = new RoundedButton();
             this.roundedButton1 = new RoundedButton();
             this.btnConfirmarNovo = new RoundedButton();
-            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +64,7 @@ namespace Cadastro_Clinico
             this.cmbDepartamento.Margin = new System.Windows.Forms.Padding(4);
             this.cmbDepartamento.Name = "cmbDepartamento";
             this.cmbDepartamento.Size = new System.Drawing.Size(151, 25);
-            this.cmbDepartamento.TabIndex = 23;
+            this.cmbDepartamento.TabIndex = 4;
             // 
             // txb_email
             // 
@@ -73,7 +72,7 @@ namespace Cadastro_Clinico
             this.txb_email.Margin = new System.Windows.Forms.Padding(4);
             this.txb_email.Name = "txb_email";
             this.txb_email.Size = new System.Drawing.Size(200, 25);
-            this.txb_email.TabIndex = 22;
+            this.txb_email.TabIndex = 2;
             // 
             // txb_nome
             // 
@@ -81,7 +80,7 @@ namespace Cadastro_Clinico
             this.txb_nome.Margin = new System.Windows.Forms.Padding(4);
             this.txb_nome.Name = "txb_nome";
             this.txb_nome.Size = new System.Drawing.Size(200, 25);
-            this.txb_nome.TabIndex = 20;
+            this.txb_nome.TabIndex = 1;
             // 
             // lbl_departamento
             // 
@@ -151,7 +150,7 @@ namespace Cadastro_Clinico
             this.tbx_pesquisa_func.Margin = new System.Windows.Forms.Padding(4);
             this.tbx_pesquisa_func.Name = "tbx_pesquisa_func";
             this.tbx_pesquisa_func.Size = new System.Drawing.Size(320, 25);
-            this.tbx_pesquisa_func.TabIndex = 26;
+            this.tbx_pesquisa_func.TabIndex = 5;
             this.tbx_pesquisa_func.TextChanged += new System.EventHandler(this.tbx_pesquisa_func_TextChanged_1);
             this.tbx_pesquisa_func.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbx_pesquisa_func_KeyDown);
             // 
@@ -184,7 +183,7 @@ namespace Cadastro_Clinico
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersVisible = false;
             this.dataGridView.Size = new System.Drawing.Size(427, 322);
-            this.dataGridView.TabIndex = 27;
+            this.dataGridView.TabIndex = 10;
             this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -195,7 +194,7 @@ namespace Cadastro_Clinico
             this.mtbx_cpf.Mask = "000.000.000-00";
             this.mtbx_cpf.Name = "mtbx_cpf";
             this.mtbx_cpf.Size = new System.Drawing.Size(116, 25);
-            this.mtbx_cpf.TabIndex = 28;
+            this.mtbx_cpf.TabIndex = 3;
             this.mtbx_cpf.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
             this.mtbx_cpf.Click += new System.EventHandler(this.mtbx_cpf_Click);
             this.mtbx_cpf.Enter += new System.EventHandler(this.mtbx_cpf_Enter_1);
@@ -234,7 +233,7 @@ namespace Cadastro_Clinico
             this.roundedButton3.Location = new System.Drawing.Point(615, 523);
             this.roundedButton3.Name = "roundedButton3";
             this.roundedButton3.Size = new System.Drawing.Size(197, 50);
-            this.roundedButton3.TabIndex = 34;
+            this.roundedButton3.TabIndex = 9;
             this.roundedButton3.Text = "❌ Cancelar";
             this.roundedButton3.UseVisualStyleBackColor = false;
             this.roundedButton3.Click += new System.EventHandler(this.btn_cancelar_Click);
@@ -249,7 +248,7 @@ namespace Cadastro_Clinico
             this.roundedButton2.Location = new System.Drawing.Point(209, 523);
             this.roundedButton2.Name = "roundedButton2";
             this.roundedButton2.Size = new System.Drawing.Size(197, 50);
-            this.roundedButton2.TabIndex = 33;
+            this.roundedButton2.TabIndex = 7;
             this.roundedButton2.Text = "🔄 Atualizar";
             this.roundedButton2.UseVisualStyleBackColor = false;
             this.roundedButton2.Click += new System.EventHandler(this.btn_atualizar_Click);
@@ -265,7 +264,7 @@ namespace Cadastro_Clinico
             this.roundedButton1.Location = new System.Drawing.Point(412, 523);
             this.roundedButton1.Name = "roundedButton1";
             this.roundedButton1.Size = new System.Drawing.Size(197, 50);
-            this.roundedButton1.TabIndex = 32;
+            this.roundedButton1.TabIndex = 8;
             this.roundedButton1.Text = "🗑️ Excluir";
             this.roundedButton1.UseVisualStyleBackColor = false;
             this.roundedButton1.Click += new System.EventHandler(this.btn_excluir_Click);
@@ -280,19 +279,10 @@ namespace Cadastro_Clinico
             this.btnConfirmarNovo.Location = new System.Drawing.Point(6, 523);
             this.btnConfirmarNovo.Name = "btnConfirmarNovo";
             this.btnConfirmarNovo.Size = new System.Drawing.Size(197, 50);
-            this.btnConfirmarNovo.TabIndex = 31;
+            this.btnConfirmarNovo.TabIndex = 6;
             this.btnConfirmarNovo.Text = "✅ Confirmar";
             this.btnConfirmarNovo.UseVisualStyleBackColor = false;
             this.btnConfirmarNovo.Click += new System.EventHandler(this.btn_confirmar_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(358, 280);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 19);
-            this.label4.TabIndex = 35;
-            this.label4.Text = "label4";
             // 
             // add_funcionario
             // 
@@ -301,7 +291,6 @@ namespace Cadastro_Clinico
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(967, 589);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.roundedButton3);
             this.Controls.Add(this.roundedButton2);
             this.Controls.Add(this.roundedButton1);
@@ -362,6 +351,5 @@ namespace Cadastro_Clinico
         private RoundedButton roundedButton1;
         private RoundedButton roundedButton2;
         private RoundedButton roundedButton3;
-        private System.Windows.Forms.Label label4;
     }
 }
