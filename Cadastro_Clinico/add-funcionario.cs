@@ -20,6 +20,51 @@ namespace Cadastro_Clinico
         public add_funcionario()
         {
             InitializeComponent();
+            EstilizarGrid(); // <--- Chama a formatação visual do Grid assim que o formulário inicia
+        }
+
+        private void EstilizarGrid()
+        {
+            // 1. Limpeza de Borda e Fundo
+            dataGridView.BorderStyle = BorderStyle.None;
+            dataGridView.BackgroundColor = Color.White;
+            dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView.GridColor = Color.FromArgb(240, 243, 246);
+
+            // 2. Comportamento das Linhas e Seleção
+            dataGridView.EnableHeadersVisualStyles = false;
+            dataGridView.RowHeadersVisible = false;
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView.MultiSelect = false;
+            dataGridView.RowTemplate.Height = 40;
+
+            // Remove a seleção azul dos cabeçalhos das colunas
+            dataGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(248, 250, 252);
+            dataGridView.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.FromArgb(15, 23, 42);
+
+            // Estilo das Linhas do Grid
+            dataGridView.DefaultCellStyle.BackColor = Color.White;
+            dataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
+            dataGridView.DefaultCellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
+            dataGridView.DefaultCellStyle.ForeColor = Color.FromArgb(51, 65, 85);
+
+            // Seleção de Linha (Cinza Claro Moderno - sem o azul escuro)
+            dataGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(226, 232, 240);
+            dataGridView.DefaultCellStyle.SelectionForeColor = Color.FromArgb(15, 23, 42);
+
+            // 3. Estilo do Cabeçalho (Topo)
+            dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView.ColumnHeadersHeight = 42;
+            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+
+            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
+            dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(100, 116, 139);
+            dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            dataGridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            // 4. Ajuste e Renderização
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView.ClearSelection(); // Evita que a primeira célula venha marcada de azul ao abrir
         }
 
         private void btn_cancelar_Click(object sender, EventArgs e)
@@ -27,8 +72,6 @@ namespace Cadastro_Clinico
             this.Close();
             Adicionar_cliente novaTela = new Adicionar_cliente();
             novaTela.Focus();
-
-
         }
 
         private void btn_testar_conexao_Click(object sender, EventArgs e)
@@ -38,15 +81,13 @@ namespace Cadastro_Clinico
 
         private void btn_confirmar_Click(object sender, EventArgs e)
         {
-            // Extrai apenas os dígitos numéricos do MaskedTextBox
             string cpfLimpo = new string(mtbx_cpf.Text.Where(char.IsDigit).ToArray());
 
-            // 1. Validação de preenchimento e regra matemática do CPF
             if (!ValidarCPF(cpfLimpo))
             {
                 MessageBox.Show("Por favor, informe um CPF válido com 11 dígitos.", "CPF Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 mtbx_cpf.Focus();
-                return; // Impede a gravação no banco
+                return;
             }
 
             Connection conn = new Connection();
@@ -63,7 +104,7 @@ namespace Cadastro_Clinico
                         cmd.Parameters.AddWithValue("@Nome", txb_nome.Text.Trim());
                         cmd.Parameters.AddWithValue("@Email", txb_email.Text.Trim());
                         cmd.Parameters.AddWithValue("@Area", cmbDepartamento.Text.Trim());
-                        cmd.Parameters.AddWithValue("@CPF", cpfLimpo); // Envia o CPF tratado ao banco
+                        cmd.Parameters.AddWithValue("@CPF", cpfLimpo);
 
                         int linhasAfetadas = cmd.ExecuteNonQuery();
 
@@ -88,6 +129,10 @@ namespace Cadastro_Clinico
             txb_email.Clear();
             cmbDepartamento.SelectedIndex = -1;
             mtbx_cpf.Clear();
+
+            // Garante que o ID seja zerado para novos cadastros
+            idFuncionarioSelecionado = 0;
+
             txb_nome.Focus();
         }
 
@@ -104,10 +149,8 @@ namespace Cadastro_Clinico
                 return;
             }
 
-            // Extrai apenas os dígitos numéricos do MaskedTextBox
             string cpfLimpo = new string(mtbx_cpf.Text.Where(char.IsDigit).ToArray());
 
-            // Validação do CPF antes de atualizar
             if (!ValidarCPF(cpfLimpo))
             {
                 MessageBox.Show("Por favor, informe um CPF válido com 11 dígitos.", "CPF Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -198,6 +241,40 @@ namespace Cadastro_Clinico
                             dataGridView.AutoGenerateColumns = true;
                             bindingSource.DataSource = tabelaFuncionarios;
                             dataGridView.DataSource = bindingSource;
+
+                            // 1. Altera os nomes dos cabeçalhos
+                            if (dataGridView.Columns.Contains("Funcionario_id"))
+                                dataGridView.Columns["Funcionario_id"].HeaderText = "ID";
+
+                            if (dataGridView.Columns.Contains("Nome_F"))
+                                dataGridView.Columns["Nome_F"].HeaderText = "Nome Completo";
+
+                            if (dataGridView.Columns.Contains("Email_func"))
+                                dataGridView.Columns["Email_func"].HeaderText = "E-mail";
+
+                            if (dataGridView.Columns.Contains("Area"))
+                                dataGridView.Columns["Area"].HeaderText = "Departamento";
+
+                            if (dataGridView.Columns.Contains("CPF_func"))
+                                dataGridView.Columns["CPF_func"].HeaderText = "CPF";
+
+                            // 2. Ajusta as larguras para não cortar o título "Departamento"
+                            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+
+                            if (dataGridView.Columns.Contains("Funcionario_id"))
+                                dataGridView.Columns["Funcionario_id"].Width = 40;
+
+                            if (dataGridView.Columns.Contains("CPF_func"))
+                                dataGridView.Columns["CPF_func"].Width = 110;
+
+                            if (dataGridView.Columns.Contains("Area"))
+                                dataGridView.Columns["Area"].Width = 130;
+
+                            if (dataGridView.Columns.Contains("Nome_F"))
+                                dataGridView.Columns["Nome_F"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                            if (dataGridView.Columns.Contains("Email_func"))
+                                dataGridView.Columns["Email_func"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                         }
                     }
                 }
@@ -227,6 +304,7 @@ namespace Cadastro_Clinico
                 if (dataGridView.Columns.Contains("CPF_func"))
                     mtbx_cpf.Text = linha.Cells["CPF_func"].Value?.ToString();
             }
+
         }
 
         private void btn_excluir_Click(object sender, EventArgs e)
@@ -329,9 +407,6 @@ namespace Cadastro_Clinico
             });
         }
 
-        /// <summary>
-        /// Valida a estrutura e os dígitos verificadores do CPF segundo as regras da Receita Federal.
-        /// </summary>
         private bool ValidarCPF(string cpf)
         {
             cpf = new string(cpf.Where(char.IsDigit).ToArray());
@@ -379,6 +454,16 @@ namespace Cadastro_Clinico
             digito += resto.ToString();
 
             return cpf.EndsWith(digito);
+        }
+
+        private void roundedButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void roundedButton2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
