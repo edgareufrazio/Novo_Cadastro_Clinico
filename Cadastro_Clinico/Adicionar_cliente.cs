@@ -243,9 +243,9 @@ namespace Cadastro_Clinico
         private void btn_deslogar_Click(object sender, EventArgs e)
         {
             this.Close();
-            Form1 novaTela = new Form1();
-            novaTela.Show();
-            novaTela.Focus();
+            Form1 telalogin = new Form1();
+            telalogin.Show();
+            telalogin.Focus();
         }
     }
 }
