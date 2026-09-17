@@ -21,5 +21,10 @@ namespace Cadastro_Clinico
         {
 
         }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
