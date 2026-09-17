@@ -51,6 +51,7 @@ namespace Cadastro_Clinico
             this.roundedButton2 = new RoundedButton();
             this.roundedButton1 = new RoundedButton();
             this.btnConfirmarNovo = new RoundedButton();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -284,6 +285,15 @@ namespace Cadastro_Clinico
             this.btnConfirmarNovo.UseVisualStyleBackColor = false;
             this.btnConfirmarNovo.Click += new System.EventHandler(this.btn_confirmar_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(358, 280);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 19);
+            this.label4.TabIndex = 35;
+            this.label4.Text = "label4";
+            // 
             // add_funcionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -291,6 +301,7 @@ namespace Cadastro_Clinico
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(967, 589);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.roundedButton3);
             this.Controls.Add(this.roundedButton2);
             this.Controls.Add(this.roundedButton1);
@@ -351,5 +362,6 @@ namespace Cadastro_Clinico
         private RoundedButton roundedButton1;
         private RoundedButton roundedButton2;
         private RoundedButton roundedButton3;
+        private System.Windows.Forms.Label label4;
     }
 }
