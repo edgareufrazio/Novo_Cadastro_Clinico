@@ -5,7 +5,19 @@ using System.Windows.Forms;
 
 public class RoundedButton : Button
 {
-    public int BorderRadius { get; set; } = 20;
+    private int borderRadius = 20;
+
+    // Atualiza a borda automaticamente se você mudar o raio no painel de Propriedades
+    public int BorderRadius
+    {
+        get => borderRadius;
+        set
+        {
+            borderRadius = value;
+            AtualizarFormato();
+            Invalidate(); // Força o botão a se desenhar novamente
+        }
+    }
 
     public RoundedButton()
     {
@@ -18,9 +30,13 @@ public class RoundedButton : Button
 
     private void AtualizarFormato()
     {
-        GraphicsPath path = new GraphicsPath();
+        if (Width <= 0 || Height <= 0) return;
 
-        int r = BorderRadius;
+        GraphicsPath path = new GraphicsPath();
+        int r = borderRadius;
+
+        // Garante que o raio não seja maior que a altura do botão
+        if (r > Height) r = Height;
 
         path.AddArc(0, 0, r, r, 180, 90);
         path.AddArc(Width - r, 0, r, r, 270, 90);
@@ -30,5 +46,12 @@ public class RoundedButton : Button
         path.CloseFigure();
 
         Region = new Region(path);
+    }
+
+    // Aplica o SmoothingMode para suavizar as curvas na renderização
+    protected override void OnPaint(PaintEventArgs pevent)
+    {
+        pevent.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+        base.OnPaint(pevent);
     }
 }
