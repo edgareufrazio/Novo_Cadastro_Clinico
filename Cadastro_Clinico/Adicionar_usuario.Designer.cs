@@ -38,6 +38,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnVoltar = new System.Windows.Forms.Button();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@
             this.txtPesquisar = new System.Windows.Forms.TextBox();
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.gridUsuarios = new System.Windows.Forms.DataGridView();
-            this.btnVoltar = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -57,22 +57,25 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.txtSenha);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.txtUsuario);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Location = new System.Drawing.Point(12, 108);
+            this.panel2.Location = new System.Drawing.Point(1, 111);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(375, 193);
             this.panel2.TabIndex = 1;
             // 
             // txtSenha
             // 
-            this.txtSenha.Location = new System.Drawing.Point(58, 118);
+            this.txtSenha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSenha.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.txtSenha.Location = new System.Drawing.Point(53, 113);
             this.txtSenha.Name = "txtSenha";
-            this.txtSenha.Size = new System.Drawing.Size(130, 20);
+            this.txtSenha.Size = new System.Drawing.Size(132, 25);
             this.txtSenha.TabIndex = 6;
             // 
             // label4
@@ -89,9 +92,11 @@
             // txtUsuario
             // 
             this.txtUsuario.BackColor = System.Drawing.Color.White;
-            this.txtUsuario.Location = new System.Drawing.Point(59, 33);
+            this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtUsuario.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.txtUsuario.Location = new System.Drawing.Point(59, 31);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(131, 20);
+            this.txtUsuario.Size = new System.Drawing.Size(131, 25);
             this.txtUsuario.TabIndex = 4;
             // 
             // label3
@@ -138,15 +143,31 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.btnVoltar);
             this.panel3.Controls.Add(this.btnCadastrar);
             this.panel3.Controls.Add(this.btnExcluir);
             this.panel3.Controls.Add(this.btnEditar);
             this.panel3.Controls.Add(this.lblAções);
-            this.panel3.Location = new System.Drawing.Point(419, 111);
+            this.panel3.Location = new System.Drawing.Point(418, 111);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(324, 190);
+            this.panel3.Size = new System.Drawing.Size(324, 193);
             this.panel3.TabIndex = 2;
+            // 
+            // btnVoltar
+            // 
+            this.btnVoltar.BackColor = System.Drawing.Color.LightSlateGray;
+            this.btnVoltar.FlatAppearance.BorderSize = 0;
+            this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVoltar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVoltar.ForeColor = System.Drawing.Color.White;
+            this.btnVoltar.Location = new System.Drawing.Point(73, 145);
+            this.btnVoltar.Name = "btnVoltar";
+            this.btnVoltar.Size = new System.Drawing.Size(189, 34);
+            this.btnVoltar.TabIndex = 6;
+            this.btnVoltar.Text = "Voltar ao login";
+            this.btnVoltar.UseVisualStyleBackColor = false;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
             // btnCadastrar
             // 
@@ -207,11 +228,12 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.txtPesquisar);
             this.panel4.Controls.Add(this.btnPesquisar);
-            this.panel4.Location = new System.Drawing.Point(19, 317);
+            this.panel4.Location = new System.Drawing.Point(1, 317);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(724, 31);
+            this.panel4.Size = new System.Drawing.Size(741, 31);
             this.panel4.TabIndex = 3;
             // 
             // txtPesquisar
@@ -223,6 +245,7 @@
             // 
             // btnPesquisar
             // 
+            this.btnPesquisar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPesquisar.Location = new System.Drawing.Point(532, 0);
             this.btnPesquisar.Name = "btnPesquisar";
             this.btnPesquisar.Size = new System.Drawing.Size(189, 31);
@@ -236,30 +259,14 @@
             this.gridUsuarios.AllowUserToAddRows = false;
             this.gridUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridUsuarios.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.gridUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridUsuarios.Location = new System.Drawing.Point(18, 354);
+            this.gridUsuarios.Location = new System.Drawing.Point(1, 354);
             this.gridUsuarios.Name = "gridUsuarios";
             this.gridUsuarios.ReadOnly = true;
             this.gridUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUsuarios.Size = new System.Drawing.Size(721, 249);
+            this.gridUsuarios.Size = new System.Drawing.Size(738, 249);
             this.gridUsuarios.TabIndex = 4;
             this.gridUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsuarios_CellContentClick);
-            // 
-            // btnVoltar
-            // 
-            this.btnVoltar.BackColor = System.Drawing.Color.LightSlateGray;
-            this.btnVoltar.FlatAppearance.BorderSize = 0;
-            this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVoltar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVoltar.ForeColor = System.Drawing.Color.White;
-            this.btnVoltar.Location = new System.Drawing.Point(73, 145);
-            this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(189, 34);
-            this.btnVoltar.TabIndex = 6;
-            this.btnVoltar.Text = "Voltar ao login";
-            this.btnVoltar.UseVisualStyleBackColor = false;
-            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
             // Adicionar_usuario
             // 
