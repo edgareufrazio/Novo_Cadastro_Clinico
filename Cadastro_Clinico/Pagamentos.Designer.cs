@@ -35,6 +35,11 @@
             this.bt_exibir = new System.Windows.Forms.Button();
             this.tb_divida = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.tb_deposito = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.bt_pagar = new System.Windows.Forms.Button();
+            this.tb_id = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grid_pagamentos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,9 +92,9 @@
             // 
             this.tb_divida.Location = new System.Drawing.Point(506, 260);
             this.tb_divida.Name = "tb_divida";
+            this.tb_divida.ReadOnly = true;
             this.tb_divida.Size = new System.Drawing.Size(100, 20);
             this.tb_divida.TabIndex = 5;
-            this.tb_divida.TextChanged += new System.EventHandler(this.tb_divida_TextChanged);
             // 
             // label2
             // 
@@ -100,11 +105,58 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "À pagar";
             // 
+            // tb_deposito
+            // 
+            this.tb_deposito.Location = new System.Drawing.Point(506, 322);
+            this.tb_deposito.Name = "tb_deposito";
+            this.tb_deposito.Size = new System.Drawing.Size(100, 20);
+            this.tb_deposito.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(503, 306);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Valor pago";
+            // 
+            // bt_pagar
+            // 
+            this.bt_pagar.Location = new System.Drawing.Point(548, 348);
+            this.bt_pagar.Name = "bt_pagar";
+            this.bt_pagar.Size = new System.Drawing.Size(115, 23);
+            this.bt_pagar.TabIndex = 9;
+            this.bt_pagar.Text = "Registrar pagamento";
+            this.bt_pagar.UseVisualStyleBackColor = true;
+            this.bt_pagar.Click += new System.EventHandler(this.bt_pagar_Click);
+            // 
+            // tb_id
+            // 
+            this.tb_id.Location = new System.Drawing.Point(672, 209);
+            this.tb_id.Name = "tb_id";
+            this.tb_id.Size = new System.Drawing.Size(59, 20);
+            this.tb_id.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(669, 193);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "ID do Cliente";
+            // 
             // Pagamentos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.tb_id);
+            this.Controls.Add(this.bt_pagar);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.tb_deposito);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tb_divida);
             this.Controls.Add(this.bt_exibir);
@@ -114,6 +166,7 @@
             this.Controls.Add(this.grid_pagamentos);
             this.Name = "Pagamentos";
             this.Text = "Pagamentos";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Pagamentos_FormClosed);
             this.Load += new System.EventHandler(this.Pagamentos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid_pagamentos)).EndInit();
             this.ResumeLayout(false);
@@ -130,5 +183,10 @@
         private System.Windows.Forms.Button bt_exibir;
         private System.Windows.Forms.TextBox tb_divida;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tb_deposito;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button bt_pagar;
+        private System.Windows.Forms.TextBox tb_id;
+        private System.Windows.Forms.Label label4;
     }
 }
