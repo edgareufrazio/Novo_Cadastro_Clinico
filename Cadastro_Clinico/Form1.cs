@@ -142,6 +142,12 @@ namespace Cadastro_Clinico
         {
             Application.Exit();
         }
+
+        private void Form1_Leave(object sender, EventArgs e)
+        {
+            this.Close();
+
+        }
     }
 }
     
