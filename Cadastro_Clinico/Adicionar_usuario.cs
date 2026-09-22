@@ -329,5 +329,10 @@ namespace Cadastro_Clinico
 
             this.Close();
         }
+
+        private void Adicionar_usuario_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
