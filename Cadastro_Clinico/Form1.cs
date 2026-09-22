@@ -44,10 +44,12 @@ namespace Cadastro_Clinico
                     frm.Name = "Adicionar_usuario";
                     frm.Show();
                     this.Hide();
+                    return;
                 }
                 else
                 {
                     frm.BringToFront();
+                   
                 }
             }
             else
