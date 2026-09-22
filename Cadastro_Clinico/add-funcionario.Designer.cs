@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace Cadastro_Clinico
 {
@@ -47,6 +48,7 @@ namespace Cadastro_Clinico
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
+            this.btn_tema = new RoundedButton();
             this.roundedButton3 = new RoundedButton();
             this.roundedButton2 = new RoundedButton();
             this.roundedButton1 = new RoundedButton();
@@ -222,6 +224,21 @@ namespace Cadastro_Clinico
             this.label3.TabIndex = 30;
             this.label3.Text = "Cadastrar Funcionário";
             // 
+            // btn_tema
+            // 
+            this.btn_tema.BackColor = System.Drawing.Color.Gainsboro;
+            this.btn_tema.BorderRadius = 20;
+            this.btn_tema.FlatAppearance.BorderSize = 0;
+            this.btn_tema.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_tema.Font = new System.Drawing.Font("Segoe UI Emoji", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_tema.ForeColor = System.Drawing.Color.Black;
+            this.btn_tema.Location = new System.Drawing.Point(921, 12);
+            this.btn_tema.Name = "btn_tema";
+            this.btn_tema.Size = new System.Drawing.Size(44, 37);
+            this.btn_tema.TabIndex = 31;
+            this.btn_tema.UseVisualStyleBackColor = false;
+            this.btn_tema.Click += new System.EventHandler(this.btn_trocarTema_Click);
+            // 
             // roundedButton3
             // 
             this.roundedButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
@@ -240,6 +257,7 @@ namespace Cadastro_Clinico
             // 
             // roundedButton2
             // 
+            this.roundedButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(214)))), ((int)(((byte)(250)))));
             this.roundedButton2.BorderRadius = 20;
             this.roundedButton2.FlatAppearance.BorderSize = 0;
             this.roundedButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -291,6 +309,7 @@ namespace Cadastro_Clinico
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(967, 589);
+            this.Controls.Add(this.btn_tema);
             this.Controls.Add(this.roundedButton3);
             this.Controls.Add(this.roundedButton2);
             this.Controls.Add(this.roundedButton1);
@@ -322,6 +341,36 @@ namespace Cadastro_Clinico
 
         }
 
+        private void btn_tema_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void mtbx_cpf_Enter_1(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void tbx_pesquisa_func_TextChanged_1(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         private void add_funcionario_Load(object sender, EventArgs e)
         {
             CarregarDadosGrid();
@@ -351,5 +400,6 @@ namespace Cadastro_Clinico
         private RoundedButton roundedButton1;
         private RoundedButton roundedButton2;
         private RoundedButton roundedButton3;
+        private RoundedButton btn_tema;
     }
 }
