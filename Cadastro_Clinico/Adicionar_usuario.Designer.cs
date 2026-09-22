@@ -281,6 +281,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "Adicionar_usuario";
             this.Text = "Adicionar_usuario";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Adicionar_usuario_FormClosing);
             this.Load += new System.EventHandler(this.Adicionar_usuario_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
