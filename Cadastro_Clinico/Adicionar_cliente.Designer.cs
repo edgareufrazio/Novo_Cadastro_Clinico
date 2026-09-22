@@ -89,6 +89,7 @@
             this.btn_excluir.TabIndex = 75;
             this.btn_excluir.Text = "Excluir";
             this.btn_excluir.UseVisualStyleBackColor = true;
+            this.btn_excluir.Click += new System.EventHandler(this.btn_excluir_Click);
             // 
             // btn_atualizar
             // 
@@ -98,6 +99,7 @@
             this.btn_atualizar.TabIndex = 74;
             this.btn_atualizar.Text = "Atualizar";
             this.btn_atualizar.UseVisualStyleBackColor = true;
+            this.btn_atualizar.Click += new System.EventHandler(this.btn_atualizar_Click);
             // 
             // btn_salvar
             // 
@@ -192,6 +194,7 @@
             this.btn_pesquisar.TabIndex = 61;
             this.btn_pesquisar.Text = "Pesquisar";
             this.btn_pesquisar.UseVisualStyleBackColor = true;
+            this.btn_pesquisar.Click += new System.EventHandler(this.btn_pesquisar_Click);
             // 
             // mtb_cpf
             // 
@@ -316,7 +319,7 @@
             // mtb_valor
             // 
             this.mtb_valor.Location = new System.Drawing.Point(13, 389);
-            this.mtb_valor.Mask = "00000-00";
+            this.mtb_valor.Mask = "00000,00";
             this.mtb_valor.Name = "mtb_valor";
             this.mtb_valor.Size = new System.Drawing.Size(80, 20);
             this.mtb_valor.TabIndex = 83;
