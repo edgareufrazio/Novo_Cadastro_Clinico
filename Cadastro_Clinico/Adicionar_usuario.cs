@@ -310,5 +310,24 @@ namespace Cadastro_Clinico
                 );
             }
         }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+
+            Form1 login = Application.OpenForms["Form1"] as Form1;
+
+            if (login != null)
+            {
+                login.Show();
+                login.BringToFront();
+            }
+            else
+            {
+                login = new Form1();
+                login.Show();
+            }
+
+            this.Close();
+        }
     }
 }
