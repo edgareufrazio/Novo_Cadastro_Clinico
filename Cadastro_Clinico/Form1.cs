@@ -179,6 +179,12 @@ namespace Cadastro_Clinico
             this.Close();
 
         }
+        public void LimparLogin()
+        {
+            txtUsuario.Clear();
+            txtSenha.Clear();
+            txtUsuario.Focus();
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
