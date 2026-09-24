@@ -142,6 +142,28 @@ namespace Cadastro_Clinico
         {
             Application.Exit();
         }
+
+        private void Form1_Leave(object sender, EventArgs e)
+        {
+            this.Close();
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Pagamentos frm = Application.OpenForms["Pagamentos"] as Pagamentos;
+            if (frm == null)
+            {
+                frm = new Pagamentos();
+                frm.Name = "Pagamentos";
+                frm.Show();
+                this.Hide();
+            }
+            else
+            {
+                frm.BringToFront();
+            }
+        }
     }
 }
     
