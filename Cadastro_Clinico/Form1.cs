@@ -17,6 +17,7 @@ namespace Cadastro_Clinico
         public Form1()
         {
             InitializeComponent();
+            this.AcceptButton = btn_entrar;
         }
 
         private void btn_sair_Click(object sender, EventArgs e)
