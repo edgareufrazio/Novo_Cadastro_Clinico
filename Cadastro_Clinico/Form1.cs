@@ -65,6 +65,7 @@ namespace Cadastro_Clinico
                 {
                     frm.Show();
                     frm.BringToFront();
+                   
                 }
 
                 txtUsuario.Clear();
@@ -171,6 +172,28 @@ namespace Cadastro_Clinico
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Form1_Leave(object sender, EventArgs e)
+        {
+            this.Close();
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Pagamentos frm = Application.OpenForms["Pagamentos"] as Pagamentos;
+            if (frm == null)
+            {
+                frm = new Pagamentos();
+                frm.Name = "Pagamentos";
+                frm.Show();
+                this.Hide();
+            }
+            else
+            {
+                frm.BringToFront();
+            }
         }
     }
 }
