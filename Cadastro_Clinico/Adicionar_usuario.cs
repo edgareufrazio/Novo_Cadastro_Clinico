@@ -22,6 +22,15 @@ namespace Cadastro_Clinico
         private void Adicionar_usuario_Load(object sender, EventArgs e)
         {
             CarregarUsuarios();
+
+            cmbNivel.Items.Clear();
+
+            cmbNivel.Items.Add("Administrador");
+            cmbNivel.Items.Add("Usuario");
+
+            cmbNivel.SelectedIndex = 1;
+
+            
         }
 
         private void txtId_TextChanged(object sender, EventArgs e)
@@ -33,8 +42,9 @@ namespace Cadastro_Clinico
         {
             string usuario = txtUsuario.Text;
             string senha = txtSenha.Text;
+            string nivel = cmbNivel.Text;
 
-            if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(senha))
+            if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(senha) || string.IsNullOrEmpty(nivel))
             {
                 MessageBox.Show("Preencha todos os campos.");
                 return;
@@ -46,8 +56,8 @@ namespace Cadastro_Clinico
                 WHERE Usuario = @usuario";
 
             string queryCadastrar = @"
-                INSERT INTO Logar (Usuario, Senha)
-                VALUES (@usuario, @senha)";
+                INSERT INTO Logar (Usuario, Senha, Nivel)
+                VALUES (@usuario, @senha, @nivel)";
 
             Connection conexao = new Connection();
 
@@ -95,6 +105,12 @@ namespace Cadastro_Clinico
                             100
                         ).Value = senha;
 
+                        cmdCadastrar.Parameters.Add(
+                            "@nivel",
+                            SqlDbType.VarChar,
+                            20
+                        ).Value = nivel;
+
                         cmdCadastrar.ExecuteNonQuery();
                     }
                 }
@@ -116,7 +132,7 @@ namespace Cadastro_Clinico
         }
         private void CarregarUsuarios()
         {
-            string query = @"SELECT Usuario, Senha FROM Logar ORDER BY Usuario";
+            string query = @"SELECT Usuario, Senha, Nivel FROM Logar ORDER BY Usuario";
 
             Connection conexao = new Connection();
             try
@@ -145,6 +161,7 @@ namespace Cadastro_Clinico
             {
                 txtUsuario.Text = gridUsuarios.Rows[e.RowIndex].Cells["Usuario"].Value.ToString();
                 txtSenha.Text = gridUsuarios.Rows[e.RowIndex].Cells["Senha"].Value.ToString();
+                cmbNivel.Text = gridUsuarios.Rows[e.RowIndex].Cells["Nivel"].Value.ToString();
             }
         }
 
@@ -333,6 +350,21 @@ namespace Cadastro_Clinico
         private void Adicionar_usuario_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void gridUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            txtUsuario.Text = gridUsuarios.Rows[e.RowIndex]
+                .Cells["Usuario"].Value?.ToString();
+
+            txtSenha.Text = gridUsuarios.Rows[e.RowIndex]
+                .Cells["Senha"].Value?.ToString();
+
+            cmbNivel.Text = gridUsuarios.Rows[e.RowIndex]
+                .Cells["Nivel"].Value?.ToString();
         }
     }
 }
