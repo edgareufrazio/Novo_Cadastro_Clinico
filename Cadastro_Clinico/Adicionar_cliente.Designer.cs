@@ -107,12 +107,13 @@
             // 
             // btn_salvar
             // 
+            this.btn_salvar.BackColor = System.Drawing.Color.Lime;
             this.btn_salvar.Location = new System.Drawing.Point(15, 415);
             this.btn_salvar.Name = "btn_salvar";
             this.btn_salvar.Size = new System.Drawing.Size(75, 23);
             this.btn_salvar.TabIndex = 13;
             this.btn_salvar.Text = "Salvar";
-            this.btn_salvar.UseVisualStyleBackColor = true;
+            this.btn_salvar.UseVisualStyleBackColor = false;
             this.btn_salvar.Click += new System.EventHandler(this.btn_salvar_Click);
             // 
             // label10
