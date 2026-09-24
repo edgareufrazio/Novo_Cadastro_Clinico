@@ -58,7 +58,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.cmbNivel);
@@ -167,7 +167,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.btnVoltar);
             this.panel3.Controls.Add(this.btnCadastrar);
@@ -283,13 +283,13 @@
             // 
             this.gridUsuarios.AllowUserToAddRows = false;
             this.gridUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridUsuarios.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.gridUsuarios.BackgroundColor = System.Drawing.Color.White;
             this.gridUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridUsuarios.Location = new System.Drawing.Point(1, 354);
             this.gridUsuarios.Name = "gridUsuarios";
             this.gridUsuarios.ReadOnly = true;
             this.gridUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUsuarios.Size = new System.Drawing.Size(738, 249);
+            this.gridUsuarios.Size = new System.Drawing.Size(741, 249);
             this.gridUsuarios.TabIndex = 4;
             this.gridUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsuarios_CellClick);
             this.gridUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsuarios_CellContentClick);
@@ -299,6 +299,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(896, 615);
             this.Controls.Add(this.gridUsuarios);
             this.Controls.Add(this.panel4);
