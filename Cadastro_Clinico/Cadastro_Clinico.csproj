@@ -143,5 +143,8 @@
   <ItemGroup>
     <None Include="Resources\fundo.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gradiente-azul-claro-fundo.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
