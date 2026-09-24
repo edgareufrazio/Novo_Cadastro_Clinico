@@ -37,7 +37,7 @@ namespace Cadastro_Clinico
             novaTela.Show();
         }
 
-        private void AplicarTema()
+        public void AplicarTema()
         {
             // Função auxiliar interna para atualizar a imagem descartando a anterior sem vazar memória
             void AtualizarIconeBotao(Button btn, Image novaImagem)
