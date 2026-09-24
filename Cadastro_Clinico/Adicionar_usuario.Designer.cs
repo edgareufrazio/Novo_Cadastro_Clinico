@@ -89,7 +89,7 @@
             this.cmbNivel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cmbNivel.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.cmbNivel.FormattingEnabled = true;
-            this.cmbNivel.Location = new System.Drawing.Point(53, 43);
+            this.cmbNivel.Location = new System.Drawing.Point(54, 45);
             this.cmbNivel.Name = "cmbNivel";
             this.cmbNivel.Size = new System.Drawing.Size(132, 25);
             this.cmbNivel.TabIndex = 7;
