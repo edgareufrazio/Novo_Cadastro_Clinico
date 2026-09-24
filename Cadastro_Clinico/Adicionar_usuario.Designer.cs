@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Adicionar_usuario));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbNivel = new System.Windows.Forms.ComboBox();
             this.txtSenha = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
@@ -47,8 +49,6 @@
             this.txtPesquisar = new System.Windows.Forms.TextBox();
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.gridUsuarios = new System.Windows.Forms.DataGridView();
-            this.cmbNivel = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -72,6 +72,27 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(375, 193);
             this.panel2.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(4, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 17);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Nível:";
+            // 
+            // cmbNivel
+            // 
+            this.cmbNivel.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cmbNivel.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.cmbNivel.FormattingEnabled = true;
+            this.cmbNivel.Location = new System.Drawing.Point(53, 43);
+            this.cmbNivel.Name = "cmbNivel";
+            this.cmbNivel.Size = new System.Drawing.Size(132, 25);
+            this.cmbNivel.TabIndex = 7;
             // 
             // txtSenha
             // 
@@ -272,25 +293,6 @@
             this.gridUsuarios.TabIndex = 4;
             this.gridUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsuarios_CellClick);
             this.gridUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsuarios_CellContentClick);
-            // 
-            // cmbNivel
-            // 
-            this.cmbNivel.FormattingEnabled = true;
-            this.cmbNivel.Location = new System.Drawing.Point(54, 43);
-            this.cmbNivel.Name = "cmbNivel";
-            this.cmbNivel.Size = new System.Drawing.Size(132, 21);
-            this.cmbNivel.TabIndex = 7;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(4, 43);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 17);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Nível:";
             // 
             // Adicionar_usuario
             // 
