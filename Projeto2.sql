@@ -39,6 +39,16 @@ Senha varchar (64) not null,
 Nivel VARCHAR(20) NOT NULL DEFAULT 'Usuario'
 );
 
+Create table Pagamentos(
+Pagamento_id int primary key identity (1,1),
+Consulta_id int not null,
+Forma varchar (32) not null,
+Valor_p decimal (7,2) not null,
+p_data datetime not null,
+Constraint fk_Consulta_id foreign key (Consulta_id) references Consultas (Consulta_id),
+);
+
+
 select * from Clientes;
 select * from Logar;
 select * from Funcionarios;
