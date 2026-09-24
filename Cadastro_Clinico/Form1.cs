@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,73 +26,84 @@ namespace Cadastro_Clinico
 
         private void btn_entrar_Click(object sender, EventArgs e)
         {
-            string usuario = txtUsuario.Text;
+            string usuario = txtUsuario.Text.Trim();
             string senha = txtSenha.Text;
 
             if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(senha))
             {
-                MessageBox.Show("Por favor,Preencha todos os campos");
+                MessageBox.Show("Por favor, preencha todos os campos.");
                 return;
             }
-            if (usuario == "admin" && senha == "123456")
+
+            string nivel = ObterNivelUsuario(usuario, senha);
+
+            if (nivel == null)
             {
-                Adicionar_usuario frm = Application.OpenForms["Adicionar_usuario"] as Adicionar_usuario;
+                MessageBox.Show("Usuário ou senha incorretos.");
+
+                txtUsuario.Clear();
+                txtSenha.Clear();
+                txtUsuario.Focus();
+
+                return;
+            }
+
+            
+            if (nivel == "Administrador")
+            {
+                Adicionar_usuario frm =
+                    Application.OpenForms["Adicionar_usuario"]
+                    as Adicionar_usuario;
 
                 if (frm == null)
                 {
-
                     frm = new Adicionar_usuario();
                     frm.Name = "Adicionar_usuario";
                     frm.Show();
-                    this.Hide();
-                    return;
                 }
                 else
                 {
+                    frm.Show();
                     frm.BringToFront();
                    
                 }
-            }
-            else
-            {
-                //MessageBox.Show("Usuario ou senha incorretos");
+
                 txtUsuario.Clear();
                 txtSenha.Clear();
 
+                this.Hide();
 
-            
-
+                return;
             }
 
-            if (ValidarLogin(usuario, senha))
+           
+            if (nivel == "Usuario")
             {
-                //MessageBox.Show("Login efetuado com sucesso");
-                txtUsuario.Clear();
-                txtSenha.Clear();
+                Adicionar_cliente frm =
+                    Application.OpenForms["Adicionar_cliente"]
+                    as Adicionar_cliente;
 
-              Adicionar_cliente frm = Application.OpenForms["Adicionar_cliente"] as Adicionar_cliente;
-               
                 if (frm == null)
                 {
-
                     frm = new Adicionar_cliente();
                     frm.Name = "Adicionar_cliente";
                     frm.Show();
-                    this.Hide();
                 }
                 else
                 {
+                    frm.Show();
                     frm.BringToFront();
                 }
-            }
-            else
-            {
-                MessageBox.Show("Usuario ou senha incorretos");
+
                 txtUsuario.Clear();
                 txtSenha.Clear();
 
+                this.Hide();
 
+                return;
             }
+
+            MessageBox.Show("Nível de acesso inválido.");
         }
 
 
@@ -119,24 +131,43 @@ namespace Cadastro_Clinico
         }
 
 
-        private bool ValidarLogin(string usuario, string senha)
+
+
+        private string ObterNivelUsuario(string usuario, string senha)
         {
-            string query = @" SELECT COUNT(*) FROM Logar WHERE Usuario = @usuario AND Senha = @senha";
+            string query = @"select Nivel from Logar where Usuario = @usuario and Senha = @senha";
             Connection conexao = new Connection();
+
             try
             {
-                using (SqlConnection conn = conexao.Conectar()) 
-                using (SqlCommand cmd = new SqlCommand(query, conn)) 
-                { cmd.Parameters.Add("@usuario", SqlDbType.VarChar, 50).Value = usuario;
-                    cmd.Parameters.Add("@senha", SqlDbType.VarChar, 100).Value = senha;
-                    int resultado = Convert.ToInt32(cmd.ExecuteScalar()); 
-                    return resultado > 0;
+                using (SqlConnection conn = conexao.Conectar())
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@usuario", SqlDbType.VarChar, 64).Value = usuario;
+                    cmd.Parameters.Add("@senha", SqlDbType.VarChar, 64).Value = senha;
+
+                    object resultado = cmd.ExecuteScalar();
+
+                    if (resultado != null)
+                        return resultado.ToString();
+
+                    return null;
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Erro ao consultar o banco de dados:\n" + ex.Message, "Erro de Banco", MessageBoxButtons.OK, MessageBoxIcon.Error); 
-                return false; }
+                MessageBox.Show(
+                    "Erro ao consultar o banco:\n\n" + ex.Message,
+                    "Erro",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+
+                return null;
+            }
         }
+
+          
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
