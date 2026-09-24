@@ -23,8 +23,9 @@ namespace Cadastro_Clinico
         {
             Connection conn = new Connection();
             conn.Conectar();
-            string query = "SELECT Nome_c as Nome, SUM(Valor) as Total FROM Consultas as co, Clientes as cl WHERE co.Cliente_Id = cl.Cliente_Id GROUP BY Nome_c";
+            string query = //"SELECT co.Consulta_id, Nome_c as Nome, Valor as Total, Valor - (select sum(Valor_p) from Pagamentos where co.Consulta_id = pa.Consulta_id group by co.Consulta_id) as Em_Aberto, Data_hora as Data FROM Consultas as co, Clientes as cl, Pagamentos as pa WHERE co.Cliente_Id = cl.Cliente_Id AND co.Consulta_id = pa.Consulta_id GROUP BY Nome_c, Valor, Data_hora, co.Consulta_id, pa.Consulta_id";
             //string query = "Select Nome_C as 'Nome do Cliente', SUM(Valor) as 'Total das Consultas', SUM(Valor_p) as 'Total pago', SUM(Valor - Valor_p) as 'Valor em aberto' from Consultas as co, Pago as pa, Clientes as cl where co.Cliente_id = pa.Cliente_id and co.Cliente_id = cl.Cliente_id group by Nome_C";
+            "SELECt co.Consulta_id,cl.Nome_c AS Nome,co.Valor AS Total,co.Valor - COALESCE(SUM(pa.Valor_p), 0) AS Em_Aberto,co.Data_hora AS Data FROM Consultas co INNER JOIN Clientes cl ON co.Cliente_Id = cl.Cliente_Id LEFT JOIN Pagamentos pa ON co.Consulta_id = pa.Consulta_id GROUP BY co.Consulta_id, cl.Nome_c, co.Valor, co.Data_hora";
             DataTable dt = new DataTable();
             SqlCommand cmd = new SqlCommand(query, conn.Conectar());
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -71,7 +72,8 @@ namespace Cadastro_Clinico
 
                                 nome = tb_nome.Text;
 
-                                string query = "SELECT Nome_c as 'Nome do Cliente', SUM (Valor) as 'Total das Consultas', SUM(Valor_p) as 'Total pago', SUM(Valor - Valor_p) as 'Valor em aberto'  FROM Consultas as co, Clientes as cl, Pago as pa WHERE cl.Nome_c = @nome and co.Cliente_Id = cl.Cliente_Id and co.Cliente_Id = pa.Cliente_Id GROUP BY Nome_c";
+                            string query = //"SELECT Consulta_id, Nome_c as 'Nome', Valor as 'Total', Data_hora as 'Data' FROM Consultas as co, Clientes as cl WHERE cl.Nome_c = @nome and co.Cliente_Id = cl.Cliente_Id GROUP BY Nome_c, Valor, Data_hora, Consulta_id";
+                            "SELECt co.Consulta_id,cl.Nome_c AS Nome,co.Valor AS Total,co.Valor - COALESCE(SUM(pa.Valor_p), 0) AS Em_Aberto, co.Data_hora AS Data FROM Consultas co INNER JOIN Clientes cl ON co.Cliente_Id = cl.Cliente_Id LEFT JOIN Pagamentos pa ON co.Consulta_id = pa.Consulta_id WHERE cl.Nome_c = @nome and co.Cliente_Id = cl.Cliente_Id GROUP BY co.Consulta_id, cl.Nome_c, co.Valor, co.Data_hora";
                                 SqlCommand cmd = new SqlCommand(query, conn.Conectar());
 
                                 cmd.Parameters.AddWithValue("@nome", nome);
@@ -84,7 +86,7 @@ namespace Cadastro_Clinico
                                 da.Fill(dt);
                                 grid_pagamentos.DataSource = dt;
 
-                                string query2 = "SELECT Sum(valor), cl.Cliente_Id FROM Consultas as co, Clientes as cl WHERE cl.Nome_c = @nome and co.Cliente_Id = cl.Cliente_Id GROUP BY cl.Cliente_Id";
+                                string query2 = "SELECT Sum(valor), co.Consulta_id FROM Consultas as co, Clientes as cl WHERE cl.Nome_c = @nome and co.Cliente_Id = cl.Cliente_Id GROUP BY Consulta_id";
                                 SqlCommand cmd2 = new SqlCommand(query2, conn.Conectar());
                                 cmd2.Parameters.AddWithValue("@nome", nome);
 
@@ -149,7 +151,7 @@ namespace Cadastro_Clinico
             grid_pagamentos.Rows.Clear();
             Connection conn = new Connection();
             conn.Conectar();
-            string query = "SELECT Nome_c as Nome, SUM(Valor) as Total FROM Consultas as co, Clientes as cl WHERE co.Cliente_Id = cl.Cliente_Id GROUP BY Nome_c";
+            string query = "SELECt co.Consulta_id,cl.Nome_c AS Nome,co.Valor AS Total,co.Valor - COALESCE(SUM(pa.Valor_p), 0) AS Em_Aberto,co.Data_hora AS Data FROM Consultas co INNER JOIN Clientes cl ON co.Cliente_Id = cl.Cliente_Id LEFT JOIN Pagamentos pa ON co.Consulta_id = pa.Consulta_id GROUP BY co.Consulta_id, cl.Nome_c, co.Valor, co.Data_hora"; ;
             DataTable dt = new DataTable();
             SqlCommand cmd = new SqlCommand(query, conn.Conectar());
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -166,22 +168,28 @@ namespace Cadastro_Clinico
             conn.Conectar();
             int id = Convert.ToInt32(tb_id.Text);
             decimal valor = Convert.ToDecimal(tb_deposito.Text);
+            
 
-            string query = "insert into Pago (Valor_p, Cliente_id) values (@valor, @id)";
+
+            string query = "insert into Pagamentos (Consulta_id,Forma, P_data, Valor_p) values (@co_id, @forma, @DATA, @valor_p)";
             if (tb_id.Text != null & tb_deposito.Text != null)
                 try
                 {
                     SqlCommand cmd = new SqlCommand(query, conn.Conectar());
 
-                    cmd.Parameters.AddWithValue("valor", valor);
-                    cmd.Parameters.AddWithValue("id", id);
-
+                    cmd.Parameters.AddWithValue("valor_p", valor);
+                    cmd.Parameters.AddWithValue("co_id", id);
+                    cmd.Parameters.AddWithValue("forma", tb_modo.Text);
+                    cmd.Parameters.AddWithValue("DATA", DateTime.Now);
+                    
                     var registroAfetado = cmd.ExecuteNonQuery();
                     MessageBox.Show("Efetuado com sucesso");
                     tb_divida.Clear();
                     tb_nome.Clear();
                     tb_id.Clear();
                     tb_deposito.Clear();
+                    Pagamentos_Load(sender, e);
+
 
                 }
                 catch (Exception ex)
@@ -207,7 +215,22 @@ namespace Cadastro_Clinico
                 form1.Show();
             }
         }
+
+       
+
+        private void grid_pagamentos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+          
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = grid_pagamentos.Rows[e.RowIndex];
+                tb_nome.Text = row.Cells["Nome"].Value.ToString();
+                tb_divida.Text = row.Cells["Em_aberto"].Value.ToString();
+                tb_id.Text = row.Cells["Consulta_id"].Value.ToString();
+            }
+        }
     }
+    
 }
         
     
