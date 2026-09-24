@@ -42,36 +42,38 @@
             this.tb_id = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tb_modo = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grid_pagamentos)).BeginInit();
             this.SuspendLayout();
             // 
             // grid_pagamentos
             // 
+            this.grid_pagamentos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.grid_pagamentos.BackgroundColor = System.Drawing.SystemColors.Control;
             this.grid_pagamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid_pagamentos.Location = new System.Drawing.Point(101, 121);
-            this.grid_pagamentos.Margin = new System.Windows.Forms.Padding(4);
+            this.grid_pagamentos.Location = new System.Drawing.Point(76, 98);
             this.grid_pagamentos.Name = "grid_pagamentos";
             this.grid_pagamentos.RowHeadersWidth = 51;
-            this.grid_pagamentos.Size = new System.Drawing.Size(623, 326);
+            this.grid_pagamentos.Size = new System.Drawing.Size(435, 265);
             this.grid_pagamentos.TabIndex = 0;
+            this.grid_pagamentos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_pagamentos_CellClick);
             // 
             // tb_nome
             // 
             this.tb_nome.Font = new System.Drawing.Font("Segoe UI Variable Display", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_nome.Location = new System.Drawing.Point(790, 78);
-            this.tb_nome.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_nome.Location = new System.Drawing.Point(592, 63);
             this.tb_nome.Name = "tb_nome";
-            this.tb_nome.Size = new System.Drawing.Size(287, 25);
+            this.tb_nome.Size = new System.Drawing.Size(216, 21);
             this.tb_nome.TabIndex = 1;
             // 
             // bt_pesquisar
             // 
             this.bt_pesquisar.Font = new System.Drawing.Font("Segoe UI Variable Text", 9.8F, System.Drawing.FontStyle.Bold);
-            this.bt_pesquisar.Location = new System.Drawing.Point(968, 110);
-            this.bt_pesquisar.Margin = new System.Windows.Forms.Padding(4);
+            this.bt_pesquisar.Location = new System.Drawing.Point(726, 89);
             this.bt_pesquisar.Name = "bt_pesquisar";
-            this.bt_pesquisar.Size = new System.Drawing.Size(110, 30);
+            this.bt_pesquisar.Size = new System.Drawing.Size(82, 24);
             this.bt_pesquisar.TabIndex = 2;
             this.bt_pesquisar.Text = "Pesquisar";
             this.bt_pesquisar.UseVisualStyleBackColor = true;
@@ -84,20 +86,18 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(59)))), ((int)(((byte)(100)))));
-            this.label1.Location = new System.Drawing.Point(785, 44);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(589, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(220, 31);
+            this.label1.Size = new System.Drawing.Size(178, 25);
             this.label1.TabIndex = 3;
             this.label1.Text = "Pesquisar por nome";
             // 
             // bt_exibir
             // 
             this.bt_exibir.Font = new System.Drawing.Font("Segoe UI Variable Text", 9.8F, System.Drawing.FontStyle.Bold);
-            this.bt_exibir.Location = new System.Drawing.Point(101, 456);
-            this.bt_exibir.Margin = new System.Windows.Forms.Padding(4);
+            this.bt_exibir.Location = new System.Drawing.Point(76, 370);
             this.bt_exibir.Name = "bt_exibir";
-            this.bt_exibir.Size = new System.Drawing.Size(151, 28);
+            this.bt_exibir.Size = new System.Drawing.Size(113, 23);
             this.bt_exibir.TabIndex = 4;
             this.bt_exibir.Text = "Exibir Todos";
             this.bt_exibir.UseVisualStyleBackColor = true;
@@ -105,11 +105,10 @@
             // 
             // tb_divida
             // 
-            this.tb_divida.Location = new System.Drawing.Point(815, 279);
-            this.tb_divida.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_divida.Location = new System.Drawing.Point(574, 280);
             this.tb_divida.Name = "tb_divida";
             this.tb_divida.ReadOnly = true;
-            this.tb_divida.Size = new System.Drawing.Size(132, 22);
+            this.tb_divida.Size = new System.Drawing.Size(100, 20);
             this.tb_divida.TabIndex = 5;
             // 
             // label2
@@ -118,19 +117,17 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(59)))), ((int)(((byte)(100)))));
-            this.label2.Location = new System.Drawing.Point(811, 259);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(571, 263);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 20);
+            this.label2.Size = new System.Drawing.Size(48, 15);
             this.label2.TabIndex = 6;
             this.label2.Text = "À pagar";
             // 
             // tb_deposito
             // 
-            this.tb_deposito.Location = new System.Drawing.Point(815, 355);
-            this.tb_deposito.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_deposito.Location = new System.Drawing.Point(614, 340);
             this.tb_deposito.Name = "tb_deposito";
-            this.tb_deposito.Size = new System.Drawing.Size(132, 22);
+            this.tb_deposito.Size = new System.Drawing.Size(100, 20);
             this.tb_deposito.TabIndex = 7;
             // 
             // label3
@@ -139,20 +136,18 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(59)))), ((int)(((byte)(100)))));
-            this.label3.Location = new System.Drawing.Point(811, 336);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(611, 325);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 20);
+            this.label3.Size = new System.Drawing.Size(64, 15);
             this.label3.TabIndex = 8;
             this.label3.Text = "Valor pago";
             // 
             // bt_pagar
             // 
             this.bt_pagar.Font = new System.Drawing.Font("Segoe UI Variable Text", 9.8F, System.Drawing.FontStyle.Bold);
-            this.bt_pagar.Location = new System.Drawing.Point(892, 385);
-            this.bt_pagar.Margin = new System.Windows.Forms.Padding(4);
+            this.bt_pagar.Location = new System.Drawing.Point(692, 370);
             this.bt_pagar.Name = "bt_pagar";
-            this.bt_pagar.Size = new System.Drawing.Size(127, 35);
+            this.bt_pagar.Size = new System.Drawing.Size(95, 28);
             this.bt_pagar.TabIndex = 9;
             this.bt_pagar.Text = "Registrar pagamento";
             this.bt_pagar.UseVisualStyleBackColor = true;
@@ -160,10 +155,9 @@
             // 
             // tb_id
             // 
-            this.tb_id.Location = new System.Drawing.Point(1001, 206);
-            this.tb_id.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_id.Location = new System.Drawing.Point(728, 341);
             this.tb_id.Name = "tb_id";
-            this.tb_id.Size = new System.Drawing.Size(77, 22);
+            this.tb_id.Size = new System.Drawing.Size(59, 20);
             this.tb_id.TabIndex = 10;
             // 
             // label4
@@ -172,12 +166,11 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(59)))), ((int)(((byte)(100)))));
-            this.label4.Location = new System.Drawing.Point(995, 186);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(723, 325);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 20);
+            this.label4.Size = new System.Drawing.Size(85, 15);
             this.label4.TabIndex = 11;
-            this.label4.Text = "ID do Cliente";
+            this.label4.Text = "ID da Consulta";
             // 
             // label5
             // 
@@ -186,19 +179,59 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(59)))), ((int)(((byte)(100)))));
-            this.label5.Location = new System.Drawing.Point(109, 44);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(82, 36);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(236, 50);
+            this.label5.Size = new System.Drawing.Size(187, 40);
             this.label5.TabIndex = 12;
             this.label5.Text = "Pagamentos";
             // 
+            // label6
+            // 
+            this.label6.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(59)))), ((int)(((byte)(100)))));
+            this.label6.Location = new System.Drawing.Point(600, 217);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(190, 25);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Adicionar Pagamento";
+            // 
+            // tb_modo
+            // 
+            this.tb_modo.FormattingEnabled = true;
+            this.tb_modo.Items.AddRange(new object[] {
+            "Pix",
+            "Débito",
+            "Crédito",
+            "Dinheiro"});
+            this.tb_modo.Location = new System.Drawing.Point(680, 280);
+            this.tb_modo.Name = "tb_modo";
+            this.tb_modo.Size = new System.Drawing.Size(121, 21);
+            this.tb_modo.TabIndex = 14;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(59)))), ((int)(((byte)(100)))));
+            this.label7.Location = new System.Drawing.Point(677, 262);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(119, 15);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Modo de pagamento";
+            // 
             // Pagamentos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1132, 529);
+            this.ClientSize = new System.Drawing.Size(849, 430);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.tb_modo);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tb_id);
@@ -212,7 +245,6 @@
             this.Controls.Add(this.bt_pesquisar);
             this.Controls.Add(this.tb_nome);
             this.Controls.Add(this.grid_pagamentos);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Pagamentos";
             this.Text = "Pagamentos";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Pagamentos_FormClosed);
@@ -238,5 +270,8 @@
         private System.Windows.Forms.TextBox tb_id;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox tb_modo;
+        private System.Windows.Forms.Label label7;
     }
 }

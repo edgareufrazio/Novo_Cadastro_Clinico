@@ -187,21 +187,7 @@ namespace Cadastro_Clinico
             txtUsuario.Focus();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Pagamentos frm = Application.OpenForms["Pagamentos"] as Pagamentos;
-            if (frm == null)
-            {
-                frm = new Pagamentos();
-                frm.Name = "Pagamentos";
-                frm.Show();
-                this.Hide();
-            }
-            else
-            {
-                frm.BringToFront();
-            }
-        }
+      
     }
 }
     
