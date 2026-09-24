@@ -59,6 +59,10 @@
             this.btn_deslogar = new System.Windows.Forms.Button();
             this.mtb_data_nascimento = new System.Windows.Forms.MaskedTextBox();
             this.mtb_valor = new System.Windows.Forms.MaskedTextBox();
+            this.txb_numero = new System.Windows.Forms.TextBox();
+            this.txb_complemento = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_agenda)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -69,42 +73,44 @@
             this.mtb_dataAtendimento.Mask = "00/00/0000";
             this.mtb_dataAtendimento.Name = "mtb_dataAtendimento";
             this.mtb_dataAtendimento.Size = new System.Drawing.Size(80, 20);
-            this.mtb_dataAtendimento.TabIndex = 78;
+            this.mtb_dataAtendimento.TabIndex = 10;
             this.mtb_dataAtendimento.ValidatingType = typeof(System.DateTime);
             this.mtb_dataAtendimento.Leave += new System.EventHandler(this.mtb_dataAtendimento_Leave);
             // 
             // mtb_cep
             // 
-            this.mtb_cep.Location = new System.Drawing.Point(15, 344);
-            this.mtb_cep.Mask = "00000-00";
+            this.mtb_cep.Location = new System.Drawing.Point(15, 299);
             this.mtb_cep.Name = "mtb_cep";
             this.mtb_cep.Size = new System.Drawing.Size(80, 20);
-            this.mtb_cep.TabIndex = 77;
+            this.mtb_cep.TabIndex = 6;
+            this.mtb_cep.Leave += new System.EventHandler(this.mtb_cep_Leave);
             // 
             // btn_excluir
             // 
             this.btn_excluir.Location = new System.Drawing.Point(177, 415);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(75, 23);
-            this.btn_excluir.TabIndex = 75;
+            this.btn_excluir.TabIndex = 15;
             this.btn_excluir.Text = "Excluir";
             this.btn_excluir.UseVisualStyleBackColor = true;
+            this.btn_excluir.Click += new System.EventHandler(this.btn_excluir_Click);
             // 
             // btn_atualizar
             // 
             this.btn_atualizar.Location = new System.Drawing.Point(96, 415);
             this.btn_atualizar.Name = "btn_atualizar";
             this.btn_atualizar.Size = new System.Drawing.Size(75, 23);
-            this.btn_atualizar.TabIndex = 74;
+            this.btn_atualizar.TabIndex = 14;
             this.btn_atualizar.Text = "Atualizar";
             this.btn_atualizar.UseVisualStyleBackColor = true;
+            this.btn_atualizar.Click += new System.EventHandler(this.btn_atualizar_Click);
             // 
             // btn_salvar
             // 
             this.btn_salvar.Location = new System.Drawing.Point(15, 415);
             this.btn_salvar.Name = "btn_salvar";
             this.btn_salvar.Size = new System.Drawing.Size(75, 23);
-            this.btn_salvar.TabIndex = 73;
+            this.btn_salvar.TabIndex = 13;
             this.btn_salvar.Text = "Salvar";
             this.btn_salvar.UseVisualStyleBackColor = true;
             this.btn_salvar.Click += new System.EventHandler(this.btn_salvar_Click);
@@ -121,7 +127,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 328);
+            this.label9.Location = new System.Drawing.Point(12, 283);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(28, 13);
             this.label9.TabIndex = 70;
@@ -129,15 +135,16 @@
             // 
             // txb_endereço
             // 
-            this.txb_endereço.Location = new System.Drawing.Point(12, 305);
+            this.txb_endereço.Location = new System.Drawing.Point(101, 299);
             this.txb_endereço.Name = "txb_endereço";
-            this.txb_endereço.Size = new System.Drawing.Size(375, 20);
+            this.txb_endereço.ReadOnly = true;
+            this.txb_endereço.Size = new System.Drawing.Size(283, 20);
             this.txb_endereço.TabIndex = 69;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 289);
+            this.label8.Location = new System.Drawing.Point(99, 283);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 13);
             this.label8.TabIndex = 68;
@@ -148,7 +155,7 @@
             this.txb_email.Location = new System.Drawing.Point(12, 262);
             this.txb_email.Name = "txb_email";
             this.txb_email.Size = new System.Drawing.Size(375, 20);
-            this.txb_email.TabIndex = 67;
+            this.txb_email.TabIndex = 5;
             // 
             // label7
             // 
@@ -173,7 +180,7 @@
             this.txb_nome.Location = new System.Drawing.Point(12, 184);
             this.txb_nome.Name = "txb_nome";
             this.txb_nome.Size = new System.Drawing.Size(375, 20);
-            this.txb_nome.TabIndex = 63;
+            this.txb_nome.TabIndex = 3;
             // 
             // label5
             // 
@@ -189,18 +196,19 @@
             this.btn_pesquisar.Location = new System.Drawing.Point(139, 140);
             this.btn_pesquisar.Name = "btn_pesquisar";
             this.btn_pesquisar.Size = new System.Drawing.Size(75, 23);
-            this.btn_pesquisar.TabIndex = 61;
+            this.btn_pesquisar.TabIndex = 2;
             this.btn_pesquisar.Text = "Pesquisar";
             this.btn_pesquisar.UseVisualStyleBackColor = true;
+            this.btn_pesquisar.Click += new System.EventHandler(this.btn_pesquisar_Click);
             // 
             // mtb_cpf
             // 
             this.mtb_cpf.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
             this.mtb_cpf.Location = new System.Drawing.Point(12, 142);
-            this.mtb_cpf.Mask = "000.000.000-00";
             this.mtb_cpf.Name = "mtb_cpf";
             this.mtb_cpf.Size = new System.Drawing.Size(83, 20);
-            this.mtb_cpf.TabIndex = 60;
+            this.mtb_cpf.TabIndex = 1;
+            this.mtb_cpf.TextChanged += new System.EventHandler(this.mtb_cpf_TextChanged);
             this.mtb_cpf.Enter += new System.EventHandler(this.mtb_cpf_Enter);
             // 
             // label4
@@ -227,7 +235,7 @@
             this.cbx_horarios.Location = new System.Drawing.Point(211, 101);
             this.cbx_horarios.Name = "cbx_horarios";
             this.cbx_horarios.Size = new System.Drawing.Size(146, 21);
-            this.cbx_horarios.TabIndex = 57;
+            this.cbx_horarios.TabIndex = 12;
             // 
             // label2
             // 
@@ -244,7 +252,7 @@
             this.cbx_nomeProfissional.Location = new System.Drawing.Point(12, 101);
             this.cbx_nomeProfissional.Name = "cbx_nomeProfissional";
             this.cbx_nomeProfissional.Size = new System.Drawing.Size(181, 21);
-            this.cbx_nomeProfissional.TabIndex = 55;
+            this.cbx_nomeProfissional.TabIndex = 11;
             this.cbx_nomeProfissional.SelectionChangeCommitted += new System.EventHandler(this.cbx_nomeProfissional_SelectionChangeCommitted);
             // 
             // label1
@@ -261,15 +269,17 @@
             this.dgv_agenda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_agenda.Location = new System.Drawing.Point(390, 59);
             this.dgv_agenda.Name = "dgv_agenda";
+            this.dgv_agenda.ReadOnly = true;
             this.dgv_agenda.Size = new System.Drawing.Size(399, 369);
-            this.dgv_agenda.TabIndex = 53;
+            this.dgv_agenda.TabIndex = 17;
+            this.dgv_agenda.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_agenda_CellClick);
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(494, 33);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(231, 20);
-            this.dateTimePicker1.TabIndex = 52;
+            this.dateTimePicker1.TabIndex = 16;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // contextMenuStrip1
@@ -299,7 +309,7 @@
             this.btn_deslogar.Location = new System.Drawing.Point(258, 415);
             this.btn_deslogar.Name = "btn_deslogar";
             this.btn_deslogar.Size = new System.Drawing.Size(75, 23);
-            this.btn_deslogar.TabIndex = 81;
+            this.btn_deslogar.TabIndex = 18;
             this.btn_deslogar.Text = "Deslogar";
             this.btn_deslogar.UseVisualStyleBackColor = true;
             this.btn_deslogar.Click += new System.EventHandler(this.btn_deslogar_Click);
@@ -310,22 +320,58 @@
             this.mtb_data_nascimento.Mask = "00/00/0000";
             this.mtb_data_nascimento.Name = "mtb_data_nascimento";
             this.mtb_data_nascimento.Size = new System.Drawing.Size(80, 20);
-            this.mtb_data_nascimento.TabIndex = 82;
+            this.mtb_data_nascimento.TabIndex = 4;
             this.mtb_data_nascimento.ValidatingType = typeof(System.DateTime);
             // 
             // mtb_valor
             // 
             this.mtb_valor.Location = new System.Drawing.Point(13, 389);
-            this.mtb_valor.Mask = "00000-00";
             this.mtb_valor.Name = "mtb_valor";
             this.mtb_valor.Size = new System.Drawing.Size(80, 20);
-            this.mtb_valor.TabIndex = 83;
+            this.mtb_valor.TabIndex = 9;
+            this.mtb_valor.TextChanged += new System.EventHandler(this.mtb_valor_TextChanged);
+            // 
+            // txb_numero
+            // 
+            this.txb_numero.Location = new System.Drawing.Point(15, 344);
+            this.txb_numero.Name = "txb_numero";
+            this.txb_numero.Size = new System.Drawing.Size(142, 20);
+            this.txb_numero.TabIndex = 7;
+            // 
+            // txb_complemento
+            // 
+            this.txb_complemento.Location = new System.Drawing.Point(167, 344);
+            this.txb_complemento.Name = "txb_complemento";
+            this.txb_complemento.Size = new System.Drawing.Size(142, 20);
+            this.txb_complemento.TabIndex = 8;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(12, 328);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(44, 13);
+            this.label11.TabIndex = 86;
+            this.label11.Text = "Numero";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(164, 328);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(71, 13);
+            this.label12.TabIndex = 87;
+            this.label12.Text = "Complemento";
             // 
             // Adicionar_cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.txb_complemento);
+            this.Controls.Add(this.txb_numero);
             this.Controls.Add(this.mtb_valor);
             this.Controls.Add(this.mtb_data_nascimento);
             this.Controls.Add(this.btn_deslogar);
@@ -358,6 +404,7 @@
             this.Name = "Adicionar_cliente";
             this.Text = "Adicionar_cliente";
             this.Load += new System.EventHandler(this.Adicionar_cliente_Load);
+            this.Leave += new System.EventHandler(this.Adicionar_cliente_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_agenda)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -398,5 +445,9 @@
         private System.Windows.Forms.Button btn_deslogar;
         private System.Windows.Forms.MaskedTextBox mtb_data_nascimento;
         private System.Windows.Forms.MaskedTextBox mtb_valor;
+        private System.Windows.Forms.TextBox txb_numero;
+        private System.Windows.Forms.TextBox txb_complemento;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
     }
 }
