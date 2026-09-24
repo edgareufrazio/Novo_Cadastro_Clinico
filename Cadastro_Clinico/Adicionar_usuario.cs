@@ -21,7 +21,7 @@ namespace Cadastro_Clinico
 
         private void Adicionar_usuario_Load(object sender, EventArgs e)
         {
-            CarregarUsuarios();
+           
 
             cmbNivel.Items.Clear();
 
@@ -29,6 +29,8 @@ namespace Cadastro_Clinico
             cmbNivel.Items.Add("Usuario");
 
             cmbNivel.SelectedIndex = 1;
+            CarregarUsuarios();
+            LimparCampos();
 
             
         }
@@ -330,7 +332,8 @@ namespace Cadastro_Clinico
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-
+            voltandoParaLogin = true;
+            LimparCampos();
             Form1 login = Application.OpenForms["Form1"] as Form1;
 
             if (login != null)
@@ -338,19 +341,19 @@ namespace Cadastro_Clinico
                 login.Show();
                 login.BringToFront();
             }
-            else
-            {
-                login = new Form1();
-                login.Show();
-            }
+            
 
             this.Close();
         }
 
         private void Adicionar_usuario_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            if (!voltandoParaLogin) 
+            { 
+              Application.Exit();
+            }
         }
+
 
         private void gridUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -366,5 +369,20 @@ namespace Cadastro_Clinico
             cmbNivel.Text = gridUsuarios.Rows[e.RowIndex]
                 .Cells["Nivel"].Value?.ToString();
         }
+
+        private void LimparCampos()
+        {
+            txtUsuario.Clear();
+            txtSenha.Clear();
+            txtPesquisar.Clear();
+
+            cmbNivel.SelectedIndex = 1;
+
+            gridUsuarios.ClearSelection();
+
+            txtUsuario.Focus();
+        }
+
+        private bool voltandoParaLogin = false;
     }
 }
