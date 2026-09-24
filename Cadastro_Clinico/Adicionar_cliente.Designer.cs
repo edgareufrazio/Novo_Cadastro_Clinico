@@ -208,6 +208,7 @@
             this.mtb_cpf.Name = "mtb_cpf";
             this.mtb_cpf.Size = new System.Drawing.Size(83, 20);
             this.mtb_cpf.TabIndex = 1;
+            this.mtb_cpf.TextChanged += new System.EventHandler(this.mtb_cpf_TextChanged);
             this.mtb_cpf.Enter += new System.EventHandler(this.mtb_cpf_Enter);
             // 
             // label4
