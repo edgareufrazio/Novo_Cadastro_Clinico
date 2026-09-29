@@ -171,6 +171,8 @@ namespace Cadastro_Clinico
         {
             string usuario = txtUsuario.Text;
             string senha = txtSenha.Text;
+            string nivel = cmbNivel.Text;
+
 
             if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(senha))
             {
@@ -179,7 +181,7 @@ namespace Cadastro_Clinico
             }
             string query = @"
              UPDATE Logar
-             SET Senha = @senha
+             SET Senha = @senha, Nivel = @nivel
              WHERE Usuario = @usuario";
 
              Connection conexao = new Connection();
@@ -200,6 +202,17 @@ namespace Cadastro_Clinico
                         SqlDbType.VarChar,
                         100
                     ).Value = senha;
+                    cmd.Parameters.Add(
+                       "@nivel",
+                       SqlDbType.VarChar,
+                       100
+                   ).Value = nivel;
+
+                    cmd.Parameters.Add(
+                      "@nivel",
+                      SqlDbType.VarChar,
+                      20
+                  ).Value = nivel;
 
                     int resultado = cmd.ExecuteNonQuery();
 

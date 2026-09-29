@@ -12,7 +12,6 @@ namespace Cadastro_Clinico
         private readonly DataTable tabelaFuncionarios = new DataTable();
         private readonly BindingSource bindingSource = new BindingSource();
         private int idFuncionarioSelecionado = 0;
-        private bool modoEscuro = false;
         private Image imagemFundoOriginal;
 
         public add_funcionario()
@@ -20,25 +19,28 @@ namespace Cadastro_Clinico
             InitializeComponent();
 
             imagemFundoOriginal = this.BackgroundImage;
+
+            // Inscreve a janela no evento global de troca de tema
+            GerenciadorTema.OnTemaAlterado += AplicarTemaLocal;
+            this.FormClosed += (s, e) => GerenciadorTema.OnTemaAlterado -= AplicarTemaLocal;
+
+            // Garante a aplicação do tema atual e o carregamento dos dados na inicialização do Form
+            this.Load += (s, e) =>
+            {
+                AplicarTemaLocal();
+                CarregarDadosGrid();
+            };
+
             EstilizarGrid();
         }
 
         #region SISTEMA DE TEMA E NAVEGAÇÃO
 
-        private void btn_trocarTema_Click(object sender, EventArgs e)
+        private void AplicarTemaLocal()
         {
-            modoEscuro = !modoEscuro;
-            AplicarTema();
-        }
+            // Pega o estado atual (claro/escuro) diretamente da classe global
+            bool modoEscuro = GerenciadorTema.ModoEscuro;
 
-        private void btn_abrirNovaTela_Click(object sender, EventArgs e)
-        {
-            Adicionar_cliente novaTela = new Adicionar_cliente();
-            novaTela.Show();
-        }
-
-        public void AplicarTema()
-        {
             // Função auxiliar interna para atualizar a imagem descartando a anterior sem vazar memória
             void AtualizarIconeBotao(Button btn, Image novaImagem)
             {
@@ -46,7 +48,7 @@ namespace Cadastro_Clinico
                 {
                     if (btn.Image != null)
                     {
-                        btn.Image.Dispose(); // Libera a memória do ícone antigo
+                        btn.Image.Dispose();
                     }
                     btn.Image = novaImagem;
                 }
@@ -57,9 +59,7 @@ namespace Cadastro_Clinico
                 this.BackgroundImage = null;
                 this.BackColor = Color.FromArgb(30, 36, 45);
 
-                // Atribui o ícone do SOL (indica troca para modo claro)
                 AtualizarIconeBotao(btn_tema, GerarIconeSol());
-
                 AtualizarCoresControles(this.Controls, Color.FromArgb(45, 52, 65), Color.White, Color.White);
 
                 if (dataGridView != null)
@@ -67,10 +67,8 @@ namespace Cadastro_Clinico
                     dataGridView.EnableHeadersVisualStyles = false;
                     dataGridView.BackgroundColor = Color.FromArgb(45, 52, 65);
                     dataGridView.GridColor = Color.FromArgb(70, 80, 95);
-
                     dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(25, 30, 38);
                     dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-
                     dataGridView.DefaultCellStyle.BackColor = Color.FromArgb(45, 52, 65);
                     dataGridView.DefaultCellStyle.ForeColor = Color.White;
                     dataGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(70, 100, 150);
@@ -81,9 +79,7 @@ namespace Cadastro_Clinico
             {
                 this.BackgroundImage = imagemFundoOriginal;
 
-                // Atribui o ícone da LUA (indica troca para modo escuro)
                 AtualizarIconeBotao(btn_tema, GerarIconeLua());
-
                 AtualizarCoresControles(this.Controls, Color.White, Color.FromArgb(30, 41, 59), Color.FromArgb(30, 41, 59));
 
                 if (dataGridView != null)
@@ -91,10 +87,8 @@ namespace Cadastro_Clinico
                     dataGridView.EnableHeadersVisualStyles = false;
                     dataGridView.BackgroundColor = Color.White;
                     dataGridView.GridColor = Color.FromArgb(240, 243, 246);
-
                     dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
                     dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(100, 116, 139);
-
                     dataGridView.DefaultCellStyle.BackColor = Color.White;
                     dataGridView.DefaultCellStyle.ForeColor = Color.FromArgb(51, 65, 85);
                     dataGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(226, 232, 240);
@@ -105,8 +99,22 @@ namespace Cadastro_Clinico
             this.Refresh();
         }
 
+        private void btn_trocarTema_Click(object sender, EventArgs e)
+        {
+            // Alterna o tema globalmente para todas as telas abertas
+            GerenciadorTema.AlternarTema();
+        }
+
+        private void btn_abrirNovaTela_Click(object sender, EventArgs e)
+        {
+            Adicionar_cliente novaTela = new Adicionar_cliente();
+            novaTela.Show();
+        }
+
         private void AtualizarCoresControles(Control.ControlCollection controles, Color fundoCampos, Color textoCampos, Color textoLabels)
         {
+            bool modoEscuro = GerenciadorTema.ModoEscuro;
+
             foreach (Control c in controles)
             {
                 if (c is Panel || c is GroupBox)
@@ -136,15 +144,13 @@ namespace Cadastro_Clinico
 
         #region GERADORES DE ÍCONES (SOL E LUA VIA CÓDIGO)
 
-        #region GERADORES DE ÍCONES (SOL E LUA VIA CÓDIGO)
-
         private Bitmap GerarIconeSol()
         {
             Bitmap bmp = new Bitmap(32, 32);
             using (Graphics g = Graphics.FromImage(bmp))
             {
                 g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                g.Clear(Color.Transparent); // Limpa o fundo do bitmap
+                g.Clear(Color.Transparent);
 
                 using (Pen pen = new Pen(Color.FromArgb(255, 200, 0), 2))
                 {
@@ -172,20 +178,16 @@ namespace Cadastro_Clinico
             using (Graphics g = Graphics.FromImage(bmp))
             {
                 g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                g.Clear(Color.Transparent); // Limpa o fundo do bitmap
+                g.Clear(Color.Transparent);
 
-                // Desenha a lua recortando a região para transparência perfeita
                 using (System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath())
                 {
-                    // Círculo principal da lua
                     path.AddEllipse(4, 4, 22, 22);
 
-                    // Círculo de corte que cria o formato de crescente
                     using (System.Drawing.Drawing2D.GraphicsPath corte = new System.Drawing.Drawing2D.GraphicsPath())
                     {
                         corte.AddEllipse(10, 2, 20, 20);
 
-                        // Subtrai o corte do caminho principal
                         Region regiaoLua = new Region(path);
                         regiaoLua.Exclude(corte);
 
@@ -198,8 +200,6 @@ namespace Cadastro_Clinico
             }
             return bmp;
         }
-
-        #endregion
 
         #endregion
 
@@ -227,7 +227,6 @@ namespace Cadastro_Clinico
             dataGridView.DefaultCellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            AplicarTema();
             dataGridView.ClearSelection();
         }
 
@@ -305,6 +304,14 @@ namespace Cadastro_Clinico
                 return;
             }
 
+            string email = txb_email.Text.Trim();
+            if (string.IsNullOrEmpty(email) || !email.Contains("@") || !email.Contains("."))
+            {
+                MessageBox.Show("Por favor, informe um e-mail válido (ex: exemplo@gmail.com).", "E-mail Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txb_email.Focus();
+                return;
+            }
+
             Connection conn = new Connection();
 
             using (SqlConnection con = conn.Conectar())
@@ -316,15 +323,34 @@ namespace Cadastro_Clinico
                     using (SqlCommand cmd = new SqlCommand(sql, con))
                     {
                         cmd.Parameters.AddWithValue("@Nome", txb_nome.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Email", txb_email.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Email", email);
                         cmd.Parameters.AddWithValue("@Area", cmbDepartamento.Text.Trim());
                         cmd.Parameters.AddWithValue("@CPF", cpfLimpo);
 
-                        if (cmd.ExecuteNonQuery() > 0)
+                        try
                         {
-                            MessageBox.Show("Funcionário cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LimparCampos();
-                            CarregarDadosGrid();
+                            if (cmd.ExecuteNonQuery() > 0)
+                            {
+                                MessageBox.Show("Funcionário cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                LimparCampos();
+                                CarregarDadosGrid();
+                            }
+                        }
+                        catch (SqlException ex)
+                        {
+                            if (ex.Number == 2627 || ex.Number == 2601)
+                            {
+                                MessageBox.Show("Este CPF já está cadastrado no sistema!", "CPF Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                mtbx_cpf.Focus();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Erro ao salvar no banco de dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Ocorreu um erro inesperado: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -433,11 +459,13 @@ namespace Cadastro_Clinico
 
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex < 0) return;
+
+            try
             {
                 DataGridViewRow linha = dataGridView.Rows[e.RowIndex];
 
-                if (dataGridView.Columns.Contains("Funcionario_id") && linha.Cells["Funcionario_id"].Value != DBNull.Value)
+                if (dataGridView.Columns.Contains("Funcionario_id") && linha.Cells["Funcionario_id"].Value != DBNull.Value && linha.Cells["Funcionario_id"].Value != null)
                     idFuncionarioSelecionado = Convert.ToInt32(linha.Cells["Funcionario_id"].Value);
 
                 if (dataGridView.Columns.Contains("Nome_F"))
@@ -451,6 +479,10 @@ namespace Cadastro_Clinico
 
                 if (dataGridView.Columns.Contains("CPF_func"))
                     mtbx_cpf.Text = linha.Cells["CPF_func"].Value?.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar dados da linha: " + ex.Message, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -486,6 +518,8 @@ namespace Cadastro_Clinico
 
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
+            Adicionar_cliente novaTela = new Adicionar_cliente();
+            novaTela.Show();
             this.Close();
         }
 
@@ -569,6 +603,16 @@ namespace Cadastro_Clinico
             digito += resto.ToString();
 
             return cpf.EndsWith(digito);
+        }
+
+        private void add_funcionario_Leave(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView_CellClick(sender, e);
         }
 
         #endregion

@@ -56,7 +56,7 @@
             this.grid_pagamentos.Location = new System.Drawing.Point(76, 98);
             this.grid_pagamentos.Name = "grid_pagamentos";
             this.grid_pagamentos.RowHeadersWidth = 51;
-            this.grid_pagamentos.Size = new System.Drawing.Size(435, 265);
+            this.grid_pagamentos.Size = new System.Drawing.Size(454, 265);
             this.grid_pagamentos.TabIndex = 0;
             this.grid_pagamentos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_pagamentos_CellClick);
             // 
@@ -129,6 +129,7 @@
             this.tb_deposito.Name = "tb_deposito";
             this.tb_deposito.Size = new System.Drawing.Size(100, 20);
             this.tb_deposito.TabIndex = 7;
+            this.tb_deposito.TextChanged += new System.EventHandler(this.tb_deposito_TextChanged);
             // 
             // label3
             // 

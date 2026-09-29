@@ -14,12 +14,29 @@ using System.Text.RegularExpressions;
 
 namespace Cadastro_Clinico
 {
+    // <-- AQUI ABRE O NAMESPACE. NADA DE CÓDIGO AQUI FORA DA CLASSE!
+
     public partial class Adicionar_cliente : Form
     {
+        // <-- AQUI ABRE A CLASSE. TODO O CÓDIGO FICA DENTRO DAQUI.
+
+        // O método DEVE ficar aqui dentro da classe:
+        private void AplicarTemaLocal()
+        {
+            GerenciadorTema.AplicarTema(this);
+        }
+
         public Adicionar_cliente()
         {
             InitializeComponent();
-            
+
+            // Inscreve a janela no evento global de troca de tema
+            GerenciadorTema.OnTemaAlterado += AplicarTemaLocal;
+            this.FormClosed += (s, e) => GerenciadorTema.OnTemaAlterado -= AplicarTemaLocal;
+
+            // Aplica o tema atual logo quando a tela abre
+            AplicarTemaLocal();
+
             mtb_valor.TextChanged += mtb_valor_TextChanged;
             mtb_valor.GotFocus += mtb_valor_GotFocus;
             mtb_valor.KeyPress += mtb_valor_KeyPress;

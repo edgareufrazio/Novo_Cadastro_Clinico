@@ -17,6 +17,17 @@ namespace Cadastro_Clinico
         public Pagamentos()
         {
             InitializeComponent();
+
+            // Inscreve a janela no evento global de troca de tema
+            GerenciadorTema.OnTemaAlterado += AplicarTemaLocal;
+            this.FormClosed += (s, e) => GerenciadorTema.OnTemaAlterado -= AplicarTemaLocal;
+
+            // Aplica o tema atual logo quando a tela abre
+            AplicarTemaLocal();
+        }
+        private void AplicarTemaLocal()
+        {
+            GerenciadorTema.AplicarTema(this);
         }
 
         private void Pagamentos_Load(object sender, EventArgs e)
@@ -44,7 +55,7 @@ namespace Cadastro_Clinico
 
 
 
-            string sql = "SELECT Nome_c FROM Clientes WHERE Nome_c = @Nome";
+            string sql = "SELECT Nome_c FROM Clientes WHERE Nome_c LIKE @Nome + '%'";
 
             SqlCommand cmd3 = new SqlCommand(sql, conn.Conectar());
 
@@ -73,7 +84,7 @@ namespace Cadastro_Clinico
                                 nome = tb_nome.Text;
 
                             string query = //"SELECT Consulta_id, Nome_c as 'Nome', Valor as 'Total', Data_hora as 'Data' FROM Consultas as co, Clientes as cl WHERE cl.Nome_c = @nome and co.Cliente_Id = cl.Cliente_Id GROUP BY Nome_c, Valor, Data_hora, Consulta_id";
-                            "SELECt co.Consulta_id,cl.Nome_c AS Nome,co.Valor AS Total,co.Valor - COALESCE(SUM(pa.Valor_p), 0) AS Em_Aberto, co.Data_hora AS Data FROM Consultas co INNER JOIN Clientes cl ON co.Cliente_Id = cl.Cliente_Id LEFT JOIN Pagamentos pa ON co.Consulta_id = pa.Consulta_id WHERE cl.Nome_c = @nome and co.Cliente_Id = cl.Cliente_Id GROUP BY co.Consulta_id, cl.Nome_c, co.Valor, co.Data_hora";
+                            "SELECt co.Consulta_id,cl.Nome_c AS Nome,co.Valor AS Total,co.Valor - COALESCE(SUM(pa.Valor_p), 0) AS Em_Aberto, co.Data_hora AS Data FROM Consultas co INNER JOIN Clientes cl ON co.Cliente_Id = cl.Cliente_Id LEFT JOIN Pagamentos pa ON co.Consulta_id = pa.Consulta_id WHERE cl.Nome_c LiKE @nome + '%' and co.Cliente_Id = cl.Cliente_Id GROUP BY co.Consulta_id, cl.Nome_c, co.Valor, co.Data_hora";
                                 SqlCommand cmd = new SqlCommand(query, conn.Conectar());
 
                                 cmd.Parameters.AddWithValue("@nome", nome);
@@ -86,7 +97,7 @@ namespace Cadastro_Clinico
                                 da.Fill(dt);
                                 grid_pagamentos.DataSource = dt;
 
-                                string query2 = "SELECT Sum(valor), co.Consulta_id FROM Consultas as co, Clientes as cl WHERE cl.Nome_c = @nome and co.Cliente_Id = cl.Cliente_Id GROUP BY Consulta_id";
+                                string query2 = "SELECT Sum(valor), co.Consulta_id FROM Consultas as co, Clientes as cl WHERE cl.Nome_c Like @nome + '%' and co.Cliente_Id = cl.Cliente_Id GROUP BY Consulta_id";
                                 SqlCommand cmd2 = new SqlCommand(query2, conn.Conectar());
                                 cmd2.Parameters.AddWithValue("@nome", nome);
 
@@ -204,15 +215,15 @@ namespace Cadastro_Clinico
 
         private void Pagamentos_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Form1 frm = Application.OpenForms["Form1"] as Form1;
+            Adicionar_cliente frm = Application.OpenForms["Adicionar_cliente"] as Adicionar_cliente;
             if (frm != null)
             {
                 frm.Show();
             }
             else
             {
-                Form1 form1 = new Form1();
-                form1.Show();
+                Adicionar_cliente frm2 = new Adicionar_cliente();
+                frm2.Show();
             }
         }
 
@@ -228,6 +239,11 @@ namespace Cadastro_Clinico
                 tb_divida.Text = row.Cells["Em_aberto"].Value.ToString();
                 tb_id.Text = row.Cells["Consulta_id"].Value.ToString();
             }
+        }
+
+        private void tb_deposito_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
     
