@@ -208,6 +208,12 @@ namespace Cadastro_Clinico
                        100
                    ).Value = nivel;
 
+                    cmd.Parameters.Add(
+                      "@nivel",
+                      SqlDbType.VarChar,
+                      20
+                  ).Value = nivel;
+
                     int resultado = cmd.ExecuteNonQuery();
 
                     if (resultado > 0)
