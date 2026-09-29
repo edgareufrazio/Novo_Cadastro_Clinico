@@ -330,10 +330,11 @@ namespace Cadastro_Clinico
             this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(59)))), ((int)(((byte)(100)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "add_funcionario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "add_funcionario";
+            this.Text = "Adicionar Funcionário";
             this.Load += new System.EventHandler(this.add_funcionario_Load);
             this.Leave += new System.EventHandler(this.add_funcionario_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
