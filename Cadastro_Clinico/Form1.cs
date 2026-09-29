@@ -111,7 +111,7 @@ namespace Cadastro_Clinico
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            txtUsuario.Select();
         }
 
         private void btnTeste_Click(object sender, EventArgs e)
