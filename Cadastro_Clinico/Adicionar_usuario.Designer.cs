@@ -306,8 +306,9 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Adicionar_usuario";
-            this.Text = "Adicionar_usuario";
+            this.Text = " Adicionar Usuario";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Adicionar_usuario_FormClosing);
             this.Load += new System.EventHandler(this.Adicionar_usuario_Load);
             this.panel2.ResumeLayout(false);
