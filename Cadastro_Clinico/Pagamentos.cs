@@ -205,12 +205,17 @@ namespace Cadastro_Clinico
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    //MessageBox.Show(ex.Message);
+                    MessageBox.Show("Preencha todos os campos");
                 }
                 finally
                 {
 
                 }
+            else
+            {
+                MessageBox.Show("Preencha todos os campos");
+            }
         }
 
         private void Pagamentos_FormClosed(object sender, FormClosedEventArgs e)

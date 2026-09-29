@@ -94,13 +94,14 @@
             // 
             // bt_exibir
             // 
+            this.bt_exibir.BackColor = System.Drawing.SystemColors.Control;
             this.bt_exibir.Font = new System.Drawing.Font("Segoe UI Variable Text", 9.8F, System.Drawing.FontStyle.Bold);
             this.bt_exibir.Location = new System.Drawing.Point(76, 370);
             this.bt_exibir.Name = "bt_exibir";
             this.bt_exibir.Size = new System.Drawing.Size(113, 23);
             this.bt_exibir.TabIndex = 4;
             this.bt_exibir.Text = "Exibir Todos";
-            this.bt_exibir.UseVisualStyleBackColor = true;
+            this.bt_exibir.UseVisualStyleBackColor = false;
             this.bt_exibir.Click += new System.EventHandler(this.bt_exibir_Click);
             // 
             // tb_divida
@@ -145,13 +146,14 @@
             // 
             // bt_pagar
             // 
+            this.bt_pagar.BackColor = System.Drawing.Color.Lime;
             this.bt_pagar.Font = new System.Drawing.Font("Segoe UI Variable Text", 9.8F, System.Drawing.FontStyle.Bold);
             this.bt_pagar.Location = new System.Drawing.Point(692, 370);
             this.bt_pagar.Name = "bt_pagar";
             this.bt_pagar.Size = new System.Drawing.Size(95, 28);
             this.bt_pagar.TabIndex = 9;
             this.bt_pagar.Text = "Registrar pagamento";
-            this.bt_pagar.UseVisualStyleBackColor = true;
+            this.bt_pagar.UseVisualStyleBackColor = false;
             this.bt_pagar.Click += new System.EventHandler(this.bt_pagar_Click);
             // 
             // tb_id
@@ -246,6 +248,7 @@
             this.Controls.Add(this.bt_pesquisar);
             this.Controls.Add(this.tb_nome);
             this.Controls.Add(this.grid_pagamentos);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Pagamentos";
             this.Text = "Pagamentos";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Pagamentos_FormClosed);
