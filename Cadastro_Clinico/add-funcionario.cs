@@ -59,7 +59,7 @@ namespace Cadastro_Clinico
                 this.BackgroundImage = null;
                 this.BackColor = Color.FromArgb(30, 36, 45);
 
-                AtualizarIconeBotao(btn_tema, GerarIconeSol());
+                //AtualizarIconeBotao(btn_tema, GerarIconeSol());
                 AtualizarCoresControles(this.Controls, Color.FromArgb(45, 52, 65), Color.White, Color.White);
 
                 if (dataGridView != null)
@@ -79,7 +79,7 @@ namespace Cadastro_Clinico
             {
                 this.BackgroundImage = imagemFundoOriginal;
 
-                AtualizarIconeBotao(btn_tema, GerarIconeLua());
+                //AtualizarIconeBotao(btn_tema, GerarIconeLua());
                 AtualizarCoresControles(this.Controls, Color.White, Color.FromArgb(30, 41, 59), Color.FromArgb(30, 41, 59));
 
                 if (dataGridView != null)
