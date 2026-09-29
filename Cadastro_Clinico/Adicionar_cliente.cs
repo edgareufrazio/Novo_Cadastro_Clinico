@@ -53,6 +53,7 @@ namespace Cadastro_Clinico
             txb_nome.Clear();
             mtb_cpf.Clear();
             txb_email.Clear();
+            mtb_data_nascimento.Clear();
             mtb_dataAtendimento.Clear();
             txb_endereço.Clear();
             txb_complemento.Clear();
@@ -929,6 +930,14 @@ namespace Cadastro_Clinico
             add_funcionario novaTela = new add_funcionario();
             novaTela.Show();
             this.Hide();
+        }
+
+        private void Adicionar_cliente_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form1 telaLogin = new Form1();
+
+           
+            telaLogin.Show();
         }
     }
     public class ViaCepResponse
