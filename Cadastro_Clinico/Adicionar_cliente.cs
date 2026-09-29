@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace Cadastro_Clinico
 {
@@ -22,6 +23,7 @@ namespace Cadastro_Clinico
             mtb_valor.TextChanged += mtb_valor_TextChanged;
             mtb_valor.GotFocus += mtb_valor_GotFocus;
             mtb_valor.KeyPress += mtb_valor_KeyPress;
+            mtb_cpf.KeyDown += mtb_cpf_KeyDown;
 
             // Define o valor inicial como zero formatado
             mtb_valor.Text = "R$ 0,00";
@@ -189,7 +191,8 @@ namespace Cadastro_Clinico
                         con.Consulta_id AS [ID Consulta],
                         c.Nome_C AS [Nome do Cliente],
                         f.Nome_F AS [Profissional],
-                        FORMAT(con.Data_hora, 'HH:mm') AS [Horário]
+                        FORMAT(con.Data_hora, 'HH:mm') AS [Horário],
+                        Valor as [Valor da Consulta]
                         FROM Consultas con
                         INNER JOIN Clientes c ON con.Cliente_id = c.Cliente_id
                         INNER JOIN Funcionarios f ON con.Funcionario_id = f.Funcionario_id
@@ -236,6 +239,12 @@ namespace Cadastro_Clinico
             {
                 MessageBox.Show("Por favor, preencha todos os campos obrigatórios e selecione o Profissional e o Horário.",
                                 "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if(!Regex.IsMatch(txb_email.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("Por favor, informe um e-mail válido.", "E-mail Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txb_email.Focus();
                 return;
             }
 
@@ -285,9 +294,9 @@ namespace Cadastro_Clinico
                     {
                         // Concatena a rua/bairro, número e complemento em uma única string
                         string enderecoFormatado = MontarEnderecoCompleto();
-
+                        string cpfApenasNumeros = System.Text.RegularExpressions.Regex.Replace(mtb_cpf.Text, @"[^\d]", "");
                         cmdCliente.Parameters.AddWithValue("@Nome", txb_nome.Text.Trim());
-                        cmdCliente.Parameters.AddWithValue("@CPF", mtb_cpf.Text);
+                        cmdCliente.Parameters.AddWithValue("@CPF", cpfApenasNumeros);
                         cmdCliente.Parameters.AddWithValue("@Email", txb_email.Text.Trim());
                         cmdCliente.Parameters.AddWithValue("@Endereco", enderecoFormatado);
                         cmdCliente.Parameters.AddWithValue("@CEP", mtb_cep.Text);
@@ -343,16 +352,25 @@ namespace Cadastro_Clinico
                 {
                     using (SqlCommand comando = new SqlCommand(sql, con))
                     {
-                        comando.Parameters.AddWithValue("@CPF", mtb_cpf.Text);
+                        string cpfApenasNumeros = System.Text.RegularExpressions.Regex.Replace(mtb_cpf.Text, @"[^\d]", "");
+
+                        comando.Parameters.AddWithValue("@CPF" , cpfApenasNumeros);
 
                         using (SqlDataReader reader = comando.ExecuteReader())
                         {
                             if (reader.Read())
                             {
+                                string enderecoBanco = reader["Endereco"].ToString();
+                                SepararEnderecoNosCampos(enderecoBanco);
+
+                                if (reader["Nascimento"] != DBNull.Value)
+                                {
+                                    mtb_data_nascimento.Text = Convert.ToDateTime(reader["Nascimento"]).ToString("dd/MM/yyyy");
+                                }
                                 txb_nome.Text = reader["Nome_C"].ToString();
                                 txb_email.Text = reader["Email"].ToString();
                                 mtb_data_nascimento.Text = Convert.ToDateTime(reader["Nascimento"]).ToString("dd/MM/yyyy"); 
-                                txb_endereço.Text = reader["Endereco"].ToString();
+                                
                                 mtb_cep.Text = reader["CEP"].ToString();
 
                                 MessageBox.Show("Cliente encontrado! Os dados foram preenchidos.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -391,8 +409,14 @@ namespace Cadastro_Clinico
         MessageBox.Show("Preencha todos os campos obrigatórios (E-mail, CEP, Endereço, Número, Profissional e Horário).", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         return;
     }
+            if (!Regex.IsMatch(txb_email.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("Por favor, informe um e-mail válido.", "E-mail Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txb_email.Focus();
+                return;
+            }
 
-    DateTime dataAtendimento;
+            DateTime dataAtendimento;
     if (!DateTime.TryParseExact(mtb_dataAtendimento.Text, "dd/MM/yyyy",
         System.Globalization.CultureInfo.InvariantCulture,
         System.Globalization.DateTimeStyles.None, out dataAtendimento))
@@ -668,6 +692,19 @@ namespace Cadastro_Clinico
             }
         }
 
+        private void mtb_cpf_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Verifica se a tecla pressionada foi o Enter
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Evita o som de "bip" padrão do Windows Forms ao dar Enter em um campo de texto
+                e.SuppressKeyPress = true;
+
+                // Executa o clique do botão de pesquisar (ou chama o método diretamente)
+                btn_pesquisar.PerformClick(); // Substitua 'btn_pesquisar' pelo Name do seu botão
+            }
+        }
+
         //-------------------Fim dos métodos-------------------
 
         private int idConsultaSelecionada = 0;
@@ -833,7 +870,36 @@ namespace Cadastro_Clinico
                 e.Handled = true;
             }
         }
-    
+
+        private void mtb_cpf_TextChanged(object sender, EventArgs e)
+        {
+          
+        // Desativa o evento para alterar o texto sem criar loop
+            mtb_cpf.TextChanged -= mtb_cpf_TextChanged;
+
+            // Obtém apenas os números
+            string num = System.Text.RegularExpressions.Regex.Replace(mtb_cpf.Text, @"[^\d]", "");
+
+            // Limita ao tamanho máximo do CPF (11 dígitos)
+            if (num.Length > 11)
+                num = num.Substring(0, 11);
+
+            // Formata o texto de acordo com a quantidade de números digitados
+            if (num.Length > 9)
+                mtb_cpf.Text = $"{num.Substring(0, 3)}.{num.Substring(3, 3)}.{num.Substring(6, 3)}-{num.Substring(9)}";
+            else if (num.Length > 6)
+                mtb_cpf.Text = $"{num.Substring(0, 3)}.{num.Substring(3, 3)}.{num.Substring(6)}";
+            else if (num.Length > 3)
+                mtb_cpf.Text = $"{num.Substring(0, 3)}.{num.Substring(3)}";
+            else
+                mtb_cpf.Text = num;
+
+            // Mantém o cursor no final do campo
+            mtb_cpf.SelectionStart = mtb_cpf.Text.Length;
+
+            // Reativa o evento
+            mtb_cpf.TextChanged += mtb_cpf_TextChanged;
+        }
     }
     public class ViaCepResponse
     {
