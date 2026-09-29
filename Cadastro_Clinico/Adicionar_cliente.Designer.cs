@@ -430,9 +430,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgv_agenda);
             this.Controls.Add(this.dateTimePicker1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Adicionar_cliente";
             this.Text = "Adicionar Clientes";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Adicionar_cliente_FormClosed);
             this.Load += new System.EventHandler(this.Adicionar_cliente_Load);
             this.Leave += new System.EventHandler(this.Adicionar_cliente_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_agenda)).EndInit();
