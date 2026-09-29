@@ -129,6 +129,7 @@
             this.tb_deposito.Name = "tb_deposito";
             this.tb_deposito.Size = new System.Drawing.Size(100, 20);
             this.tb_deposito.TabIndex = 7;
+            this.tb_deposito.TextChanged += new System.EventHandler(this.tb_deposito_TextChanged);
             // 
             // label3
             // 

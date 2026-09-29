@@ -12,7 +12,6 @@ namespace Cadastro_Clinico
         private readonly DataTable tabelaFuncionarios = new DataTable();
         private readonly BindingSource bindingSource = new BindingSource();
         private int idFuncionarioSelecionado = 0;
-        private bool modoEscuro = false;
         private Image imagemFundoOriginal;
 
         public add_funcionario()
@@ -20,25 +19,20 @@ namespace Cadastro_Clinico
             InitializeComponent();
 
             imagemFundoOriginal = this.BackgroundImage;
+
+            // Inscreve a janela no evento global de troca de tema
+            GerenciadorTema.OnTemaAlterado += AplicarTemaLocal;
+            this.FormClosed += (s, e) => GerenciadorTema.OnTemaAlterado -= AplicarTemaLocal;
+
             EstilizarGrid();
         }
 
         #region SISTEMA DE TEMA E NAVEGAÇÃO
-
-        private void btn_trocarTema_Click(object sender, EventArgs e)
+        private void AplicarTemaLocal()
         {
-            modoEscuro = !modoEscuro;
-            AplicarTema();
-        }
+            // Pega o estado atual (claro/escuro) diretamente da classe global
+            bool modoEscuro = GerenciadorTema.ModoEscuro;
 
-        private void btn_abrirNovaTela_Click(object sender, EventArgs e)
-        {
-            Adicionar_cliente novaTela = new Adicionar_cliente();
-            novaTela.Show();
-        }
-
-        public void AplicarTema()
-        {
             // Função auxiliar interna para atualizar a imagem descartando a anterior sem vazar memória
             void AtualizarIconeBotao(Button btn, Image novaImagem)
             {
@@ -46,7 +40,7 @@ namespace Cadastro_Clinico
                 {
                     if (btn.Image != null)
                     {
-                        btn.Image.Dispose(); // Libera a memória do ícone antigo
+                        btn.Image.Dispose();
                     }
                     btn.Image = novaImagem;
                 }
@@ -57,9 +51,7 @@ namespace Cadastro_Clinico
                 this.BackgroundImage = null;
                 this.BackColor = Color.FromArgb(30, 36, 45);
 
-                // Atribui o ícone do SOL (indica troca para modo claro)
                 AtualizarIconeBotao(btn_tema, GerarIconeSol());
-
                 AtualizarCoresControles(this.Controls, Color.FromArgb(45, 52, 65), Color.White, Color.White);
 
                 if (dataGridView != null)
@@ -67,10 +59,8 @@ namespace Cadastro_Clinico
                     dataGridView.EnableHeadersVisualStyles = false;
                     dataGridView.BackgroundColor = Color.FromArgb(45, 52, 65);
                     dataGridView.GridColor = Color.FromArgb(70, 80, 95);
-
                     dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(25, 30, 38);
                     dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-
                     dataGridView.DefaultCellStyle.BackColor = Color.FromArgb(45, 52, 65);
                     dataGridView.DefaultCellStyle.ForeColor = Color.White;
                     dataGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(70, 100, 150);
@@ -81,9 +71,7 @@ namespace Cadastro_Clinico
             {
                 this.BackgroundImage = imagemFundoOriginal;
 
-                // Atribui o ícone da LUA (indica troca para modo escuro)
                 AtualizarIconeBotao(btn_tema, GerarIconeLua());
-
                 AtualizarCoresControles(this.Controls, Color.White, Color.FromArgb(30, 41, 59), Color.FromArgb(30, 41, 59));
 
                 if (dataGridView != null)
@@ -91,10 +79,8 @@ namespace Cadastro_Clinico
                     dataGridView.EnableHeadersVisualStyles = false;
                     dataGridView.BackgroundColor = Color.White;
                     dataGridView.GridColor = Color.FromArgb(240, 243, 246);
-
                     dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
                     dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(100, 116, 139);
-
                     dataGridView.DefaultCellStyle.BackColor = Color.White;
                     dataGridView.DefaultCellStyle.ForeColor = Color.FromArgb(51, 65, 85);
                     dataGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(226, 232, 240);
@@ -104,9 +90,25 @@ namespace Cadastro_Clinico
 
             this.Refresh();
         }
+        private void btn_trocarTema_Click(object sender, EventArgs e)
+        {
+            // Alterna o tema globalmente para todas as telas abertas
+            GerenciadorTema.AlternarTema();
+        }
+        
+
+        private void btn_abrirNovaTela_Click(object sender, EventArgs e)
+        {
+            Adicionar_cliente novaTela = new Adicionar_cliente();
+            novaTela.Show();
+        }
+
+
 
         private void AtualizarCoresControles(Control.ControlCollection controles, Color fundoCampos, Color textoCampos, Color textoLabels)
         {
+            bool modoEscuro = GerenciadorTema.ModoEscuro;
+
             foreach (Control c in controles)
             {
                 if (c is Panel || c is GroupBox)
@@ -227,7 +229,7 @@ namespace Cadastro_Clinico
             dataGridView.DefaultCellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            AplicarTema();
+            //AplicarTema();
             dataGridView.ClearSelection();
         }
 
@@ -242,7 +244,7 @@ namespace Cadastro_Clinico
             using (SqlConnection con = conn.Conectar())
             {
                 if (con != null && con.State == ConnectionState.Open)
-                {
+                {   
                     string sql = "SELECT * FROM Funcionarios";
 
                     using (SqlCommand cmd = new SqlCommand(sql, con))
