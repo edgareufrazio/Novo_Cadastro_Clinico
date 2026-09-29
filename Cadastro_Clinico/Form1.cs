@@ -187,7 +187,23 @@ namespace Cadastro_Clinico
             txtUsuario.Focus();
         }
 
-      
+        private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                e.SuppressKeyPress = true;
+                txtSenha.Focus();
+            }
+        }
+
+        private void txtSenha_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)
+            {
+                e.SuppressKeyPress = true;
+                txtUsuario.Focus();
+            }
+        }
     }
 }
     
