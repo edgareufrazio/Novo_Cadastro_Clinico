@@ -345,6 +345,7 @@ namespace Cadastro_Clinico
 
             if (login != null)
             {
+                login.LimparLogin();
                 login.Show();
                 login.BringToFront();
             }

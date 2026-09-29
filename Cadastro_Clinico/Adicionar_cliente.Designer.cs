@@ -107,12 +107,13 @@
             // 
             // btn_salvar
             // 
+            this.btn_salvar.BackColor = System.Drawing.Color.Lime;
             this.btn_salvar.Location = new System.Drawing.Point(15, 415);
             this.btn_salvar.Name = "btn_salvar";
             this.btn_salvar.Size = new System.Drawing.Size(75, 23);
             this.btn_salvar.TabIndex = 13;
             this.btn_salvar.Text = "Salvar";
-            this.btn_salvar.UseVisualStyleBackColor = true;
+            this.btn_salvar.UseVisualStyleBackColor = false;
             this.btn_salvar.Click += new System.EventHandler(this.btn_salvar_Click);
             // 
             // label10
@@ -208,6 +209,7 @@
             this.mtb_cpf.Name = "mtb_cpf";
             this.mtb_cpf.Size = new System.Drawing.Size(83, 20);
             this.mtb_cpf.TabIndex = 1;
+            this.mtb_cpf.TextChanged += new System.EventHandler(this.mtb_cpf_TextChanged);
             this.mtb_cpf.Enter += new System.EventHandler(this.mtb_cpf_Enter);
             // 
             // label4
