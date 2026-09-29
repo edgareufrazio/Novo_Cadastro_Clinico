@@ -298,10 +298,20 @@ namespace Cadastro_Clinico
         {
             string cpfLimpo = ObterCpfNumerico();
 
+            // 1. Validação do CPF
             if (!ValidarCPF(cpfLimpo))
             {
                 MessageBox.Show("Por favor, informe um CPF válido com 11 dígitos.", "CPF Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 mtbx_cpf.Focus();
+                return;
+            }
+
+            // 2. Validação do E-mail (Verifica se tem "@" e formato válido)
+            string email = txb_email.Text.Trim();
+            if (string.IsNullOrEmpty(email) || !email.Contains("@") || !email.Contains("."))
+            {
+                MessageBox.Show("Por favor, informe um e-mail válido (ex: exemplo@gmail.com).", "E-mail Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txb_email.Focus();
                 return;
             }
 
@@ -316,15 +326,35 @@ namespace Cadastro_Clinico
                     using (SqlCommand cmd = new SqlCommand(sql, con))
                     {
                         cmd.Parameters.AddWithValue("@Nome", txb_nome.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Email", txb_email.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Email", email);
                         cmd.Parameters.AddWithValue("@Area", cmbDepartamento.Text.Trim());
                         cmd.Parameters.AddWithValue("@CPF", cpfLimpo);
 
-                        if (cmd.ExecuteNonQuery() > 0)
+                        try
                         {
-                            MessageBox.Show("Funcionário cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LimparCampos();
-                            CarregarDadosGrid();
+                            if (cmd.ExecuteNonQuery() > 0)
+                            {
+                                MessageBox.Show("Funcionário cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                LimparCampos();
+                                CarregarDadosGrid();
+                            }
+                        }
+                        catch (SqlException ex)
+                        {
+                            // Erros 2627 e 2601 indicam violação de chave única (CPF já existente)
+                            if (ex.Number == 2627 || ex.Number == 2601)
+                            {
+                                MessageBox.Show("Este CPF já está cadastrado no sistema!", "CPF Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                mtbx_cpf.Focus();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Erro ao salvar no banco de dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Ocorreu um erro inesperado: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -433,11 +463,14 @@ namespace Cadastro_Clinico
 
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            // Garante que o clique foi em uma linha válida (ignora cliques no cabeçalho)
+            if (e.RowIndex < 0) return;
+
+            try
             {
                 DataGridViewRow linha = dataGridView.Rows[e.RowIndex];
 
-                if (dataGridView.Columns.Contains("Funcionario_id") && linha.Cells["Funcionario_id"].Value != DBNull.Value)
+                if (dataGridView.Columns.Contains("Funcionario_id") && linha.Cells["Funcionario_id"].Value != DBNull.Value && linha.Cells["Funcionario_id"].Value != null)
                     idFuncionarioSelecionado = Convert.ToInt32(linha.Cells["Funcionario_id"].Value);
 
                 if (dataGridView.Columns.Contains("Nome_F"))
@@ -451,6 +484,10 @@ namespace Cadastro_Clinico
 
                 if (dataGridView.Columns.Contains("CPF_func"))
                     mtbx_cpf.Text = linha.Cells["CPF_func"].Value?.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar dados da linha: " + ex.Message, "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -486,6 +523,11 @@ namespace Cadastro_Clinico
 
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
+            // Instancia a nova tela
+            Adicionar_cliente novaTela = new Adicionar_cliente();
+            novaTela.Show();
+
+            // Fecha a tela atual
             this.Close();
         }
 
@@ -572,5 +614,15 @@ namespace Cadastro_Clinico
         }
 
         #endregion
+
+        private void add_funcionario_Leave(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView_CellClick(sender, e);
+        }
     }
 }
