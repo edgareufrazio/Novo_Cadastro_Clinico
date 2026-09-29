@@ -75,17 +75,7 @@ namespace Cadastro_Clinico
             CarregarConsultasPorData(dataSelecionada);
         }
 
-        //trocando de tela para add_funcionario
-        private void tsm_addFuncionario_Click(object sender, EventArgs e)
-        {
-            add_funcionario novaTela = new add_funcionario();
-
-
-            novaTela.Show();
-
-
-            this.Hide();
-        }
+        
 
 
         //caregar profissionais no combobox
@@ -855,6 +845,12 @@ namespace Cadastro_Clinico
             // Extrai apenas os dígitos numéricos digitados
             string apenasNumeros = System.Text.RegularExpressions.Regex.Replace(mtb_valor.Text, @"[^\d]", "");
 
+            // Evita estouro de memória/estouro do decimal limitando a 12 dígitos (máximo R$ 9.999.999.999,99)
+            if (apenasNumeros.Length > 12)
+            {
+                apenasNumeros = apenasNumeros.Substring(0, 12);
+            }
+
             if (string.IsNullOrEmpty(apenasNumeros))
             {
                 apenasNumeros = "0";
@@ -918,7 +914,22 @@ namespace Cadastro_Clinico
             mtb_cpf.TextChanged += mtb_cpf_TextChanged;
         }
 
-       
+        // trocando de tela para pagamentos
+        private void tsm_pagamentos_Click(object sender, EventArgs e)
+        {
+            Pagamentos novaTela = new Pagamentos();
+            novaTela.Show();
+            this.Hide();
+
+        }
+
+        //trocando de tela para add_funcionario
+        private void tsm_addFuncionario_Click(object sender, EventArgs e)
+        {
+            add_funcionario novaTela = new add_funcionario();
+            novaTela.Show();
+            this.Hide();
+        }
     }
     public class ViaCepResponse
     {
