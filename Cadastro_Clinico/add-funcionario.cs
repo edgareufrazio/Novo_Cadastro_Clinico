@@ -24,10 +24,18 @@ namespace Cadastro_Clinico
             GerenciadorTema.OnTemaAlterado += AplicarTemaLocal;
             this.FormClosed += (s, e) => GerenciadorTema.OnTemaAlterado -= AplicarTemaLocal;
 
+            // Garante a aplicação do tema atual e o carregamento dos dados na inicialização do Form
+            this.Load += (s, e) =>
+            {
+                AplicarTemaLocal();
+                CarregarDadosGrid();
+            };
+
             EstilizarGrid();
         }
 
         #region SISTEMA DE TEMA E NAVEGAÇÃO
+
         private void AplicarTemaLocal()
         {
             // Pega o estado atual (claro/escuro) diretamente da classe global
@@ -90,20 +98,18 @@ namespace Cadastro_Clinico
 
             this.Refresh();
         }
+
         private void btn_trocarTema_Click(object sender, EventArgs e)
         {
             // Alterna o tema globalmente para todas as telas abertas
             GerenciadorTema.AlternarTema();
         }
-        
 
         private void btn_abrirNovaTela_Click(object sender, EventArgs e)
         {
             Adicionar_cliente novaTela = new Adicionar_cliente();
             novaTela.Show();
         }
-
-
 
         private void AtualizarCoresControles(Control.ControlCollection controles, Color fundoCampos, Color textoCampos, Color textoLabels)
         {
@@ -138,15 +144,13 @@ namespace Cadastro_Clinico
 
         #region GERADORES DE ÍCONES (SOL E LUA VIA CÓDIGO)
 
-        #region GERADORES DE ÍCONES (SOL E LUA VIA CÓDIGO)
-
         private Bitmap GerarIconeSol()
         {
             Bitmap bmp = new Bitmap(32, 32);
             using (Graphics g = Graphics.FromImage(bmp))
             {
                 g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                g.Clear(Color.Transparent); // Limpa o fundo do bitmap
+                g.Clear(Color.Transparent);
 
                 using (Pen pen = new Pen(Color.FromArgb(255, 200, 0), 2))
                 {
@@ -174,20 +178,16 @@ namespace Cadastro_Clinico
             using (Graphics g = Graphics.FromImage(bmp))
             {
                 g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                g.Clear(Color.Transparent); // Limpa o fundo do bitmap
+                g.Clear(Color.Transparent);
 
-                // Desenha a lua recortando a região para transparência perfeita
                 using (System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath())
                 {
-                    // Círculo principal da lua
                     path.AddEllipse(4, 4, 22, 22);
 
-                    // Círculo de corte que cria o formato de crescente
                     using (System.Drawing.Drawing2D.GraphicsPath corte = new System.Drawing.Drawing2D.GraphicsPath())
                     {
                         corte.AddEllipse(10, 2, 20, 20);
 
-                        // Subtrai o corte do caminho principal
                         Region regiaoLua = new Region(path);
                         regiaoLua.Exclude(corte);
 
@@ -200,8 +200,6 @@ namespace Cadastro_Clinico
             }
             return bmp;
         }
-
-        #endregion
 
         #endregion
 
@@ -229,7 +227,6 @@ namespace Cadastro_Clinico
             dataGridView.DefaultCellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            //AplicarTema();
             dataGridView.ClearSelection();
         }
 
@@ -244,7 +241,7 @@ namespace Cadastro_Clinico
             using (SqlConnection con = conn.Conectar())
             {
                 if (con != null && con.State == ConnectionState.Open)
-                {   
+                {
                     string sql = "SELECT * FROM Funcionarios";
 
                     using (SqlCommand cmd = new SqlCommand(sql, con))
@@ -300,7 +297,6 @@ namespace Cadastro_Clinico
         {
             string cpfLimpo = ObterCpfNumerico();
 
-            // 1. Validação do CPF
             if (!ValidarCPF(cpfLimpo))
             {
                 MessageBox.Show("Por favor, informe um CPF válido com 11 dígitos.", "CPF Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -308,7 +304,6 @@ namespace Cadastro_Clinico
                 return;
             }
 
-            // 2. Validação do E-mail (Verifica se tem "@" e formato válido)
             string email = txb_email.Text.Trim();
             if (string.IsNullOrEmpty(email) || !email.Contains("@") || !email.Contains("."))
             {
@@ -343,7 +338,6 @@ namespace Cadastro_Clinico
                         }
                         catch (SqlException ex)
                         {
-                            // Erros 2627 e 2601 indicam violação de chave única (CPF já existente)
                             if (ex.Number == 2627 || ex.Number == 2601)
                             {
                                 MessageBox.Show("Este CPF já está cadastrado no sistema!", "CPF Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -465,7 +459,6 @@ namespace Cadastro_Clinico
 
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Garante que o clique foi em uma linha válida (ignora cliques no cabeçalho)
             if (e.RowIndex < 0) return;
 
             try
@@ -525,11 +518,8 @@ namespace Cadastro_Clinico
 
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
-            // Instancia a nova tela
             Adicionar_cliente novaTela = new Adicionar_cliente();
             novaTela.Show();
-
-            // Fecha a tela atual
             this.Close();
         }
 
@@ -615,8 +605,6 @@ namespace Cadastro_Clinico
             return cpf.EndsWith(digito);
         }
 
-        #endregion
-
         private void add_funcionario_Leave(object sender, EventArgs e)
         {
             this.Close();
@@ -626,5 +614,7 @@ namespace Cadastro_Clinico
         {
             dataGridView_CellClick(sender, e);
         }
+
+        #endregion
     }
 }
