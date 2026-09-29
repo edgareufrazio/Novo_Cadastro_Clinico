@@ -917,6 +917,8 @@ namespace Cadastro_Clinico
             // Reativa o evento
             mtb_cpf.TextChanged += mtb_cpf_TextChanged;
         }
+
+       
     }
     public class ViaCepResponse
     {
