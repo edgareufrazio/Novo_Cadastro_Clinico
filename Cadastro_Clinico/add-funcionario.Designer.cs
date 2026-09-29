@@ -333,7 +333,7 @@ namespace Cadastro_Clinico
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "add_funcionario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "add_funcionario";
+            this.Text = "Adicionar Funcionário";
             this.Load += new System.EventHandler(this.add_funcionario_Load);
             this.Leave += new System.EventHandler(this.add_funcionario_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
