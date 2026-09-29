@@ -53,10 +53,10 @@
             this.grid_pagamentos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.grid_pagamentos.BackgroundColor = System.Drawing.SystemColors.Control;
             this.grid_pagamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid_pagamentos.Location = new System.Drawing.Point(76, 98);
+            this.grid_pagamentos.Location = new System.Drawing.Point(68, 98);
             this.grid_pagamentos.Name = "grid_pagamentos";
             this.grid_pagamentos.RowHeadersWidth = 51;
-            this.grid_pagamentos.Size = new System.Drawing.Size(454, 265);
+            this.grid_pagamentos.Size = new System.Drawing.Size(475, 265);
             this.grid_pagamentos.TabIndex = 0;
             this.grid_pagamentos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_pagamentos_CellClick);
             // 
@@ -96,7 +96,7 @@
             // 
             this.bt_exibir.BackColor = System.Drawing.SystemColors.Control;
             this.bt_exibir.Font = new System.Drawing.Font("Segoe UI Variable Text", 9.8F, System.Drawing.FontStyle.Bold);
-            this.bt_exibir.Location = new System.Drawing.Point(76, 370);
+            this.bt_exibir.Location = new System.Drawing.Point(68, 369);
             this.bt_exibir.Name = "bt_exibir";
             this.bt_exibir.Size = new System.Drawing.Size(113, 23);
             this.bt_exibir.TabIndex = 4;
@@ -182,7 +182,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(59)))), ((int)(((byte)(100)))));
-            this.label5.Location = new System.Drawing.Point(82, 36);
+            this.label5.Location = new System.Drawing.Point(61, 36);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(187, 40);
             this.label5.TabIndex = 12;
