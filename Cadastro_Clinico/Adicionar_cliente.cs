@@ -718,6 +718,14 @@ namespace Cadastro_Clinico
         private int idConsultaSelecionada = 0;
         private void Adicionar_cliente_Load(object sender, EventArgs e)
         {
+            foreach (Control control in this.Controls)
+            {
+                if (control is Button btn)
+                {
+                    btn.FlatStyle = FlatStyle.Flat;
+                    btn.FlatAppearance.BorderSize = 0;
+                }
+            }
             AtualizarTelaPorData();
             CarregarProfissionais();
             dgv_agenda.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

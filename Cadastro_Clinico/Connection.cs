@@ -10,7 +10,7 @@ namespace Cadastro_Clinico
     internal class Connection
     {
 
-        private readonly string connectionString = @"Data Source=VPR0719072W11-1\SQLEXPRESS;Initial Catalog=Projeto2;User ID=sa;Password=123456";
+        private readonly string connectionString = @"";
 
 
         public SqlConnection Conectar()
