@@ -17,6 +17,17 @@ namespace Cadastro_Clinico
         public Pagamentos()
         {
             InitializeComponent();
+
+            // Inscreve a janela no evento global de troca de tema
+            GerenciadorTema.OnTemaAlterado += AplicarTemaLocal;
+            this.FormClosed += (s, e) => GerenciadorTema.OnTemaAlterado -= AplicarTemaLocal;
+
+            // Aplica o tema atual logo quando a tela abre
+            AplicarTemaLocal();
+        }
+        private void AplicarTemaLocal()
+        {
+            GerenciadorTema.AplicarTema(this);
         }
 
         private void Pagamentos_Load(object sender, EventArgs e)
@@ -228,6 +239,11 @@ namespace Cadastro_Clinico
                 tb_divida.Text = row.Cells["Em_aberto"].Value.ToString();
                 tb_id.Text = row.Cells["Consulta_id"].Value.ToString();
             }
+        }
+
+        private void tb_deposito_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
     
