@@ -19,7 +19,7 @@ namespace Cadastro_Clinico
             InitializeComponent();
         }
 
-        private void Adicionar_usuario_Load(object sender, EventArgs e)
+        private async void Adicionar_usuario_Load(object sender, EventArgs e)
         {
            
 
@@ -132,28 +132,20 @@ namespace Cadastro_Clinico
                     "Erro ao cadastrar usuário:\n\n" + ex.Message);
             }
         }
-        private void CarregarUsuarios()
+        private async void CarregarUsuarios()
         {
             string query = @"SELECT Usuario, Senha, Nivel FROM Logar ORDER BY Usuario";
 
-            Connection conexao = new Connection();
             try
             {
-                using (SqlConnection conn = conexao.Conectar())
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                {
-                    DataTable tabela = new DataTable();
-
-                    da.Fill(tabela);
-
-                    gridUsuarios.DataSource = tabela;
-                }
+                var tabela = await DataAccess.ExecuteDataTableAsync(query);
+                gridUsuarios.DataSource = tabela;
+                GerenciadorTema.EstilizarDataGridView(gridUsuarios);
             }
-            catch(Exception ex) 
+            catch(Exception ex)
             {
+                Logger.LogError(ex.ToString());
                 MessageBox.Show("Erro ao carregar usuarios:\n\n" + ex.Message);
-               
             }
         }
 

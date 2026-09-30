@@ -94,6 +94,7 @@
       <DependentUpon>Adicionar_usuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Connection.cs" />
+    <Compile Include="DataAccess.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +102,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="GerenciadorTema.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Pagamentos.cs">
       <SubType>Form</SubType>
     </Compile>

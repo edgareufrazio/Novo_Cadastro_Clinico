@@ -64,7 +64,7 @@ namespace Cadastro_Clinico
             cbx_horarios.DataSource = null;
         }
 
-        private void AtualizarTelaPorData()
+        private async Task AtualizarTelaPorData()
         {
             // Pega apenas a data (sem a hora) do DateTimePicker
             DateTime dataSelecionada = dateTimePicker1.Value.Date;
@@ -73,33 +73,31 @@ namespace Cadastro_Clinico
             mtb_dataAtendimento.Text = dataSelecionada.ToString("dd/MM/yyyy");
 
             // Busca as consultas daquela data e preenche o DataGridView
-            CarregarConsultasPorData(dataSelecionada);
+            await CarregarConsultasPorDataAsync(dataSelecionada);
         }
 
         
 
 
         //caregar profissionais no combobox
-        private void CarregarProfissionais()
+        private async Task CarregarProfissionaisAsync()
         {
             string sql = "SELECT Funcionario_id, Nome_F FROM Funcionarios ORDER BY Nome_F ASC";
 
-            Connection conexao = new Connection();
-            using (SqlConnection con = conexao.Conectar())
+            try
             {
-                using (SqlCommand comando = new SqlCommand(sql, con))
-                {
-                    SqlDataAdapter adaptador = new SqlDataAdapter(comando);
-                    DataTable tabela = new DataTable();
-                    adaptador.Fill(tabela);
+                var tabela = await DataAccess.ExecuteDataTableAsync(sql);
 
-                    // Oculta o ID do usuário exibindo apenas a coluna com o Nome:
-                    cbx_nomeProfissional.DisplayMember = "Nome_F";       
-                    cbx_nomeProfissional.ValueMember = "Funcionario_id"; 
+                // Oculta o ID do usuário exibindo apenas a coluna com o Nome:
+                cbx_nomeProfissional.DisplayMember = "Nome_F";
+                cbx_nomeProfissional.ValueMember = "Funcionario_id";
 
-                    cbx_nomeProfissional.DataSource = tabela;
-                    cbx_nomeProfissional.SelectedIndex = -1;             
-                }
+                cbx_nomeProfissional.DataSource = tabela;
+                cbx_nomeProfissional.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.ToString());
             }
         }
         //Caregar lista de horários no combobox
@@ -192,7 +190,7 @@ namespace Cadastro_Clinico
             cbx_horarios.DataSource = horariosLivresFormatados;
             cbx_horarios.SelectedIndex = -1; // Deixa sem escolha inicial
         }
-        private void CarregarConsultasPorData(DateTime data)
+        private async Task CarregarConsultasPorDataAsync(DateTime data)
         {
 
             string sql = @"SELECT 
@@ -208,26 +206,22 @@ namespace Cadastro_Clinico
                         ORDER BY con.Data_hora ASC";
 
 
-            Connection conexao = new Connection();
-            using (conexao.Conectar())
+            try
             {
-                using (SqlCommand comando = new SqlCommand(sql, conexao.Conectar()))
+                var tabela = await DataAccess.ExecuteDataTableAsync(sql, new SqlParameter("@DataConsulta", SqlDbType.Date) { Value = data });
+
+                dgv_agenda.DataSource = tabela;
+
+                if (dgv_agenda.Columns["ID Consulta"] != null)
                 {
-                    comando.Parameters.Add("@DataConsulta", SqlDbType.Date).Value = data;
-
-                    SqlDataAdapter adaptador = new SqlDataAdapter(comando);
-                    DataTable tabela = new DataTable();
-
-                    adaptador.Fill(tabela);
-
-                    // Exibe o resultado no DataGridView 
-                    dgv_agenda.DataSource = tabela;
-                    //ocultando o ID da consultando para o usuario porém mantendo o dado para uso interno
-                    if (dgv_agenda.Columns["ID Consulta"] != null)
-                    {
-                        dgv_agenda.Columns["ID Consulta"].Visible = false;
-                    }
+                    dgv_agenda.Columns["ID Consulta"].Visible = false;
                 }
+
+                GerenciadorTema.EstilizarDataGridView(dgv_agenda);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.ToString());
             }
         }
 
@@ -303,12 +297,20 @@ namespace Cadastro_Clinico
                         // Concatena a rua/bairro, número e complemento em uma única string
                         string enderecoFormatado = MontarEnderecoCompleto();
                         string cpfApenasNumeros = System.Text.RegularExpressions.Regex.Replace(mtb_cpf.Text, @"[^\d]", "");
-                        cmdCliente.Parameters.AddWithValue("@Nome", txb_nome.Text.Trim());
-                        cmdCliente.Parameters.AddWithValue("@CPF", cpfApenasNumeros);
-                        cmdCliente.Parameters.AddWithValue("@Email", txb_email.Text.Trim());
-                        cmdCliente.Parameters.AddWithValue("@Endereco", enderecoFormatado);
-                        cmdCliente.Parameters.AddWithValue("@CEP", mtb_cep.Text);
-                        cmdCliente.Parameters.AddWithValue("@Nascimento", mtb_data_nascimento.Text);
+
+                        cmdCliente.Parameters.Add("@Nome", SqlDbType.VarChar, 200).Value = txb_nome.Text.Trim();
+                        cmdCliente.Parameters.Add("@CPF", SqlDbType.VarChar, 20).Value = cpfApenasNumeros;
+                        cmdCliente.Parameters.Add("@Email", SqlDbType.VarChar, 150).Value = txb_email.Text.Trim();
+                        cmdCliente.Parameters.Add("@Endereco", SqlDbType.VarChar, 400).Value = enderecoFormatado;
+                        cmdCliente.Parameters.Add("@CEP", SqlDbType.VarChar, 20).Value = mtb_cep.Text;
+
+                        // Tenta converter nascimento para Date, caso contrário envia como string
+                        DateTime nascimentoDt;
+                        if (DateTime.TryParse(mtb_data_nascimento.Text, out nascimentoDt))
+                            cmdCliente.Parameters.Add("@Nascimento", SqlDbType.Date).Value = nascimentoDt.Date;
+                        else
+                            cmdCliente.Parameters.Add("@Nascimento", SqlDbType.VarChar, 50).Value = mtb_data_nascimento.Text;
+
                         object resultado = cmdCliente.ExecuteScalar();
                         idCliente = Convert.ToInt32(resultado);
                     }
@@ -320,10 +322,10 @@ namespace Cadastro_Clinico
 
                     using (SqlCommand cmdConsulta = new SqlCommand(sqlConsulta, con))
                     {
-                        cmdConsulta.Parameters.AddWithValue("@ClienteId", idCliente);
-                        cmdConsulta.Parameters.AddWithValue("@FuncionarioId", idFuncionario);
-                        cmdConsulta.Parameters.AddWithValue("@DataHora", dataHoraFinal);
-                        cmdConsulta.Parameters.AddWithValue("@Valor", valorConsulta);
+                        cmdConsulta.Parameters.Add("@ClienteId", SqlDbType.Int).Value = idCliente;
+                        cmdConsulta.Parameters.Add("@FuncionarioId", SqlDbType.Int).Value = idFuncionario;
+                        cmdConsulta.Parameters.Add("@DataHora", SqlDbType.DateTime).Value = dataHoraFinal;
+                        cmdConsulta.Parameters.Add("@Valor", SqlDbType.Decimal).Value = valorConsulta;
 
                         cmdConsulta.ExecuteNonQuery();
                     }
@@ -338,6 +340,7 @@ namespace Cadastro_Clinico
             }
             catch (Exception ex)
             {
+                Logger.LogError(ex.ToString());
                 MessageBox.Show("Erro ao salvar agendamento: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -362,7 +365,7 @@ namespace Cadastro_Clinico
                     {
                         string cpfApenasNumeros = System.Text.RegularExpressions.Regex.Replace(mtb_cpf.Text, @"[^\d]", "");
 
-                        comando.Parameters.AddWithValue("@CPF" , cpfApenasNumeros);
+                        comando.Parameters.Add("@CPF", SqlDbType.VarChar, 20).Value = cpfApenasNumeros;
 
                         using (SqlDataReader reader = comando.ExecuteReader())
                         {
@@ -378,7 +381,7 @@ namespace Cadastro_Clinico
                                 txb_nome.Text = reader["Nome_C"].ToString();
                                 txb_email.Text = reader["Email"].ToString();
                                 mtb_data_nascimento.Text = Convert.ToDateTime(reader["Nascimento"]).ToString("dd/MM/yyyy"); 
-                                
+
                                 mtb_cep.Text = reader["CEP"].ToString();
 
                                 MessageBox.Show("Cliente encontrado! Os dados foram preenchidos.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -464,22 +467,22 @@ namespace Cadastro_Clinico
         Connection conexao = new Connection();
         using (SqlConnection con = conexao.Conectar())
         {
-            using (SqlCommand comando = new SqlCommand(sql, con))
-            {
-                // Parâmetros da Consulta
-                comando.Parameters.AddWithValue("@FuncionarioId", idFuncionario);
-                comando.Parameters.AddWithValue("@DataHora", dataHoraFinal);
-                comando.Parameters.AddWithValue("@Valor", valorConsulta);
-                comando.Parameters.AddWithValue("@ConsultaId", idConsultaSelecionada);
+                using (SqlCommand comando = new SqlCommand(sql, con))
+                {
+                    // Parâmetros da Consulta
+                    comando.Parameters.Add("@FuncionarioId", SqlDbType.Int).Value = idFuncionario;
+                    comando.Parameters.Add("@DataHora", SqlDbType.DateTime).Value = dataHoraFinal;
+                    comando.Parameters.Add("@Valor", SqlDbType.Decimal).Value = valorConsulta;
+                    comando.Parameters.Add("@ConsultaId", SqlDbType.Int).Value = idConsultaSelecionada;
 
-                // Parâmetros do Cliente (com endereço concatenado)
-                string enderecoFormatado = MontarEnderecoCompleto();
-                comando.Parameters.AddWithValue("@Email", txb_email.Text.Trim());
-                comando.Parameters.AddWithValue("@Endereco", enderecoFormatado);
-                comando.Parameters.AddWithValue("@CEP", mtb_cep.Text);
+                    // Parâmetros do Cliente (com endereço concatenado)
+                    string enderecoFormatado = MontarEnderecoCompleto();
+                    comando.Parameters.Add("@Email", SqlDbType.VarChar, 150).Value = txb_email.Text.Trim();
+                    comando.Parameters.Add("@Endereco", SqlDbType.VarChar, 400).Value = enderecoFormatado;
+                    comando.Parameters.Add("@CEP", SqlDbType.VarChar, 20).Value = mtb_cep.Text;
 
-                comando.ExecuteNonQuery();
-            }
+                    comando.ExecuteNonQuery();
+                }
         }
 
         MessageBox.Show("Consulta e dados do cliente atualizados com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -518,7 +521,7 @@ namespace Cadastro_Clinico
                     {
                         using (SqlCommand comando = new SqlCommand(sql, con))
                         {
-                            comando.Parameters.AddWithValue("@ConsultaId", idConsulta);
+                            comando.Parameters.Add("@ConsultaId", SqlDbType.Int).Value = idConsulta;
                             comando.ExecuteNonQuery();
                         }
                     }
@@ -621,7 +624,7 @@ namespace Cadastro_Clinico
                 {
                     using (SqlCommand comando = new SqlCommand(sql, con))
                     {
-                        comando.Parameters.AddWithValue("@ConsultaId", idConsultaSelecionada);
+                        comando.Parameters.Add("@ConsultaId", SqlDbType.Int).Value = idConsultaSelecionada;
 
                         using (SqlDataReader reader = comando.ExecuteReader())
                         {
@@ -716,7 +719,7 @@ namespace Cadastro_Clinico
         //-------------------Fim dos métodos-------------------
 
         private int idConsultaSelecionada = 0;
-        private void Adicionar_cliente_Load(object sender, EventArgs e)
+        private async void Adicionar_cliente_Load(object sender, EventArgs e)
         {
             foreach (Control control in this.Controls)
             {
@@ -727,7 +730,7 @@ namespace Cadastro_Clinico
                 }
             }
             AtualizarTelaPorData();
-            CarregarProfissionais();
+            await CarregarProfissionaisAsync();
             dgv_agenda.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv_agenda.MultiSelect = false;
         }

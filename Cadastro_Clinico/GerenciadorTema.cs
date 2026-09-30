@@ -11,7 +11,8 @@ namespace Cadastro_Clinico
     public static class GerenciadorTema
     {
         // Controla se o tema atual é escuro (true) ou claro (false)
-        public static bool ModoEscuro { get; private set; } = false;
+        // Por padrão usa o tema escuro moderno
+        public static bool ModoEscuro { get; private set; } = true;
 
         // Evento que avisa todas as telas abertas que o tema mudou
         public static event Action OnTemaAlterado;
@@ -34,9 +35,9 @@ namespace Cadastro_Clinico
             }
             else
             {
-                // Cores do Tema Claro (Padrão)
-                container.BackColor = SystemColors.Control;
-                container.ForeColor = Color.Black;
+                // Cores do Tema Claro (Paleta moderna azul/cinza)
+                container.BackColor = Color.FromArgb(245, 248, 250);
+                container.ForeColor = Color.FromArgb(27, 45, 73);
             }
 
             // Passa por todos os componentes de dentro da tela (botões, labels, textboxes, etc.)
@@ -64,12 +65,7 @@ namespace Cadastro_Clinico
                 }
                 else if (ctrl is DataGridView dgv)
                 {
-                    dgv.BackgroundColor = Color.FromArgb(30, 30, 30);
-                    dgv.GridColor = Color.FromArgb(64, 64, 64);
-                    dgv.DefaultCellStyle.BackColor = Color.FromArgb(45, 45, 48);
-                    dgv.DefaultCellStyle.ForeColor = Color.White;
-                    dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(60, 60, 60);
-                    dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                    EstilizarDataGridView(dgv);
                 }
                 else
                 {
@@ -92,12 +88,7 @@ namespace Cadastro_Clinico
                 }
                 else if (ctrl is DataGridView dgv)
                 {
-                    dgv.BackgroundColor = SystemColors.AppWorkspace;
-                    dgv.GridColor = Color.LightGray;
-                    dgv.DefaultCellStyle.BackColor = Color.White;
-                    dgv.DefaultCellStyle.ForeColor = Color.Black;
-                    dgv.ColumnHeadersDefaultCellStyle.BackColor = SystemColors.Control;
-                    dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+                    EstilizarDataGridView(dgv);
                 }
                 else
                 {
@@ -113,6 +104,31 @@ namespace Cadastro_Clinico
                     AplicarTemaEmControle(subFilho);
                 }
             }
+        }
+
+        // Aplica um estilo moderno e consistente em um DataGridView
+        public static void EstilizarDataGridView(DataGridView dgv)
+        {
+            if (dgv == null) return;
+
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.RowHeadersVisible = false;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.MultiSelect = false;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.AllowUserToAddRows = false;
+
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = ModoEscuro ? Color.FromArgb(20, 40, 60) : Color.FromArgb(30, 78, 138);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
+            dgv.DefaultCellStyle.SelectionBackColor = ModoEscuro ? Color.FromArgb(60, 90, 120) : Color.FromArgb(200, 220, 240);
+            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = ModoEscuro ? Color.FromArgb(45, 50, 60) : Color.FromArgb(245, 247, 250);
+            dgv.GridColor = ModoEscuro ? Color.FromArgb(70, 80, 95) : Color.FromArgb(210, 220, 230);
         }
     }
 }

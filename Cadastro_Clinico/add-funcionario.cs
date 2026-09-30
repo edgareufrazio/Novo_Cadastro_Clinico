@@ -234,29 +234,26 @@ namespace Cadastro_Clinico
 
         #region OPERAÇÕES DE BANCO DE DADOS (CRUD)
 
-        private void CarregarDadosGrid()
+        private async void CarregarDadosGrid()
         {
-            Connection conn = new Connection();
-
-            using (SqlConnection con = conn.Conectar())
+            try
             {
-                if (con != null && con.State == ConnectionState.Open)
-                {
-                    string sql = "SELECT * FROM Funcionarios";
+                string sql = "SELECT * FROM Funcionarios";
+                var tabela = await DataAccess.ExecuteDataTableAsync(sql);
 
-                    using (SqlCommand cmd = new SqlCommand(sql, con))
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        tabelaFuncionarios.Clear();
-                        da.Fill(tabelaFuncionarios);
+                tabelaFuncionarios.Clear();
+                tabelaFuncionarios.Merge(tabela);
 
-                        dataGridView.AutoGenerateColumns = true;
-                        bindingSource.DataSource = tabelaFuncionarios;
-                        dataGridView.DataSource = bindingSource;
+                dataGridView.AutoGenerateColumns = true;
+                bindingSource.DataSource = tabelaFuncionarios;
+                dataGridView.DataSource = bindingSource;
 
-                        ConfigurarCabecalhosGrid();
-                    }
-                }
+                ConfigurarCabecalhosGrid();
+                GerenciadorTema.EstilizarDataGridView(dataGridView);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.ToString());
             }
         }
 
@@ -293,7 +290,7 @@ namespace Cadastro_Clinico
             }
         }
 
-        private void btn_confirmar_Click(object sender, EventArgs e)
+        private async void btn_confirmar_Click(object sender, EventArgs e)
         {
             string cpfLimpo = ObterCpfNumerico();
 
@@ -312,56 +309,43 @@ namespace Cadastro_Clinico
                 return;
             }
 
-            Connection conn = new Connection();
-
-            using (SqlConnection con = conn.Conectar())
+            try
             {
-                if (con != null && con.State == ConnectionState.Open)
-                {
-                    string sql = "INSERT INTO Funcionarios (Nome_F, Email_func, Area, CPF_func) VALUES (@Nome, @Email, @Area, @CPF)";
+                // Verifica CPF duplicado
+                string sqlCheck = "SELECT COUNT(*) FROM Funcionarios WHERE CPF_func = @CPF";
+                var countObj = await DataAccess.ExecuteScalarAsync(sqlCheck, new SqlParameter("@CPF", System.Data.SqlDbType.VarChar) { Value = cpfLimpo });
+                int existe = 0;
+                if (countObj != null && int.TryParse(countObj.ToString(), out int tmp)) existe = tmp;
 
-                    using (SqlCommand cmd = new SqlCommand(sql, con))
-                    {
-                        cmd.Parameters.AddWithValue("@Nome", txb_nome.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Email", email);
-                        cmd.Parameters.AddWithValue("@Area", cmbDepartamento.Text.Trim());
-                        cmd.Parameters.AddWithValue("@CPF", cpfLimpo);
-
-                        try
-                        {
-                            if (cmd.ExecuteNonQuery() > 0)
-                            {
-                                MessageBox.Show("Funcionário cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                LimparCampos();
-                                CarregarDadosGrid();
-                            }
-                        }
-                        catch (SqlException ex)
-                        {
-                            if (ex.Number == 2627 || ex.Number == 2601)
-                            {
-                                MessageBox.Show("Este CPF já está cadastrado no sistema!", "CPF Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                mtbx_cpf.Focus();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Erro ao salvar no banco de dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Ocorreu um erro inesperado: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-                else
+                if (existe > 0)
                 {
-                    MessageBox.Show("Falha ao conectar com o banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Este CPF já está cadastrado no sistema!", "CPF Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    mtbx_cpf.Focus();
+                    return;
                 }
+
+                string sql = "INSERT INTO Funcionarios (Nome_F, Email_func, Area, CPF_func) VALUES (@Nome, @Email, @Area, @CPF)";
+                int affected = await DataAccess.ExecuteNonQueryAsync(sql,
+                    new SqlParameter("@Nome", System.Data.SqlDbType.VarChar) { Value = txb_nome.Text.Trim() },
+                    new SqlParameter("@Email", System.Data.SqlDbType.VarChar) { Value = email },
+                    new SqlParameter("@Area", System.Data.SqlDbType.VarChar) { Value = cmbDepartamento.Text.Trim() },
+                    new SqlParameter("@CPF", System.Data.SqlDbType.VarChar) { Value = cpfLimpo });
+
+                if (affected > 0)
+                {
+                    MessageBox.Show("Funcionário cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimparCampos();
+                    CarregarDadosGrid();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.ToString());
+                MessageBox.Show("Erro ao salvar funcionário: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void btn_atualizar_Click(object sender, EventArgs e)
+        private async void btn_atualizar_Click(object sender, EventArgs e)
         {
             if (idFuncionarioSelecionado == 0)
             {
@@ -378,38 +362,32 @@ namespace Cadastro_Clinico
                 return;
             }
 
-            Connection conn = new Connection();
-
-            using (SqlConnection con = conn.Conectar())
+            try
             {
-                if (con != null && con.State == ConnectionState.Open)
-                {
-                    string sql = "UPDATE Funcionarios SET Nome_F = @Nome, Email_func = @Email, Area = @Area, CPF_func = @CPF WHERE Funcionario_id = @ID";
+                string sql = "UPDATE Funcionarios SET Nome_F = @Nome, Email_func = @Email, Area = @Area, CPF_func = @CPF WHERE Funcionario_id = @ID";
 
-                    using (SqlCommand cmd = new SqlCommand(sql, con))
-                    {
-                        cmd.Parameters.AddWithValue("@Nome", txb_nome.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Email", txb_email.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Area", cmbDepartamento.Text.Trim());
-                        cmd.Parameters.AddWithValue("@CPF", cpfLimpo);
-                        cmd.Parameters.AddWithValue("@ID", idFuncionarioSelecionado);
+                int affected = await DataAccess.ExecuteNonQueryAsync(sql,
+                    new SqlParameter("@Nome", System.Data.SqlDbType.VarChar) { Value = txb_nome.Text.Trim() },
+                    new SqlParameter("@Email", System.Data.SqlDbType.VarChar) { Value = txb_email.Text.Trim() },
+                    new SqlParameter("@Area", System.Data.SqlDbType.VarChar) { Value = cmbDepartamento.Text.Trim() },
+                    new SqlParameter("@CPF", System.Data.SqlDbType.VarChar) { Value = cpfLimpo },
+                    new SqlParameter("@ID", System.Data.SqlDbType.Int) { Value = idFuncionarioSelecionado });
 
-                        if (cmd.ExecuteNonQuery() > 0)
-                        {
-                            MessageBox.Show("Dados do funcionário atualizados com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LimparCampos();
-                            CarregarDadosGrid();
-                        }
-                    }
-                }
-                else
+                if (affected > 0)
                 {
-                    MessageBox.Show("Falha ao conectar com o banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Dados do funcionário atualizados com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimparCampos();
+                    CarregarDadosGrid();
                 }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.ToString());
+                MessageBox.Show("Erro ao atualizar funcionário: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void btn_excluir_Click(object sender, EventArgs e)
+        private async void btn_excluir_Click(object sender, EventArgs e)
         {
             if (idFuncionarioSelecionado == 0)
             {
@@ -428,28 +406,22 @@ namespace Cadastro_Clinico
 
             Connection conn = new Connection();
 
-            using (SqlConnection con = conn.Conectar())
+            try
             {
-                if (con != null && con.State == ConnectionState.Open)
-                {
-                    string sql = "DELETE FROM Funcionarios WHERE Funcionario_id = @ID";
+                string sql = "DELETE FROM Funcionarios WHERE Funcionario_id = @ID";
+                int affected = await DataAccess.ExecuteNonQueryAsync(sql, new SqlParameter("@ID", System.Data.SqlDbType.Int) { Value = idFuncionarioSelecionado });
 
-                    using (SqlCommand cmd = new SqlCommand(sql, con))
-                    {
-                        cmd.Parameters.AddWithValue("@ID", idFuncionarioSelecionado);
-
-                        if (cmd.ExecuteNonQuery() > 0)
-                        {
-                            MessageBox.Show("Funcionário excluído com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LimparCampos();
-                            CarregarDadosGrid();
-                        }
-                    }
-                }
-                else
+                if (affected > 0)
                 {
-                    MessageBox.Show("Falha ao conectar com o banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Funcionário excluído com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimparCampos();
+                    CarregarDadosGrid();
                 }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.ToString());
+                MessageBox.Show("Erro ao excluir funcionário: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

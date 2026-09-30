@@ -25,7 +25,7 @@ namespace Cadastro_Clinico
             Application.Exit();
         }
 
-        private void btn_entrar_Click(object sender, EventArgs e)
+        private async void btn_entrar_Click(object sender, EventArgs e)
         {
             string usuario = txtUsuario.Text.Trim();
             string senha = txtSenha.Text;
@@ -36,7 +36,7 @@ namespace Cadastro_Clinico
                 return;
             }
 
-            string nivel = ObterNivelUsuario(usuario, senha);
+            string nivel = await ObterNivelUsuarioAsync(usuario, senha);
 
             if (nivel == null)
             {
@@ -134,29 +134,20 @@ namespace Cadastro_Clinico
 
 
 
-        private string ObterNivelUsuario(string usuario, string senha)
+        private async Task<string> ObterNivelUsuarioAsync(string usuario, string senha)
         {
             string query = @"select Nivel from Logar where Usuario = @usuario and Senha = @senha";
-            Connection conexao = new Connection();
-
             try
             {
-                using (SqlConnection conn = conexao.Conectar())
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.Add("@usuario", SqlDbType.VarChar, 64).Value = usuario;
-                    cmd.Parameters.Add("@senha", SqlDbType.VarChar, 64).Value = senha;
+                var result = await DataAccess.ExecuteScalarAsync(query,
+                    new SqlParameter("@usuario", SqlDbType.VarChar) { Value = usuario },
+                    new SqlParameter("@senha", SqlDbType.VarChar) { Value = senha });
 
-                    object resultado = cmd.ExecuteScalar();
-
-                    if (resultado != null)
-                        return resultado.ToString();
-
-                    return null;
-                }
+                return result?.ToString();
             }
             catch (Exception ex)
             {
+                Logger.LogError(ex.ToString());
                 MessageBox.Show(
                     "Erro ao consultar o banco:\n\n" + ex.Message,
                     "Erro",
