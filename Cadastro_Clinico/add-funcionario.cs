@@ -4,10 +4,12 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace Cadastro_Clinico
 {
-    public partial class add_funcionario : Form
+    public partial class add_funcionario : MaterialForm
     {
         private readonly DataTable tabelaFuncionarios = new DataTable();
         private readonly BindingSource bindingSource = new BindingSource();
@@ -17,6 +19,15 @@ namespace Cadastro_Clinico
         public add_funcionario()
         {
             InitializeComponent();
+
+            // Aplica MaterialSkin (tema escuro moderno)
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+            materialSkinManager.ColorScheme = new ColorScheme(
+                Primary.Blue700, Primary.Blue900,
+                Primary.Blue500, Accent.LightBlue200,
+                TextShade.WHITE);
 
             imagemFundoOriginal = this.BackgroundImage;
 
